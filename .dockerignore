@@ -1,0 +1,9 @@
+.git
+.gitignore
+.github
+.DS_Store
+node_modules
+README.md
+.env
+.vscode
+.editorconfig
