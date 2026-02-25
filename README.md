@@ -162,5 +162,5 @@ docker rmi financial-foundations:latest
 | Method | Start Command | Access URL |
 |---|---|---|
 | Local (Python) | `python3 -m http.server 8080` | `http://localhost:8080` |
-| AWS Hosting | `git push origin main` | `https://theacademy.github.io/financial-foundations/` |
+| AWS Hosting | `git push origin main` | `http://mthree-peregrine-s3-2.s3-website-us-east-1.amazonaws.com/` |
 | Docker | `docker run -d -p 8080:80 financial-foundations:latest` | `http://localhost:8080` |
