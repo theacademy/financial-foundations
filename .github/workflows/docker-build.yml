@@ -6,7 +6,7 @@ on:
     paths:
       - 'Dockerfile'
       - 'nginx.conf'
-      - 'index.html'
+      - '*.html'
       - 'css/**'
       - '.github/workflows/docker-build.yml'
   pull_request:

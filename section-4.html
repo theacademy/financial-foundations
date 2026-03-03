@@ -5,49 +5,128 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Module 4: Derivatives – Financial Foundations</title>
     <link rel="stylesheet" href="css/main.css" />
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
     <style>
-      .ff-topbar{
-        position:sticky;top:0;z-index:100;
-        background:#0d1f3c;
-        border-bottom:1px solid rgba(201,168,76,.18);
-        display:flex;align-items:center;justify-content:space-between;
-        padding:.85rem 2rem;gap:1rem;
-        font-family:"DM Sans",sans-serif;
+      .ff-topbar {
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        background: #0d1f3c;
+        border-bottom: 1px solid rgba(201, 168, 76, 0.18);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0.85rem 2rem;
+        gap: 1rem;
+        font-family: "DM Sans", sans-serif;
       }
-      .ff-topbar a{text-decoration:none;}
-      .ff-home{
-        display:flex;align-items:center;gap:.6rem;
-        font-size:.72rem;font-weight:500;letter-spacing:.15em;
-        text-transform:uppercase;color:#c9a84c;transition:opacity .2s;
+      .ff-topbar a {
+        text-decoration: none;
       }
-      .ff-home:hover{opacity:.7;}
-      .ff-home svg{width:14px;height:14px;}
-      .ff-section-id{
-        font-family:"Playfair Display",serif;
-        font-size:.85rem;font-weight:600;color:#ffffff;opacity:.5;
+      .ff-home {
+        display: flex;
+        align-items: center;
+        gap: 0.6rem;
+        font-size: 0.72rem;
+        font-weight: 500;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        color: #c9a84c;
+        transition: opacity 0.2s;
       }
-      .ff-arrows{display:flex;gap:.5rem;}
-      .ff-arrows a{
-        display:flex;align-items:center;gap:.4rem;
-        font-size:.7rem;font-weight:500;letter-spacing:.1em;
-        text-transform:uppercase;color:#8a9ab5;
-        padding:.4rem .75rem;
-        border:1px solid rgba(138,154,181,.25);border-radius:2px;
-        transition:color .2s,border-color .2s;
+      .ff-home:hover {
+        opacity: 0.7;
       }
-      .ff-arrows a:hover{color:#c9a84c;border-color:rgba(201,168,76,.4);}
-      .ff-arrows svg{width:13px;height:13px;}
-      .ff-arrows a.off{opacity:.22;pointer-events:none;}
+      .ff-home svg {
+        width: 14px;
+        height: 14px;
+      }
+      .ff-section-id {
+        font-family: "Playfair Display", serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        color: #ffffff;
+        opacity: 0.5;
+      }
+      .ff-arrows {
+        display: flex;
+        gap: 0.5rem;
+      }
+      .ff-arrows a {
+        display: flex;
+        align-items: center;
+        gap: 0.4rem;
+        font-size: 0.7rem;
+        font-weight: 500;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: #8a9ab5;
+        padding: 0.4rem 0.75rem;
+        border: 1px solid rgba(138, 154, 181, 0.25);
+        border-radius: 2px;
+        transition:
+          color 0.2s,
+          border-color 0.2s;
+      }
+      .ff-arrows a:hover {
+        color: #c9a84c;
+        border-color: rgba(201, 168, 76, 0.4);
+      }
+      .ff-arrows svg {
+        width: 13px;
+        height: 13px;
+      }
+      .ff-arrows a.off {
+        opacity: 0.22;
+        pointer-events: none;
+      }
     </style>
   </head>
   <body>
     <nav class="ff-topbar">
-      <a href="index.html" class="ff-home"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 8H3M7 4L3 8l4 4"/></svg> All Modules</a>
+      <a href="index.html" class="ff-home"
+        ><svg
+          viewBox="0 0 16 16"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path d="M13 8H3M7 4L3 8l4 4" />
+        </svg>
+        All Modules</a
+      >
       <span class="ff-section-id">Module 4 &mdash; Derivatives</span>
       <div class="ff-arrows">
-        <a href="section-3.html"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 4L6 8l4 4"/></svg> Prev</a>
-        <a href="section-5.html">Next <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 4l4 4-4 4"/></svg></a>
+        <a href="section-3.html"
+          ><svg
+            viewBox="0 0 16 16"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M10 4L6 8l4 4" />
+          </svg>
+          Prev</a
+        >
+        <a href="section-5.html"
+          >Next
+          <svg
+            viewBox="0 0 16 16"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M6 4l4 4-4 4" /></svg
+        ></a>
       </div>
     </nav>
     <main>

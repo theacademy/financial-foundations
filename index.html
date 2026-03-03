@@ -19,11 +19,11 @@
       :root {
         --navy:    #0d1f3c;
         --card-bg: #1a2e4a;
-        --gold:    #c9a84c;
-        --gold2:   #e8c96d;
-        --cream:   #f5f0e8;
-        --muted:   #8a9ab5;
-        --white:   #ffffff;
+        --gold: #c9a84c;
+        --gold2: #e8c96d;
+        --cream: #f5f0e8;
+        --muted: #8a9ab5;
+        --white: #ffffff;
       }
 
       /* Force dark theme over anything in main.css */
@@ -82,7 +82,10 @@
         background: transparent !important;
       }
 
-      .hero-inner { position: relative; z-index: 1; }
+      .hero-inner {
+        position: relative;
+        z-index: 1;
+      }
 
       .eyebrow {
         font-size: 0.7rem;
@@ -144,9 +147,13 @@
       .hero-cta:hover {
         background: var(--gold2) !important;
         transform: translateY(-2px);
-        box-shadow: 0 8px 28px rgba(201,168,76,0.3);
+        box-shadow: 0 8px 28px rgba(201, 168, 76, 0.3);
       }
-      .hero-cta svg { width: 15px; height: 15px; flex-shrink: 0; }
+      .hero-cta svg {
+        width: 15px;
+        height: 15px;
+        flex-shrink: 0;
+      }
 
       .scroll-hint {
         position: absolute;
@@ -170,7 +177,15 @@
         background: linear-gradient(to bottom, var(--gold), transparent);
         animation: barPulse 2.2s ease-in-out infinite;
       }
-      @keyframes barPulse { 0%,100%{opacity:0.3} 50%{opacity:1} }
+      @keyframes barPulse {
+        0%,
+        100% {
+          opacity: 0.3;
+        }
+        50% {
+          opacity: 1;
+        }
+      }
 
       /* ─── MODULES ───────────────────────────────────────────── */
       .modules-section {
@@ -192,18 +207,18 @@
         margin-bottom: 3rem;
       }
       .section-label::after {
-        content: '';
+        content: "";
         flex: 1;
         height: 1px;
-        background: rgba(201,168,76,0.2);
+        background: rgba(201, 168, 76, 0.2);
       }
 
       .cards-grid {
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
         gap: 1.5px;
-        background: rgba(201,168,76,0.13);
-        border: 1.5px solid rgba(201,168,76,0.13);
+        background: rgba(201, 168, 76, 0.13);
+        border: 1.5px solid rgba(201, 168, 76, 0.13);
       }
 
       .card {
@@ -219,18 +234,34 @@
         opacity: 0;
         animation: fadeUp 0.55s ease forwards;
       }
-      .card:nth-child(1){animation-delay:0.05s}
-      .card:nth-child(2){animation-delay:0.13s}
-      .card:nth-child(3){animation-delay:0.21s}
-      .card:nth-child(4){animation-delay:0.29s}
-      .card:nth-child(5){animation-delay:0.37s}
-      .card:nth-child(6){animation-delay:0.45s}
-      .card:nth-child(7){animation-delay:0.53s}
+      .card:nth-child(1) {
+        animation-delay: 0.05s;
+      }
+      .card:nth-child(2) {
+        animation-delay: 0.13s;
+      }
+      .card:nth-child(3) {
+        animation-delay: 0.21s;
+      }
+      .card:nth-child(4) {
+        animation-delay: 0.29s;
+      }
+      .card:nth-child(5) {
+        animation-delay: 0.37s;
+      }
+      .card:nth-child(6) {
+        animation-delay: 0.45s;
+      }
+      .card:nth-child(7) {
+        animation-delay: 0.53s;
+      }
 
       .card::after {
-        content: '';
+        content: "";
         position: absolute;
-        bottom: 0; left: 0; right: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
         height: 2px;
         background: var(--gold);
         transform: scaleX(0);
@@ -241,7 +272,7 @@
       .card:hover::after { transform: scaleX(1); }
 
       .card-num {
-        font-family: 'Playfair Display', serif;
+        font-family: "Playfair Display", serif;
         font-size: 3rem;
         font-weight: 700;
         color: rgba(201,168,76,0.18) !important;
@@ -252,7 +283,7 @@
       .card:hover .card-num { color: rgba(201,168,76,0.42) !important; }
 
       .card-title {
-        font-family: 'Playfair Display', serif;
+        font-family: "Playfair Display", serif;
         font-size: 1.2rem;
         font-weight: 600;
         color: var(--white) !important;
@@ -280,8 +311,13 @@
         color: var(--gold) !important;
         transition: gap 0.2s;
       }
-      .card:hover .card-link { gap: 0.9rem; }
-      .card-link svg { width: 14px; height: 14px; }
+      .card:hover .card-link {
+        gap: 0.9rem;
+      }
+      .card-link svg {
+        width: 14px;
+        height: 14px;
+      }
 
       /* ─── FOOTER ────────────────────────────────────────────── */
       footer {
@@ -296,12 +332,20 @@
 
       /* ─── ANIMATIONS ────────────────────────────────────────── */
       @keyframes fadeUp {
-        from { opacity: 0; transform: translateY(18px); }
-        to   { opacity: 1; transform: translateY(0); }
+        from {
+          opacity: 0;
+          transform: translateY(18px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
       }
 
       @media (max-width: 600px) {
-        .cards-grid { grid-template-columns: 1fr; }
+        .cards-grid {
+          grid-template-columns: 1fr;
+        }
       }
     </style>
   </head>
@@ -317,8 +361,15 @@
         </p>
         <a href="#modules" class="hero-cta">
           Explore Modules
-          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M3 8h10M9 4l4 4-4 4"/>
+          <svg
+            viewBox="0 0 16 16"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M3 8h10M9 4l4 4-4 4" />
           </svg>
         </a>
       </div>
@@ -328,62 +379,169 @@
       <p class="section-label">Seven Modules</p>
 
       <div class="cards-grid">
-
         <a href="section-1.html" class="card">
           <div class="card-num">01</div>
           <div class="card-title">Financial Markets</div>
-          <p class="card-desc">Types of banks, the fractional reserve system, interest rates, central banking, monetary policy, and the structure of modern investment banking.</p>
-          <div class="card-link">Begin module <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg></div>
+          <p class="card-desc">
+            Types of banks, the fractional reserve system, interest rates,
+            central banking, monetary policy, and the structure of modern
+            investment banking.
+          </p>
+          <div class="card-link">
+            Begin module
+            <svg
+              viewBox="0 0 16 16"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M3 8h10M9 4l4 4-4 4" />
+            </svg>
+          </div>
         </a>
 
         <a href="section-2.html" class="card">
           <div class="card-num">02</div>
           <div class="card-title">Equity Trading</div>
-          <p class="card-desc">IPOs, share classes, market capitalisation, stock exchanges, order books, trading types, indices, and equity derivatives.</p>
-          <div class="card-link">Begin module <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg></div>
+          <p class="card-desc">
+            IPOs, share classes, market capitalisation, stock exchanges, order
+            books, trading types, indices, and equity derivatives.
+          </p>
+          <div class="card-link">
+            Begin module
+            <svg
+              viewBox="0 0 16 16"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M3 8h10M9 4l4 4-4 4" />
+            </svg>
+          </div>
         </a>
 
         <a href="section-3.html" class="card">
           <div class="card-num">03</div>
           <div class="card-title">Fixed Income</div>
-          <p class="card-desc">Bond fundamentals, yield curves, duration, credit ratings, government and corporate debt markets, and securitisation.</p>
-          <div class="card-link">Begin module <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg></div>
+          <p class="card-desc">
+            Bond fundamentals, yield curves, duration, credit ratings,
+            government and corporate debt markets, and securitisation.
+          </p>
+          <div class="card-link">
+            Begin module
+            <svg
+              viewBox="0 0 16 16"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M3 8h10M9 4l4 4-4 4" />
+            </svg>
+          </div>
         </a>
 
         <a href="section-4.html" class="card">
           <div class="card-num">04</div>
           <div class="card-title">Derivatives</div>
-          <p class="card-desc">Futures, forwards, options, and swaps — how they are priced, used for hedging and speculation, and the role of central clearing.</p>
-          <div class="card-link">Begin module <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg></div>
+          <p class="card-desc">
+            Futures, forwards, options, and swaps — how they are priced, used
+            for hedging and speculation, and the role of central clearing.
+          </p>
+          <div class="card-link">
+            Begin module
+            <svg
+              viewBox="0 0 16 16"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M3 8h10M9 4l4 4-4 4" />
+            </svg>
+          </div>
         </a>
 
         <a href="section-5.html" class="card">
           <div class="card-num">05</div>
           <div class="card-title">Currency &amp; Foreign Exchange</div>
-          <p class="card-desc">FX market structure, exchange rate mechanics, spot and forward contracts, currency risk, and the role of central banks in FX markets.</p>
-          <div class="card-link">Begin module <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg></div>
+          <p class="card-desc">
+            FX market structure, exchange rate mechanics, spot and forward
+            contracts, currency risk, and the role of central banks in FX
+            markets.
+          </p>
+          <div class="card-link">
+            Begin module
+            <svg
+              viewBox="0 0 16 16"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M3 8h10M9 4l4 4-4 4" />
+            </svg>
+          </div>
         </a>
 
         <a href="section-6.html" class="card">
           <div class="card-num">06</div>
           <div class="card-title">Treasury</div>
-          <p class="card-desc">Corporate treasury functions, liquidity management, cash flow forecasting, funding strategies, and interest rate risk management.</p>
-          <div class="card-link">Begin module <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg></div>
+          <p class="card-desc">
+            Corporate treasury functions, liquidity management, cash flow
+            forecasting, funding strategies, and interest rate risk management.
+          </p>
+          <div class="card-link">
+            Begin module
+            <svg
+              viewBox="0 0 16 16"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M3 8h10M9 4l4 4-4 4" />
+            </svg>
+          </div>
         </a>
 
         <a href="section-7.html" class="card">
           <div class="card-num">07</div>
           <div class="card-title">Regulation &amp; Risk</div>
-          <p class="card-desc">Basel accords, capital requirements, Dodd-Frank, MiFID II, the Volcker Rule, FATCA, VaR, stress testing, and compliance frameworks.</p>
-          <div class="card-link">Begin module <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg></div>
+          <p class="card-desc">
+            Basel accords, capital requirements, Dodd-Frank, MiFID II, the
+            Volcker Rule, FATCA, VaR, stress testing, and compliance frameworks.
+          </p>
+          <div class="card-link">
+            Begin module
+            <svg
+              viewBox="0 0 16 16"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M3 8h10M9 4l4 4-4 4" />
+            </svg>
+          </div>
         </a>
-
       </div>
     </main>
 
     <footer>
-      <p>&copy; 2024 Financial Foundations &mdash; An Educational Resource for Financial Literacy.</p>
+      <p>
+        &copy; 2024 Financial Foundations &mdash; An Educational Resource for
+        Financial Literacy.
+      </p>
     </footer>
-
   </body>
 </html>
