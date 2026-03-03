@@ -1,0 +1,789 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Module 4: Derivatives – Financial Foundations</title>
+    <link rel="stylesheet" href="css/main.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+    <style>
+      .ff-topbar{
+        position:sticky;top:0;z-index:100;
+        background:#0d1f3c;
+        border-bottom:1px solid rgba(201,168,76,.18);
+        display:flex;align-items:center;justify-content:space-between;
+        padding:.85rem 2rem;gap:1rem;
+        font-family:"DM Sans",sans-serif;
+      }
+      .ff-topbar a{text-decoration:none;}
+      .ff-home{
+        display:flex;align-items:center;gap:.6rem;
+        font-size:.72rem;font-weight:500;letter-spacing:.15em;
+        text-transform:uppercase;color:#c9a84c;transition:opacity .2s;
+      }
+      .ff-home:hover{opacity:.7;}
+      .ff-home svg{width:14px;height:14px;}
+      .ff-section-id{
+        font-family:"Playfair Display",serif;
+        font-size:.85rem;font-weight:600;color:#ffffff;opacity:.5;
+      }
+      .ff-arrows{display:flex;gap:.5rem;}
+      .ff-arrows a{
+        display:flex;align-items:center;gap:.4rem;
+        font-size:.7rem;font-weight:500;letter-spacing:.1em;
+        text-transform:uppercase;color:#8a9ab5;
+        padding:.4rem .75rem;
+        border:1px solid rgba(138,154,181,.25);border-radius:2px;
+        transition:color .2s,border-color .2s;
+      }
+      .ff-arrows a:hover{color:#c9a84c;border-color:rgba(201,168,76,.4);}
+      .ff-arrows svg{width:13px;height:13px;}
+      .ff-arrows a.off{opacity:.22;pointer-events:none;}
+    </style>
+  </head>
+  <body>
+    <nav class="ff-topbar">
+      <a href="index.html" class="ff-home"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 8H3M7 4L3 8l4 4"/></svg> All Modules</a>
+      <span class="ff-section-id">Module 4 &mdash; Derivatives</span>
+      <div class="ff-arrows">
+        <a href="section-3.html"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 4L6 8l4 4"/></svg> Prev</a>
+        <a href="section-5.html">Next <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 4l4 4-4 4"/></svg></a>
+      </div>
+    </nav>
+    <main>
+      <section id="section-4">
+        <h2>
+          <span class="section-number">4</span>
+          Section 4: Derivatives
+        </h2>
+
+        <div class="section-content">
+          <!-- VIDEO CONTENT AREA -->
+          <div class="video-wrapper">
+            <span class="video-label">📺 Video: Derivatives</span>
+            <div class="video-container">
+              <iframe
+                src="https://video.mthree.com/Financial_Marketing/FM_Derivatives.mp4"
+                title="Derivatives"
+                allow="
+                  accelerometer;
+                  clipboard-write;
+                  encrypted-media;
+                  gyroscope;
+                  picture-in-picture;
+                "
+                allowfullscreen
+              >
+              </iframe>
+            </div>
+          </div>
+
+          <!-- TEXT CONTENT AREA - FULL WIDTH -->
+          <div class="text-content">
+            <!-- ================================================================================
+DERIVATIVES - HTML CONTENT FOR WEBSITE TEMPLATE
+================================================================================
+This file contains HTML content extracted from the Derivatives PowerPoint
+presentation, ready to copy-paste into your website template.
+
+INSTRUCTIONS:
+1. Copy the entire content section below (from <h3> through closing text)
+2. Paste into the text-content div of your template section
+3. Remove placeholder text
+4. Update section title in template h2 to match
+5. Optional: Add relevant video
+
+================================================================================ -->
+
+            <h3>Derivatives: Foundations and Applications</h3>
+
+            <p>
+              <strong>Learning Objective:</strong> Understand the derivatives
+              trading business, including the main products, their uses, and
+              their applications in hedging and speculation.
+            </p>
+
+            <h4>What Are Derivatives?</h4>
+
+            <p>
+              <strong>Definition:</strong> A derivative is a financial contract
+              whose value is based on the value of underlying assets.
+            </p>
+
+            <p>
+              <strong>Historical Context:</strong> The concept of derivatives is
+              not new. Derivatives have been around for generations,
+              particularly in the farming industry. For example, a farmer might
+              contract to sell wheat on a particular date at a particular price,
+              protecting against price drops.
+            </p>
+
+            <p>
+              <strong>Modern Uses:</strong> Today, derivatives have numerous
+              applications, mostly used for:
+            </p>
+            <ul>
+              <li>Hedging (reducing risk)</li>
+              <li>Risk management</li>
+              <li>Speculation (betting on price movements)</li>
+            </ul>
+
+            <p>
+              <strong>Underlying Assets:</strong> Derivatives can be written on
+              virtually any underlying asset:
+            </p>
+            <ul>
+              <li>Commodities (wheat, oil, metals)</li>
+              <li>Bonds</li>
+              <li>Interest Rates</li>
+              <li>Foreign Exchange (FX)</li>
+              <li>Credit instruments</li>
+              <li>Mortgages and Asset-Backed Securities</li>
+              <li>Equities</li>
+            </ul>
+
+            <h4>Key Derivatives Terms</h4>
+
+            <ul>
+              <li>
+                <strong>Counterparty:</strong> The party taking the other side
+                of the trade
+              </li>
+              <li>
+                <strong>Strike Price:</strong> The price at which a derivative
+                (option) can be exercised
+              </li>
+              <li>
+                <strong>Expiry:</strong> The date at which the derivative
+                contract expires
+              </li>
+              <li>
+                <strong>Hedging:</strong> Insuring yourself against a negative
+                event. Hedging doesn't stop the event from happening, but it
+                reduces its impact
+              </li>
+            </ul>
+
+            <h4>Types of Derivatives</h4>
+
+            <p><strong>1. Forwards</strong></p>
+            <ul>
+              <li>
+                Agree to buy or sell something at a specific point in time in
+                the future for a specific price
+              </li>
+              <li>Privately negotiated (OTC)</li>
+              <li>Terms are fully negotiable between parties</li>
+              <li>Price established at inception of contract</li>
+              <li>
+                Higher risk than futures—both sides exposed to credit risk (no
+                clearing house)
+              </li>
+              <li>Mainly used for hedging</li>
+            </ul>
+
+            <p>
+              <strong>Example:</strong> "I'll purchase 4 tons of wheat from you
+              at $2,000 a ton in six months." Six months later: the buyer gets 4
+              tons of wheat and pays $8,000.
+            </p>
+
+            <p><strong>2. Futures</strong></p>
+            <ul>
+              <li>A forward contract traded on an exchange</li>
+              <li>Highly standardized contracts</li>
+              <li>Standard sizes and maturity dates</li>
+              <li>Profits/losses settled each day (daily marking-to-market)</li>
+              <li>
+                Traded on exchanges like CME, Euronext, LME, ICE Futures Europe,
+                Eurex
+              </li>
+              <li>
+                Central counterparty clearing (exchanges act as clearinghouse)
+              </li>
+              <li>Lower risk than forwards due to daily settlement</li>
+            </ul>
+
+            <p>
+              <strong>Example:</strong> Chicago SRW Wheat Futures Contract
+              specifications:
+            </p>
+            <ul>
+              <li>Contract Unit: 5,000 bushels (~136 metric tons)</li>
+              <li>Price: Cents per bushel</li>
+              <li>Settlement: Cash</li>
+              <li>Termination: Business day preceding 15th of month</li>
+              <li>Currency: USD</li>
+            </ul>
+
+            <p><strong>3. Options</strong></p>
+            <ul>
+              <li>
+                The right (but not obligation) to buy or sell at a specified
+                price on or before a specified date
+              </li>
+              <li>Buyer pays a premium for the right</li>
+              <li>Value influenced by:</li>
+              <ul>
+                <li>Underlying asset's market price</li>
+                <li>Length of contract</li>
+                <li>Current volatility of underlying asset</li>
+                <li>Supply and demand</li>
+                <li>Dividend rate of underlying asset</li>
+              </ul>
+            </ul>
+
+            <p>
+              <strong>Call Option:</strong> Right to buy at a specified price
+            </p>
+            <p>
+              <strong>Put Option:</strong> Right to sell at a specified price
+            </p>
+
+            <h4>Option Example</h4>
+
+            <p>Google shares trading at $300 per share.</p>
+            <ul>
+              <li>You believe shares will increase</li>
+              <li>Purchase a call option with strike price of $315</li>
+              <li>Option expires in one month</li>
+              <li>
+                Premium: $0.37 per contract (usually sold in 100-share lots)
+              </li>
+              <li>Your cash outlay: $37 (for 100 shares)</li>
+            </ul>
+
+            <p><strong>Scenario: Stock rises to $320</strong></p>
+            <ul>
+              <li>You exercise call option, buying at $315</li>
+              <li>Immediately sell at market price of $320</li>
+              <li>
+                Profit per share: $5.00 (sale) minus $0.37 (premium) = $4.63
+              </li>
+              <li>Total profit: $4.63 × 100 shares = $463</li>
+            </ul>
+
+            <h4>Option Risks and Benefits</h4>
+
+            <p><strong>Buying Call Options</strong></p>
+            <ul>
+              <li>Benefit: If stock price rises above strike, you profit</li>
+              <li>
+                Risk: Limited to the premium paid. If stock doesn't rise above
+                strike, you lose only the premium
+              </li>
+            </ul>
+
+            <p><strong>Selling Call Options (Writing)</strong></p>
+            <ul>
+              <li>Benefit: Maximum profit is the premium received</li>
+              <li>
+                Risk: Potentially unlimited. If stock price soars, you must sell
+                at agreed strike price, missing profits
+              </li>
+            </ul>
+
+            <p><strong>Buying Put Options</strong></p>
+            <ul>
+              <li>Used when you believe underlying stock will fall</li>
+              <li>Right to sell shares at option's higher price</li>
+              <li>Can then buy them back at lower market price</li>
+              <li>
+                Risk: Limited to the loss of the premium if option not exercised
+              </li>
+            </ul>
+
+            <p><strong>Selling Put Options (Writing)</strong></p>
+            <ul>
+              <li>Seller believes asset will increase in value</li>
+              <li>Maximum profit: Premium received</li>
+              <li>
+                Loss: Having to buy shares at strike price above current market
+                value
+              </li>
+            </ul>
+
+            <h4>Black-Scholes Option Pricing Model</h4>
+
+            <p>
+              <strong>Key Concept:</strong> The Black-Scholes model and its
+              variants assume stock prices follow a lognormal distribution.
+            </p>
+
+            <p><strong>Formula Components:</strong></p>
+            <ul>
+              <li>C = call option price</li>
+              <li>
+                N = CDF (cumulative distribution function) of normal
+                distribution
+              </li>
+              <li>S_t = spot price of asset</li>
+              <li>K = strike price</li>
+              <li>r = risk-free interest rate</li>
+              <li>t = time to maturity</li>
+              <li>σ (sigma) = volatility of the asset</li>
+            </ul>
+
+            <p>
+              <strong>Important Note:</strong> Options with optionality do not
+              react to market prices in a linear manner—both in value and in
+              calculated risk position.
+            </p>
+
+            <h4>4. Swaps</h4>
+
+            <p>
+              <strong>Definition:</strong> A contract to exchange a series of
+              cash flows at specific points in the future based on a specific
+              principal amount.
+            </p>
+
+            <p>
+              <strong>Key Characteristic:</strong> Swaps are zero-sum
+              games—there is always a winner and a loser.
+            </p>
+
+            <h4>Interest Rate Swaps (IRS)</h4>
+
+            <p>
+              <strong>How They Work:</strong> Two parties exchange interest
+              payments on a notional principal amount.
+            </p>
+
+            <p><strong>Example Scenario:</strong></p>
+            <ul>
+              <li>Notional Value: £1,000,000</li>
+              <li>LIBOR Rate: 5%</li>
+              <li>Bob holds a bond paying LIBOR + 1% (variable rate)</li>
+              <li>Alice holds a bond paying 6% (fixed rate)</li>
+            </ul>
+
+            <p><strong>Swap Agreement:</strong></p>
+            <ul>
+              <li>Bob pays Alice 5.5%</li>
+              <li>Alice pays Bob 6%</li>
+              <li>Net: Alice pays Bob 0.5% ($5,000 annually)</li>
+            </ul>
+
+            <p><strong>Why Each Party Participates:</strong></p>
+            <ul>
+              <li>
+                <strong>Bob:</strong> Believes LIBOR will decrease. Wants more
+                predictable fixed rate to hedge market risk
+              </li>
+              <li>
+                <strong>Alice:</strong> Believes LIBOR will increase. Speculator
+                seeking higher returns
+              </li>
+            </ul>
+
+            <p>
+              <strong>Swap Legs:</strong> The cash flows exchanged are referred
+              to as "legs"
+            </p>
+            <ul>
+              <li>
+                <strong>Fixed Leg:</strong> Pays fixed interest rate agreed at
+                outset
+              </li>
+              <li>
+                <strong>Floating Leg:</strong> Linked to future interest rate
+                levels (e.g., LIBOR)
+              </li>
+            </ul>
+
+            <p>
+              <strong>Vanilla Swap:</strong> Most common type—floating interest
+              rate exchanged for fixed rate (or vice versa)
+            </p>
+
+            <h4>Comparative Advantage in Interest Rate Swaps</h4>
+
+            <p><strong>Example:</strong></p>
+            <ul>
+              <li>
+                Company A: Can borrow fixed at 10% or floating at LIBOR + 0.35%
+              </li>
+              <li>
+                Company B: Can borrow fixed at 11.25% or floating at LIBOR +
+                1.0%
+              </li>
+            </ul>
+
+            <p><strong>Analysis:</strong></p>
+            <ul>
+              <li>
+                Company A has comparative advantage in fixed-rate borrowing
+                (better at 10% vs 11.25%)
+              </li>
+              <li>
+                Company B has comparative advantage in floating-rate borrowing
+                (better at LIBOR + 1.0% vs LIBOR + 0.35%)
+              </li>
+            </ul>
+
+            <p>
+              <strong>Strategy:</strong> Each company borrows at its advantage,
+              then they swap via IRS to achieve better rates for both.
+            </p>
+
+            <h4>5. Swaptions</h4>
+
+            <p>
+              <strong>Definition:</strong> A contract giving the right (but not
+              obligation) to enter into a swap agreement at a specific price at
+              a particular point in the future.
+            </p>
+
+            <p>
+              <strong>Analogy:</strong> A swaption is to a swap what an option
+              is to a stock.
+            </p>
+
+            <p><strong>Two Types:</strong></p>
+            <ul>
+              <li>
+                <strong>Payer Swaption:</strong> Right to enter swap where you
+                pay fixed rate and receive floating rate
+              </li>
+              <li>
+                <strong>Receiver Swaption:</strong> Right to enter swap where
+                you receive fixed rate and pay floating rate
+              </li>
+            </ul>
+
+            <p><strong>Characteristics:</strong></p>
+            <ul>
+              <li>OTC (over-the-counter) and unstandardized</li>
+              <li>Terms fully negotiated between buyer and seller</li>
+              <li>Commercial banks are main market makers</li>
+              <li>Only banks can effectively manage portfolios of swaptions</li>
+            </ul>
+
+            <h4>Credit Derivatives: Credit Default Swaps (CDS)</h4>
+
+            <p>
+              <strong>Definition:</strong> A contract to insure the credit risk
+              of an underlying bond for an agreed fee over an agreed amount of
+              time.
+            </p>
+
+            <p><strong>How a CDS Works:</strong></p>
+            <ul>
+              <li>Buyer enters CDS contract and pays premium to seller</li>
+              <li>
+                Seller agrees that upon credit event, they will pay face value
+                plus remaining interest to buyer
+              </li>
+              <li>
+                Contract expires if bond matures without credit event occurring
+              </li>
+            </ul>
+
+            <p><strong>Types of CDS:</strong></p>
+            <ul>
+              <li>Single Name CDS: Protection on one bond issuer</li>
+              <li>Basket CDS: Protection on multiple issuers</li>
+              <li>Index CDS: Protection on index of bonds</li>
+            </ul>
+
+            <h4>CDS Participants</h4>
+
+            <p><strong>Protection Seller Benefits:</strong></p>
+            <ul>
+              <li>Earns investment income with no funding cost</li>
+              <li>Gains customized, synthetic access to risky bond exposure</li>
+              <li>
+                Often protection tenor is shorter than bond tenor, limiting
+                long-term exposure
+              </li>
+            </ul>
+
+            <p><strong>Protection Buyer Benefits:</strong></p>
+            <ul>
+              <li>Hedges default risk on reference asset (bond)</li>
+              <li>
+                Can maintain client relationships while reducing credit risk
+              </li>
+            </ul>
+
+            <h4>CDS Bank Use Case</h4>
+
+            <p>
+              <strong>Scenario:</strong> Bank lends £10 million to corporate
+              client
+            </p>
+            <ul>
+              <li>Loan rate: LIBOR + 65 basis points (0.65%)</li>
+              <li>
+                Bank buys £10 million default protection at 50 basis points
+                (0.50%)
+              </li>
+              <li>Net benefit: 15 basis points (0.15%) = £15,000 annually</li>
+              <li>Objectives achieved:</li>
+              <ul>
+                <li>Maintain relationship with client</li>
+                <li>Reduce credit risk on new loan</li>
+                <li>Generate net revenue</li>
+              </ul>
+            </ul>
+
+            <h4>Credit Events Triggering CDS</h4>
+
+            <p>A CDS is triggered when the following events occur:</p>
+            <ul>
+              <li>
+                <strong>Bankruptcy:</strong> Issuer becomes insolvent or unable
+                to pay debts
+              </li>
+              <li>
+                <strong>Failure to Pay:</strong> Issuer defaults on debt
+                payments
+              </li>
+              <li>
+                <strong>Debt Restructuring:</strong> Configuration of debt
+                obligations is changed negatively for credit holder
+              </li>
+              <li>
+                <strong>Obligation Acceleration:</strong> Debt payment is
+                scheduled before maturity date
+              </li>
+              <li>
+                <strong>Repudiation/Moratorium:</strong> Issuer refuses to pay
+                principal and interest
+              </li>
+            </ul>
+
+            <h4>Mortgage-Backed Securities (MBS)</h4>
+
+            <p>
+              <strong>Definition:</strong> An investment similar to a bond made
+              up of a bundle of home loans bought from the banks that issued
+              them.
+            </p>
+
+            <p><strong>How They Work:</strong></p>
+            <ul>
+              <li>
+                Investors receive periodic payments similar to bond coupons
+              </li>
+              <li>
+                Payments come from monthly mortgage payments of underlying
+                homeowners
+              </li>
+              <li>
+                Investors are purchasing the cash flow from underlying mortgages
+              </li>
+            </ul>
+
+            <p><strong>MBS-Specific Risks:</strong></p>
+            <ul>
+              <li>
+                <strong>Default Risk:</strong> Homeowners may default due to job
+                loss, bankruptcy, or other hardships
+              </li>
+              <li>
+                <strong>Prepayment Risk:</strong> As interest rates decrease,
+                mortgage-owners refinance or prepay. Similar to a callable
+                bond—investors lose higher-rate payments
+              </li>
+              <li>
+                <strong>Correlation Risk:</strong> If mortgage defaults are
+                highly correlated (geographic area, housing market collapse),
+                diversification benefit is lost
+              </li>
+              <li>
+                <strong>Liquidity Risk:</strong> MBS investors are primarily
+                institutional. Smaller lots difficult to sell. Large positions
+                difficult to liquidate
+              </li>
+            </ul>
+
+            <h4>Principal-Agent Problem in Lending</h4>
+
+            <p>
+              <strong>Historical Model:</strong> Commercial banks underwrote
+              loans and held them until maturity, giving them incentive to
+              minimize credit risk.
+            </p>
+
+            <p><strong>Post-1990s Model: Originate-to-Distribute</strong></p>
+            <ul>
+              <li>
+                Strong demand from investment banks for mortgage pools enabled
+                originators to resell quickly
+              </li>
+              <li>Originators no longer held credit risk</li>
+              <li>
+                Investment banks purchased mortgage pools based on limited
+                metrics (credit scores, LTV ratio)
+              </li>
+              <li>
+                Problem: Originators became agents of investors, originating
+                loans without caring about credit quality
+              </li>
+              <li>
+                Result: This principal-agent problem encouraged subprime lending
+              </li>
+              <li>Rating agencies underestimated MBS risks</li>
+            </ul>
+
+            <h4>MBS and the 2008 Financial Crisis</h4>
+
+            <p><strong>Timeline of Crisis:</strong></p>
+            <ul>
+              <li>
+                <strong>Pre-2006:</strong> Rapid increase in home prices caused
+                banks to lower lending standards
+              </li>
+              <li>
+                <strong>2006:</strong> Housing prices peaked; quality of all
+                MBS-backed securities declined, ratings became meaningless
+              </li>
+              <li>
+                <strong>2007-2008:</strong> Subprime borrowers began defaulting
+                as housing market collapsed
+              </li>
+              <li>
+                <strong>2008:</strong> More people "walked away" from
+                mortgages—homes worth less than mortgage owed
+              </li>
+              <li>
+                <strong>Result:</strong> Large non-payments meant MBS and CDOs
+                greatly overvalued
+              </li>
+              <li>
+                <strong>Consequence:</strong> Losses piled up. Institutional
+                investors and banks tried and failed to unload bad MBS
+                investments
+              </li>
+              <li>
+                <strong>System Risk:</strong> Credit tightened; banks at risk of
+                insolvency
+              </li>
+            </ul>
+
+            <h4>Asset-Backed Securities (ABS)</h4>
+
+            <p>
+              <strong>Definition:</strong> A security collateralized by a pool
+              of assets (not mortgages).
+            </p>
+
+            <p><strong>Examples of Underlying Assets:</strong></p>
+            <ul>
+              <li>Credit card debt</li>
+              <li>Home equity loans</li>
+              <li>Student loans</li>
+              <li>Automotive loans</li>
+              <li>Movie revenues</li>
+              <li>Leases and receivables</li>
+            </ul>
+
+            <p><strong>Securitization Process:</strong></p>
+            <ol>
+              <li>
+                <strong>Loan Originators:</strong> Create loans (credit card
+                debt, auto loans, etc.)
+              </li>
+              <li>
+                <strong>SPV Creation:</strong> Originators sell to SPV (Special
+                Purpose Vehicle)—an orphan company created to spread risks
+              </li>
+              <li>
+                <strong>SPV Function:</strong> Provides "remoteness" for
+                originator from liability. SPV sells to trust
+              </li>
+              <li>
+                <strong>Trust:</strong> Repackages loans as interest-bearing
+                securities
+              </li>
+              <li>
+                <strong>Investors:</strong> Receive cash flows from underlying
+                pool of loans
+              </li>
+              <li>
+                <strong>Tranches:</strong> Securities usually issued in
+                different tranches by risk level
+              </li>
+              <li>
+                <strong>Fees:</strong> Paid to security providers throughout
+                process
+              </li>
+            </ol>
+
+            <h4>Collateralized Debt Obligations (CDOs)</h4>
+
+            <p>
+              <strong>Definition:</strong> Complex asset-backed securities
+              containing mortgage-backed assets, non-mortgage assets, or a
+              combination. Assets become collateral if loans default.
+            </p>
+
+            <p><strong>Types:</strong></p>
+            <ul>
+              <li>
+                <strong>CLO (Collateralized Loan Obligation):</strong> Often
+                corporate loans with low credit ratings
+              </li>
+              <li>
+                <strong>CBO (Collateralized Bond Obligation):</strong>
+                Bond-backed by pool of junk bonds
+              </li>
+            </ul>
+
+            <p>
+              <strong>Tranches:</strong> Pieces of the pooled collection of
+              securities, usually debt instruments.
+            </p>
+            <ul>
+              <li>Split by risk or other characteristics to make marketable</li>
+              <li>
+                Senior Tranches: Higher credit ratings, lowest yields, repaid
+                first in default
+              </li>
+              <li>
+                Junior Tranches: Lower credit ratings, higher yields, repaid
+                last in default
+              </li>
+            </ul>
+
+            <p>
+              <strong>Structure Benefit:</strong> Allows investors of different
+              risk appetites to invest. Senior tranches suitable for
+              conservative investors; junior tranches for risk-seeking
+              investors.
+            </p>
+
+            <h4>Complexity of CDOs</h4>
+
+            <p>
+              <strong>Structure:</strong> CDOs consist of diverse loans and debt
+              instruments repackaged into discrete classes based on credit risk.
+            </p>
+
+            <p>
+              <strong>Example Structure:</strong> An investment bank gathers:
+            </p>
+            <ul>
+              <li>Mortgages</li>
+              <li>Corporate bonds</li>
+              <li>Other debt instruments</li>
+            </ul>
+
+            <p>
+              Then repackages into different tranches with varying risk profiles
+              and returns.
+            </p>
+
+            <p>
+              <strong>Challenge:</strong> The complexity made it difficult for
+              investors and regulators to fully understand underlying risks,
+              contributing to 2008 financial crisis.
+            </p>
+          </div>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
