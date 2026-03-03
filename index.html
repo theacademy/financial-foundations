@@ -4,16 +4,20 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Financial Foundations: Educational Resource</title>
+
+    <!-- main.css loaded first so our styles override it -->
     <link rel="stylesheet" href="css/main.css" />
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
+
     <style>
+      /* ─── RESET & FULL DARK OVERRIDE ──────────────────────── */
       *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
       :root {
         --navy:    #0d1f3c;
-        --navy2:   #162d52;
         --card-bg: #1a2e4a;
         --gold:    #c9a84c;
         --gold2:   #e8c96d;
@@ -22,17 +26,50 @@
         --white:   #ffffff;
       }
 
-      html { scroll-behavior: smooth; }
-
+      /* Force dark theme over anything in main.css */
+      html,
       body {
-        font-family: 'DM Sans', sans-serif;
-        background: var(--navy);
-        color: var(--cream);
-        min-height: 100vh;
+        background-color: var(--navy) !important;
+        background: var(--navy) !important;
+        color: var(--cream) !important;
+        font-family: 'DM Sans', sans-serif !important;
+        min-height: 100% !important;
+        scroll-behavior: smooth;
         overflow-x: hidden;
       }
 
-      /* ─── HERO ───────────────────────────────────── */
+      /* Kill any light-coloured wrappers main.css might create */
+      header, main, section, footer, div, nav, ul, li, p, h1, h2, h3, h4 {
+        background-color: transparent;
+      }
+
+      /* ─── PAGE BACKGROUND (sits behind everything) ─────────── */
+      body::before {
+        content: '';
+        position: fixed;
+        inset: 0;
+        z-index: -1;
+        background:
+          radial-gradient(ellipse 75% 55% at 50% 0%,   rgba(201,168,76,0.11) 0%, transparent 60%),
+          radial-gradient(ellipse 50% 60% at 95% 100%,  rgba(22,45,82,0.7)   0%, transparent 55%),
+          var(--navy);
+        pointer-events: none;
+      }
+
+      /* ─── GRID TEXTURE ──────────────────────────────────────── */
+      body::after {
+        content: '';
+        position: fixed;
+        inset: 0;
+        z-index: -1;
+        background-image:
+          linear-gradient(rgba(201,168,76,0.05) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(201,168,76,0.05) 1px, transparent 1px);
+        background-size: 64px 64px;
+        pointer-events: none;
+      }
+
+      /* ─── HERO ──────────────────────────────────────────────── */
       .hero {
         position: relative;
         min-height: 100vh;
@@ -42,26 +79,7 @@
         justify-content: center;
         text-align: center;
         padding: 4rem 2rem 7rem;
-        overflow: hidden;
-      }
-
-      .hero-bg {
-        position: absolute;
-        inset: 0;
-        background:
-          radial-gradient(ellipse 80% 55% at 50% 10%, rgba(201,168,76,0.13) 0%, transparent 65%),
-          radial-gradient(ellipse 60% 70% at 85% 85%, rgba(22,45,82,0.8) 0%, transparent 60%);
-        pointer-events: none;
-      }
-
-      .grid-lines {
-        position: absolute;
-        inset: 0;
-        background-image:
-          linear-gradient(rgba(201,168,76,0.055) 1px, transparent 1px),
-          linear-gradient(90deg, rgba(201,168,76,0.055) 1px, transparent 1px);
-        background-size: 64px 64px;
-        pointer-events: none;
+        background: transparent !important;
       }
 
       .hero-inner { position: relative; z-index: 1; }
@@ -71,18 +89,18 @@
         font-weight: 500;
         letter-spacing: 0.3em;
         text-transform: uppercase;
-        color: var(--gold);
+        color: var(--gold) !important;
         margin-bottom: 1.8rem;
         opacity: 0;
         animation: fadeUp 0.6s ease forwards 0.15s;
       }
 
       .hero h1 {
-        font-family: 'Playfair Display', serif;
+        font-family: 'Playfair Display', serif !important;
         font-size: clamp(3rem, 8vw, 6rem);
         font-weight: 700;
         line-height: 1.08;
-        color: var(--white);
+        color: var(--white) !important;
         margin-bottom: 1.6rem;
         opacity: 0;
         animation: fadeUp 0.7s ease forwards 0.35s;
@@ -90,13 +108,13 @@
 
       .hero h1 em {
         font-style: normal;
-        color: var(--gold);
+        color: var(--gold) !important;
       }
 
       .hero-sub {
         font-size: 1.05rem;
         font-weight: 300;
-        color: var(--muted);
+        color: var(--muted) !important;
         max-width: 500px;
         line-height: 1.75;
         margin: 0 auto 3rem;
@@ -108,8 +126,8 @@
         display: inline-flex;
         align-items: center;
         gap: 0.6rem;
-        background: var(--gold);
-        color: var(--navy);
+        background: var(--gold) !important;
+        color: var(--navy) !important;
         font-family: 'DM Sans', sans-serif;
         font-weight: 500;
         font-size: 0.85rem;
@@ -117,13 +135,14 @@
         text-transform: uppercase;
         padding: 0.9rem 2.1rem;
         border-radius: 2px;
-        text-decoration: none;
+        text-decoration: none !important;
+        border: none;
         transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
         opacity: 0;
         animation: fadeUp 0.7s ease forwards 0.65s;
       }
       .hero-cta:hover {
-        background: var(--gold2);
+        background: var(--gold2) !important;
         transform: translateY(-2px);
         box-shadow: 0 8px 28px rgba(201,168,76,0.3);
       }
@@ -138,7 +157,7 @@
         flex-direction: column;
         align-items: center;
         gap: 0.5rem;
-        color: var(--muted);
+        color: var(--muted) !important;
         font-size: 0.65rem;
         letter-spacing: 0.2em;
         text-transform: uppercase;
@@ -153,11 +172,12 @@
       }
       @keyframes barPulse { 0%,100%{opacity:0.3} 50%{opacity:1} }
 
-      /* ─── MODULES ────────────────────────────────── */
+      /* ─── MODULES ───────────────────────────────────────────── */
       .modules-section {
         padding: 5rem 2rem 7rem;
         max-width: 1200px;
         margin: 0 auto;
+        background: transparent !important;
       }
 
       .section-label {
@@ -168,7 +188,7 @@
         font-weight: 500;
         letter-spacing: 0.28em;
         text-transform: uppercase;
-        color: var(--gold);
+        color: var(--gold) !important;
         margin-bottom: 3rem;
       }
       .section-label::after {
@@ -187,10 +207,10 @@
       }
 
       .card {
-        background: var(--card-bg);
+        background: var(--card-bg) !important;
         padding: 2.4rem 2rem 2rem;
-        text-decoration: none;
-        color: inherit;
+        text-decoration: none !important;
+        color: inherit !important;
         display: flex;
         flex-direction: column;
         position: relative;
@@ -217,25 +237,25 @@
         transform-origin: left;
         transition: transform 0.35s ease;
       }
-      .card:hover { background: #1f3660; }
+      .card:hover { background: #1f3660 !important; }
       .card:hover::after { transform: scaleX(1); }
 
       .card-num {
         font-family: 'Playfair Display', serif;
         font-size: 3rem;
         font-weight: 700;
-        color: rgba(201,168,76,0.18);
+        color: rgba(201,168,76,0.18) !important;
         line-height: 1;
         margin-bottom: 1rem;
         transition: color 0.25s;
       }
-      .card:hover .card-num { color: rgba(201,168,76,0.4); }
+      .card:hover .card-num { color: rgba(201,168,76,0.42) !important; }
 
       .card-title {
         font-family: 'Playfair Display', serif;
         font-size: 1.2rem;
         font-weight: 600;
-        color: var(--white);
+        color: var(--white) !important;
         line-height: 1.3;
         margin-bottom: 0.75rem;
       }
@@ -243,7 +263,7 @@
       .card-desc {
         font-size: 0.84rem;
         font-weight: 300;
-        color: var(--muted);
+        color: var(--muted) !important;
         line-height: 1.7;
         flex: 1;
         margin-bottom: 1.6rem;
@@ -257,29 +277,29 @@
         font-weight: 500;
         letter-spacing: 0.1em;
         text-transform: uppercase;
-        color: var(--gold);
+        color: var(--gold) !important;
         transition: gap 0.2s;
       }
       .card:hover .card-link { gap: 0.9rem; }
       .card-link svg { width: 14px; height: 14px; }
 
-      /* ─── FOOTER ─────────────────────────────────── */
+      /* ─── FOOTER ────────────────────────────────────────────── */
       footer {
-        border-top: 1px solid rgba(201,168,76,0.12);
+        border-top: 1px solid rgba(201,168,76,0.12) !important;
         padding: 2rem;
         text-align: center;
-        color: var(--muted);
+        color: var(--muted) !important;
         font-size: 0.78rem;
         font-weight: 300;
+        background: transparent !important;
       }
 
-      /* ─── ANIMATION ──────────────────────────────── */
+      /* ─── ANIMATIONS ────────────────────────────────────────── */
       @keyframes fadeUp {
         from { opacity: 0; transform: translateY(18px); }
         to   { opacity: 1; transform: translateY(0); }
       }
 
-      /* ─── RESPONSIVE ─────────────────────────────── */
       @media (max-width: 600px) {
         .cards-grid { grid-template-columns: 1fr; }
       }
@@ -287,10 +307,7 @@
   </head>
   <body>
 
-    <!-- ── HERO ──────────────────────────────────── -->
     <section class="hero">
-      <div class="hero-bg"></div>
-      <div class="grid-lines"></div>
       <div class="hero-inner">
         <p class="eyebrow">mthree &middot; Educational Resource</p>
         <h1>Financial<br /><em>Foundations</em></h1>
@@ -305,13 +322,8 @@
           </svg>
         </a>
       </div>
-      <div class="scroll-hint">
-        <div class="bar"></div>
-        Scroll
-      </div>
     </section>
 
-    <!-- ── MODULE CARDS ───────────────────────────── -->
     <main class="modules-section" id="modules">
       <p class="section-label">Seven Modules</p>
 
