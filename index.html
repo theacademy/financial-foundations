@@ -10,14 +10,23 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap"
+      rel="stylesheet"
+    />
 
     <style>
       /* ─── RESET & FULL DARK OVERRIDE ──────────────────────── */
-      *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
 
       :root {
-        --navy:    #0d1f3c;
+        --navy: #0d1f3c;
         --card-bg: #1a2e4a;
         --gold: #c9a84c;
         --gold2: #e8c96d;
@@ -32,39 +41,59 @@
         background-color: var(--navy) !important;
         background: var(--navy) !important;
         color: var(--cream) !important;
-        font-family: 'DM Sans', sans-serif !important;
+        font-family: "DM Sans", sans-serif !important;
         min-height: 100% !important;
         scroll-behavior: smooth;
         overflow-x: hidden;
       }
 
       /* Kill any light-coloured wrappers main.css might create */
-      header, main, section, footer, div, nav, ul, li, p, h1, h2, h3, h4 {
+      header,
+      main,
+      section,
+      footer,
+      div,
+      nav,
+      ul,
+      li,
+      p,
+      h1,
+      h2,
+      h3,
+      h4 {
         background-color: transparent;
       }
 
       /* ─── PAGE BACKGROUND (sits behind everything) ─────────── */
       body::before {
-        content: '';
+        content: "";
         position: fixed;
         inset: 0;
         z-index: -1;
         background:
-          radial-gradient(ellipse 75% 55% at 50% 0%,   rgba(201,168,76,0.11) 0%, transparent 60%),
-          radial-gradient(ellipse 50% 60% at 95% 100%,  rgba(22,45,82,0.7)   0%, transparent 55%),
+          radial-gradient(
+            ellipse 75% 55% at 50% 0%,
+            rgba(201, 168, 76, 0.11) 0%,
+            transparent 60%
+          ),
+          radial-gradient(
+            ellipse 50% 60% at 95% 100%,
+            rgba(22, 45, 82, 0.7) 0%,
+            transparent 55%
+          ),
           var(--navy);
         pointer-events: none;
       }
 
       /* ─── GRID TEXTURE ──────────────────────────────────────── */
       body::after {
-        content: '';
+        content: "";
         position: fixed;
         inset: 0;
         z-index: -1;
         background-image:
-          linear-gradient(rgba(201,168,76,0.05) 1px, transparent 1px),
-          linear-gradient(90deg, rgba(201,168,76,0.05) 1px, transparent 1px);
+          linear-gradient(rgba(201, 168, 76, 0.05) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(201, 168, 76, 0.05) 1px, transparent 1px);
         background-size: 64px 64px;
         pointer-events: none;
       }
@@ -99,7 +128,7 @@
       }
 
       .hero h1 {
-        font-family: 'Playfair Display', serif !important;
+        font-family: "Playfair Display", serif !important;
         font-size: clamp(3rem, 8vw, 6rem);
         font-weight: 700;
         line-height: 1.08;
@@ -131,7 +160,7 @@
         gap: 0.6rem;
         background: var(--gold) !important;
         color: var(--navy) !important;
-        font-family: 'DM Sans', sans-serif;
+        font-family: "DM Sans", sans-serif;
         font-weight: 500;
         font-size: 0.85rem;
         letter-spacing: 0.07em;
@@ -140,7 +169,10 @@
         border-radius: 2px;
         text-decoration: none !important;
         border: none;
-        transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+        transition:
+          background 0.2s,
+          transform 0.2s,
+          box-shadow 0.2s;
         opacity: 0;
         animation: fadeUp 0.7s ease forwards 0.65s;
       }
@@ -268,19 +300,25 @@
         transform-origin: left;
         transition: transform 0.35s ease;
       }
-      .card:hover { background: #1f3660 !important; }
-      .card:hover::after { transform: scaleX(1); }
+      .card:hover {
+        background: #1f3660 !important;
+      }
+      .card:hover::after {
+        transform: scaleX(1);
+      }
 
       .card-num {
         font-family: "Playfair Display", serif;
         font-size: 3rem;
         font-weight: 700;
-        color: rgba(201,168,76,0.18) !important;
+        color: rgba(201, 168, 76, 0.18) !important;
         line-height: 1;
         margin-bottom: 1rem;
         transition: color 0.25s;
       }
-      .card:hover .card-num { color: rgba(201,168,76,0.42) !important; }
+      .card:hover .card-num {
+        color: rgba(201, 168, 76, 0.42) !important;
+      }
 
       .card-title {
         font-family: "Playfair Display", serif;
@@ -321,7 +359,7 @@
 
       /* ─── FOOTER ────────────────────────────────────────────── */
       footer {
-        border-top: 1px solid rgba(201,168,76,0.12) !important;
+        border-top: 1px solid rgba(201, 168, 76, 0.12) !important;
         padding: 2rem;
         text-align: center;
         color: var(--muted) !important;
@@ -350,7 +388,6 @@
     </style>
   </head>
   <body>
-
     <section class="hero">
       <div class="hero-inner">
         <p class="eyebrow">mthree &middot; Educational Resource</p>
