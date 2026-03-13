@@ -1,0 +1,24 @@
+{
+  "name": "financial-foundations",
+  "version": "1.0.0",
+  "description": "A comprehensive guide to setting up, running, and deploying the [financial-foundations](https://github.com/theacademy/financial-foundations) static web application across three environments: local development, AWS S3, and Docker.",
+  "main": "cypress.config.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/theacademy/financial-foundations.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/theacademy/financial-foundations/issues"
+  },
+  "homepage": "https://github.com/theacademy/financial-foundations#readme",
+  "devDependencies": {
+    "cypress": "^15.11.0"
+  }
+}
