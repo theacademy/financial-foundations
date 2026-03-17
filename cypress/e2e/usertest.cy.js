@@ -14,8 +14,11 @@
 
 describe('Workflow 1 — New user arrives and starts Module 1', () => {
 
-  it('lands on the homepage and sees the welcome content', () => {
+  beforeEach(() => {
     cy.visit('/')
+  })
+
+  it('lands on the homepage and sees the welcome content', () => {
     cy.title().should('eq', 'Financial Foundations: Educational Resource')
     cy.get('.hero').should('be.visible')
     cy.get('.hero h1').should('contain.text', 'Financial')
@@ -23,26 +26,23 @@ describe('Workflow 1 — New user arrives and starts Module 1', () => {
   })
 
   it('sees the "Explore Modules" button and clicks it', () => {
-    cy.visit('/')
     cy.get('a.hero-cta').should('be.visible').and('contain.text', 'Explore Modules').click()
     cy.get('#modules').should('exist')
   })
 
   it('sees all 7 module cards after scrolling to modules', () => {
-    cy.visit('/')
     cy.get('.cards-grid .card').should('have.length', 7)
     cy.get('.card-title').first().should('contain.text', 'Financial Markets')
   })
 
   it('clicks Module 1 and arrives on the correct section page', () => {
-    cy.visit('/')
     cy.get('.cards-grid .card').eq(0).click()
     cy.url().should('include', 'section-1.html')
     cy.get('h2').should('contain.text', 'Financial Markets')
   })
 
-  it('sees the video and written content on Module 1', () => {
-    cy.visit('/section-1.html')
+  it('clicks Module 1 and sees the video and written content', () => {
+    cy.get('.cards-grid .card').eq(0).click()
     cy.get('.video-wrapper').should('have.length.greaterThan', 0)
     cy.get('.text-content').should('be.visible')
     cy.get('.text-content h3').should('have.length.greaterThan', 0)
@@ -52,35 +52,45 @@ describe('Workflow 1 — New user arrives and starts Module 1', () => {
 
 
 // ── WORKFLOW 2: User reads Module 1 then continues to Module 2
+//
+//  All tests start from the homepage. Tests that need to be
+//  on a section page navigate there by clicking the card,
+//  keeping the journey realistic.
 
 describe('Workflow 2 — User works through Module 1 then advances to Module 2', () => {
 
-  it('starts on Module 1 and confirms content is present', () => {
-    cy.visit('/section-1.html')
+  beforeEach(() => {
+    cy.visit('/')
+  })
+
+  it('clicks into Module 1 and confirms content is present', () => {
+    cy.get('.cards-grid .card').eq(0).click()
     cy.get('h2').should('contain.text', 'Section 1')
     cy.get('.text-content').should('be.visible')
   })
 
-  it('clicks Next to move to Module 2', () => {
-    cy.visit('/section-1.html')
+  it('clicks into Module 1 then clicks Next to move to Module 2', () => {
+    cy.get('.cards-grid .card').eq(0).click()
     cy.get('.ff-arrows a').not('.off').contains('Next').click()
     cy.url().should('include', 'section-2.html')
   })
 
-  it('Module 2 loads with the correct heading', () => {
-    cy.visit('/section-2.html')
+  it('clicks into Module 1, advances to Module 2, and checks heading', () => {
+    cy.get('.cards-grid .card').eq(0).click()
+    cy.get('.ff-arrows a').not('.off').contains('Next').click()
     cy.get('h2').should('contain.text', 'Section 2')
     cy.get('h2').should('contain.text', 'Equity Trading')
   })
 
-  it('Module 2 has its own video and written content', () => {
-    cy.visit('/section-2.html')
+  it('clicks into Module 1, advances to Module 2, and checks content', () => {
+    cy.get('.cards-grid .card').eq(0).click()
+    cy.get('.ff-arrows a').not('.off').contains('Next').click()
     cy.get('iframe').should('have.length.greaterThan', 0)
     cy.get('.text-content').should('be.visible')
   })
 
-  it('user can go back to Module 1 using Prev', () => {
-    cy.visit('/section-2.html')
+  it('clicks into Module 2 and goes back to Module 1 using Prev', () => {
+    cy.get('.cards-grid .card').eq(1).click()
     cy.get('.ff-arrows a').not('.off').contains('Prev').click()
     cy.url().should('include', 'section-1.html')
   })
@@ -92,11 +102,17 @@ describe('Workflow 2 — User works through Module 1 then advances to Module 2',
 //
 //  A motivated user starts at Module 1 and clicks Next
 //  through every module all the way to the end.
+//  beforeEach starts at the homepage; the single journey
+//  test then navigates from there.
 
 describe('Workflow 3 — User clicks through all 7 modules in order', () => {
 
-  it('navigates from section 1 → 2 → 3 → 4 → 5 → 6 → 7 using Next', () => {
-    cy.visit('/section-1.html')
+  beforeEach(() => {
+    cy.visit('/')
+  })
+
+  it('navigates from homepage → section 1 → 2 → 3 → 4 → 5 → 6 → 7 using Next', () => {
+    cy.get('.cards-grid .card').eq(0).click()
     cy.get('h2').should('contain.text', 'Section 1')
 
     cy.get('.ff-arrows a').not('.off').contains('Next').click()
@@ -124,8 +140,8 @@ describe('Workflow 3 — User clicks through all 7 modules in order', () => {
     cy.get('h2').should('contain.text', 'Section 7')
   })
 
-  it('reaches the last module and the Next button is disabled', () => {
-    cy.visit('/section-7.html')
+  it('clicks into Module 7 directly and confirms the Next button is disabled', () => {
+    cy.get('.cards-grid .card').eq(6).click()
     cy.get('.ff-arrows a.off').should('contain.text', 'Next')
   })
 
@@ -139,22 +155,25 @@ describe('Workflow 3 — User clicks through all 7 modules in order', () => {
 
 describe('Workflow 4 — Returning user jumps straight to Derivatives', () => {
 
-  it('visits the homepage and clicks directly on Module 4', () => {
+  beforeEach(() => {
     cy.visit('/')
+  })
+
+  it('clicks directly on Module 4 from the homepage', () => {
     cy.get('.cards-grid .card').eq(3).should('contain.text', 'Derivatives').click()
     cy.url().should('include', 'section-4.html')
   })
 
-  it('Module 4 has the correct title and content', () => {
-    cy.visit('/section-4.html')
+  it('clicks Module 4 and checks the title and content', () => {
+    cy.get('.cards-grid .card').eq(3).click()
     cy.get('h2').should('contain.text', 'Derivatives')
     cy.get('.text-content').invoke('text').then((text) => {
       expect(text.toLowerCase()).to.match(/future|option|swap/)
     })
   })
 
-  it('user can go back to the homepage from Module 4', () => {
-    cy.visit('/section-4.html')
+  it('clicks Module 4 then returns to the homepage via All Modules', () => {
+    cy.get('.cards-grid .card').eq(3).click()
     cy.get('.ff-home').click()
     cy.url().should('include', 'index.html')
     cy.get('.hero').should('be.visible')
@@ -167,29 +186,30 @@ describe('Workflow 4 — Returning user jumps straight to Derivatives', () => {
 //
 //  A user picks a module, reads it, goes back to the homepage,
 //  picks a different module, and reads that too.
+//  Every test begins fresh from the homepage via beforeEach.
 
 describe('Workflow 5 — User browses multiple modules via homepage', () => {
 
-  it('picks Module 3, returns to homepage, then picks Module 6', () => {
-    // Visit homepage and go to Module 3
+  beforeEach(() => {
     cy.visit('/')
+  })
+
+  it('picks Module 3, returns to homepage, then picks Module 6', () => {
     cy.get('.cards-grid .card').eq(2).click()
     cy.url().should('include', 'section-3.html')
     cy.get('h2').should('contain.text', 'Fixed Income')
 
-    // Return to homepage
     cy.get('.ff-home').click()
     cy.url().should('include', 'index.html')
     cy.get('.cards-grid .card').should('have.length', 7)
 
-    // Now pick Module 6
     cy.get('.cards-grid .card').eq(5).click()
     cy.url().should('include', 'section-6.html')
     cy.get('h2').should('contain.text', 'Treasury')
   })
 
-  it('navigates from Module 6 back to Module 5 using Prev', () => {
-    cy.visit('/section-6.html')
+  it('picks Module 6 and navigates back to Module 5 using Prev', () => {
+    cy.get('.cards-grid .card').eq(5).click()
     cy.get('.ff-arrows a').not('.off').contains('Prev').click()
     cy.url().should('include', 'section-5.html')
     cy.get('h2').should('contain.text', 'Currency')
@@ -206,26 +226,29 @@ describe('Workflow 5 — User browses multiple modules via homepage', () => {
 
 describe('Workflow 6 — User completes the final module', () => {
 
-  it('visits Module 7 from the homepage', () => {
+  beforeEach(() => {
     cy.visit('/')
+  })
+
+  it('clicks Module 7 from the homepage', () => {
     cy.get('.cards-grid .card').eq(6).click()
     cy.url().should('include', 'section-7.html')
   })
 
-  it('Module 7 contains regulation and risk content', () => {
-    cy.visit('/section-7.html')
+  it('clicks Module 7 and checks it contains regulation and risk content', () => {
+    cy.get('.cards-grid .card').eq(6).click()
     cy.get('.text-content').invoke('text').then((text) => {
       expect(text.toLowerCase()).to.match(/regulat|risk|basel|compliance/)
     })
   })
 
-  it('Module 7 has no Next button — the course is complete', () => {
-    cy.visit('/section-7.html')
+  it('clicks Module 7 and confirms there is no Next button', () => {
+    cy.get('.cards-grid .card').eq(6).click()
     cy.get('.ff-arrows a.off').should('contain.text', 'Next')
   })
 
-  it('user returns to the homepage after finishing', () => {
-    cy.visit('/section-7.html')
+  it('clicks Module 7 then returns to the homepage after finishing', () => {
+    cy.get('.cards-grid .card').eq(6).click()
     cy.get('.ff-home').click()
     cy.url().should('include', 'index.html')
     cy.get('.hero h1').should('be.visible')
