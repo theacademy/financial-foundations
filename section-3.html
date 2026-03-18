@@ -86,8 +86,8 @@
     </style>
   </head>
   <body>
-    <nav class="ff-topbar">
-      <a href="index.html" class="ff-home"
+    <nav class="ff-topbar" data-cy="topbar">
+      <a href="index.html" class="ff-home" data-cy="all-modules-link"
         ><svg
           viewBox="0 0 16 16"
           fill="none"
@@ -101,8 +101,8 @@
         All Modules</a
       >
       <span class="ff-section-id">Module 3 &mdash; Fixed Income</span>
-      <div class="ff-arrows">
-        <a href="section-2.html"
+      <div class="ff-arrows" data-cy="nav-arrows">
+        <a data-cy="next-button" data-cy="prev-button" href="section-2.html"
           ><svg
             viewBox="0 0 16 16"
             fill="none"
@@ -130,15 +130,15 @@
       </div>
     </nav>
     <main>
-      <section id="section-3">
+      <section id="section-3" data-cy="section-content">
         <h2>
-          <span class="section-number">3</span>
+          <span class="section-number" data-cy="section-number">3</span>
           Section 3: Fixed Income
         </h2>
 
         <div class="section-content">
           <!-- TEXT CONTENT AREA - FULL WIDTH -->
-          <div class="text-content">
+          <div class="text-content" data-cy="text-content">
             <!-- ================================================================================
 FIXED INCOME - HTML CONTENT FOR WEBSITE TEMPLATE
 ================================================================================

@@ -86,8 +86,8 @@
     </style>
   </head>
   <body>
-    <nav class="ff-topbar">
-      <a href="index.html" class="ff-home"
+    <nav class="ff-topbar" data-cy="topbar">
+      <a href="index.html" class="ff-home" data-cy="all-modules-link"
         ><svg
           viewBox="0 0 16 16"
           fill="none"
@@ -101,8 +101,8 @@
         All Modules</a
       >
       <span class="ff-section-id">Module 1 &mdash; Financial Markets</span>
-      <div class="ff-arrows">
-        <a href="#" class="off"
+      <div class="ff-arrows" data-cy="nav-arrows">
+        <a data-cy="next-button" data-cy="prev-button" href="#" class="off"
           ><svg
             viewBox="0 0 16 16"
             fill="none"
@@ -130,17 +130,17 @@
       </div>
     </nav>
     <main>
-      <section id="section-1">
+      <section id="section-1" data-cy="section-content">
         <h2>
-          <span class="section-number">1</span>
+          <span class="section-number" data-cy="section-number">1</span>
           Section 1: Financial Markets
         </h2>
 
         <div class="section-content">
           <!-- VIDEO CONTENT AREA - APPEARS FIRST -->
-          <div class="video-wrapper">
-            <span class="video-label">📺 Video: Financial Markets</span>
-            <div class="video-container">
+          <div class="video-wrapper" data-cy="video-wrapper">
+            <span class="video-label" data-cy="video-label">📺 Video: Financial Markets</span>
+            <div class="video-container" data-cy="video-container">
               <iframe
                 src="https://video.mthree.com/Financial_Marketing/FM_Financial_Market.mp4"
                 title="Financial Marketing"
@@ -156,9 +156,9 @@
               </iframe>
             </div>
           </div>
-          <div class="video-wrapper">
-            <span class="video-label">📺 Video: Debt</span>
-            <div class="video-container">
+          <div class="video-wrapper" data-cy="video-wrapper">
+            <span class="video-label" data-cy="video-label">📺 Video: Debt</span>
+            <div class="video-container" data-cy="video-container">
               <iframe
                 src="https://video.mthree.com/Financial_Marketing/FM_Debt.mp4"
                 title="Debt"
@@ -176,7 +176,7 @@
           </div>
 
           <!-- TEXT CONTENT AREA - FULL WIDTH -->
-          <div class="text-content">
+          <div class="text-content" data-cy="text-content">
             <h3>Introduction to Financial Markets</h3>
 
             <p>

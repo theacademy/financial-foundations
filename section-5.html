@@ -88,8 +88,8 @@
     </style>
   </head>
   <body>
-    <nav class="ff-topbar">
-      <a href="index.html" class="ff-home"
+    <nav class="ff-topbar" data-cy="topbar">
+      <a href="index.html" class="ff-home" data-cy="all-modules-link"
         ><svg
           viewBox="0 0 16 16"
           fill="none"
@@ -105,8 +105,8 @@
       <span class="ff-section-id"
         >Module 5 &mdash; Currency and Foreign Exchange</span
       >
-      <div class="ff-arrows">
-        <a href="section-4.html"
+      <div class="ff-arrows" data-cy="nav-arrows">
+        <a data-cy="next-button" data-cy="prev-button" href="section-4.html"
           ><svg
             viewBox="0 0 16 16"
             fill="none"
@@ -134,17 +134,17 @@
       </div>
     </nav>
     <main>
-      <section id="section-5">
+      <section id="section-5" data-cy="section-content">
         <h2>
-          <span class="section-number">5</span>
+          <span class="section-number" data-cy="section-number">5</span>
           Section 5: Currency and Foreign Exchange
         </h2>
 
         <div class="section-content">
           <!-- VIDEO CONTENT AREA -->
-          <div class="video-wrapper">
-            <span class="video-label">📺 Video: FX</span>
-            <div class="video-container">
+          <div class="video-wrapper" data-cy="video-wrapper">
+            <span class="video-label" data-cy="video-label">📺 Video: FX</span>
+            <div class="video-container" data-cy="video-container">
               <iframe
                 src="https://video.mthree.com/Financial_Marketing/FM_FX.mp4"
                 title="FX"
@@ -162,7 +162,7 @@
           </div>
 
           <!-- TEXT CONTENT AREA - FULL WIDTH -->
-          <div class="text-content">
+          <div class="text-content" data-cy="text-content">
             <!-- ================================================================================
 CURRENCY AND FOREIGN EXCHANGE - HTML CONTENT FOR WEBSITE TEMPLATE
 ================================================================================

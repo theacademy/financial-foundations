@@ -86,8 +86,8 @@
     </style>
   </head>
   <body>
-    <nav class="ff-topbar">
-      <a href="index.html" class="ff-home"
+    <nav class="ff-topbar" data-cy="topbar">
+      <a href="index.html" class="ff-home" data-cy="all-modules-link"
         ><svg
           viewBox="0 0 16 16"
           fill="none"
@@ -101,8 +101,8 @@
         All Modules</a
       >
       <span class="ff-section-id">Module 2 &mdash; Equity Trading</span>
-      <div class="ff-arrows">
-        <a href="section-1.html"
+      <div class="ff-arrows" data-cy="nav-arrows">
+        <a data-cy="next-button" data-cy="prev-button" href="section-1.html"
           ><svg
             viewBox="0 0 16 16"
             fill="none"
@@ -130,17 +130,17 @@
       </div>
     </nav>
     <main>
-      <section id="section-2">
+      <section id="section-2" data-cy="section-content">
         <h2>
-          <span class="section-number">2</span>
+          <span class="section-number" data-cy="section-number">2</span>
           Section 2: Equity Trading
         </h2>
 
         <div class="section-content">
           <!-- VIDEO CONTENT AREA -->
-          <div class="video-wrapper">
-            <span class="video-label">📺 Video: Equity</span>
-            <div class="video-container">
+          <div class="video-wrapper" data-cy="video-wrapper">
+            <span class="video-label" data-cy="video-label">📺 Video: Equity</span>
+            <div class="video-container" data-cy="video-container">
               <iframe
                 src="https://video.mthree.com/Financial_Marketing/FM_Equity.mp4"
                 title="Equity"
@@ -158,7 +158,7 @@
           </div>
 
           <!-- TEXT CONTENT AREA - FULL WIDTH -->
-          <div class="text-content">
+          <div class="text-content" data-cy="text-content">
             <!-- ================================================================================
 EQUITY TRADING - HTML CONTENT FOR WEBSITE TEMPLATE
 ================================================================================
