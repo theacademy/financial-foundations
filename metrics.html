@@ -166,7 +166,7 @@
       // Load metrics using the new metrics.json structure (ranges: 24h, 7d, 30d)
       async function loadMetrics() {
         const selected = document.getElementById("timeRange").value;
-        const rangeKey = selected === '1d' ? '24h' : selected;
+        const rangeKey = selected === "1d" ? "24h" : selected;
         const content = document.getElementById("metricsContent");
         const errorContainer = document.getElementById("errorContainer");
         const timestamp = document.getElementById("timestamp");
@@ -193,14 +193,16 @@
 
           // S3 card
           const s3 = rangeObj.s3 || {};
-          const s3metrics = (s3.metrics) || {};
-          const s3All = (s3metrics.AllRequests && s3metrics.AllRequests.total) || 0;
-          const s34xx = (s3metrics['4xxErrors'] && s3metrics['4xxErrors'].total) || 0;
+          const s3metrics = s3.metrics || {};
+          const s3All =
+            (s3metrics.AllRequests && s3metrics.AllRequests.total) || 0;
+          const s34xx =
+            (s3metrics["4xxErrors"] && s3metrics["4xxErrors"].total) || 0;
 
           content.innerHTML += `
             <div class="metric-card">
               <h2>📦 S3 Metrics</h2>
-              <div class="metric-item"><span class="metric-label">Bucket:</span><span class="metric-value">${s3.bucket || '—'}</span></div>
+              <div class="metric-item"><span class="metric-label">Bucket:</span><span class="metric-value">${s3.bucket || "—"}</span></div>
               <div class="metric-item"><span class="metric-label">Total Requests:</span><span class="metric-value">${Number(s3All).toLocaleString()}</span></div>
               <div class="metric-item"><span class="metric-label">4xx Errors:</span><span class="metric-value">${Number(s34xx).toLocaleString()}</span></div>
               <div class="metric-item"><span class="metric-label">Time Range:</span><span class="metric-value">${rangeKey}</span></div>
@@ -209,15 +211,18 @@
 
           // CloudFront card
           const cf = rangeObj.cloudfront || {};
-          const cfmetrics = (cf.metrics) || {};
-          const cfRequests = (cfmetrics.Requests && cfmetrics.Requests.total) || 0;
-          const cfBytes = (cfmetrics.BytesDownloaded && cfmetrics.BytesDownloaded.total) || 0;
-          const cf4xxRate = (cfmetrics['4xxErrorRate'] && cfmetrics['4xxErrorRate'].total) || 0;
+          const cfmetrics = cf.metrics || {};
+          const cfRequests =
+            (cfmetrics.Requests && cfmetrics.Requests.total) || 0;
+          const cfBytes =
+            (cfmetrics.BytesDownloaded && cfmetrics.BytesDownloaded.total) || 0;
+          const cf4xxRate =
+            (cfmetrics["4xxErrorRate"] && cfmetrics["4xxErrorRate"].total) || 0;
 
           content.innerHTML += `
             <div class="metric-card">
               <h2>🌐 CloudFront Metrics</h2>
-              <div class="metric-item"><span class="metric-label">Distribution ID:</span><span class="metric-value">${cf.distributionId || '—'}</span></div>
+              <div class="metric-item"><span class="metric-label">Distribution ID:</span><span class="metric-value">${cf.distributionId || "—"}</span></div>
               <div class="metric-item"><span class="metric-label">Total Requests:</span><span class="metric-value">${Number(cfRequests).toLocaleString()}</span></div>
               <div class="metric-item"><span class="metric-label">Bytes Downloaded:</span><span class="metric-value">${Number(cfBytes).toFixed(2)} MB</span></div>
               <div class="metric-item"><span class="metric-label">4xx Error Rate:</span><span class="metric-value">${Number(cf4xxRate).toFixed(2)}%</span></div>
@@ -236,7 +241,7 @@
         }
       }
 
-      window.addEventListener('load', loadMetrics);
+      window.addEventListener("load", loadMetrics);
     </script>
   </body>
 </html>
