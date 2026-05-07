@@ -163,9 +163,10 @@
     </div>
 
     <script>
-      // Try to load metrics.json
+      // Load metrics using the new metrics.json structure (ranges: 24h, 7d, 30d)
       async function loadMetrics() {
-        const timeRange = document.getElementById("timeRange").value;
+        const selected = document.getElementById("timeRange").value;
+        const rangeKey = selected === '1d' ? '24h' : selected;
         const content = document.getElementById("metricsContent");
         const errorContainer = document.getElementById("errorContainer");
         const timestamp = document.getElementById("timestamp");
@@ -174,94 +175,68 @@
         errorContainer.innerHTML = "";
 
         try {
-          const response = await fetch("metrics.json");
+          const resp = await fetch("metrics.json");
+          if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
+          const data = await resp.json();
 
-          if (!response.ok) {
-            throw new Error(`HTTP ${response.status}: metrics.json not found`);
-          }
-
-          const data = await response.json();
-
-          // Update timestamp
           if (data.generatedAt) {
             const date = new Date(data.generatedAt);
             timestamp.textContent = `Last updated: ${date.toLocaleString()} UTC`;
           }
 
-          // Render metrics
           content.innerHTML = "";
 
-          // S3 Metrics Card
-          if (data.s3Metrics && !data.s3Metrics.error) {
-            content.innerHTML += `
-                        <div class="metric-card">
-                            <h2>📦 S3 Metrics</h2>
-                            <div class="metric-item">
-                                <span class="metric-label">Bucket:</span>
-                                <span class="metric-value">${data.s3Metrics.bucket}</span>
-                            </div>
-                            <div class="metric-item">
-                                <span class="metric-label">Total Requests:</span>
-                                <span class="metric-value">${(data.s3Metrics.allRequests || 0).toLocaleString()}</span>
-                            </div>
-                            <div class="metric-item">
-                                <span class="metric-label">4xx Errors:</span>
-                                <span class="metric-value">${(data.s3Metrics.errors4xx || 0).toLocaleString()}</span>
-                            </div>
-                            <div class="metric-item">
-                                <span class="metric-label">Time Range:</span>
-                                <span class="metric-value">${data.s3Metrics.timeRange}</span>
-                            </div>
-                        </div>
-                    `;
-          } else if (data.s3Metrics && data.s3Metrics.error) {
-            errorContainer.innerHTML += `<div class="error">S3 Metrics Error: ${data.s3Metrics.error}</div>`;
+          const rangeObj = data.ranges && data.ranges[rangeKey];
+          if (!rangeObj) {
+            throw new Error(`No metrics for range ${rangeKey}`);
           }
 
-          // CloudFront Metrics Card
-          if (data.cloudfrontMetrics && !data.cloudfrontMetrics.error) {
-            content.innerHTML += `
-                        <div class="metric-card">
-                            <h2>🌐 CloudFront Metrics</h2>
-                            <div class="metric-item">
-                                <span class="metric-label">Distribution ID:</span>
-                                <span class="metric-value">${data.cloudfrontMetrics.distributionId}</span>
-                            </div>
-                            <div class="metric-item">
-                                <span class="metric-label">Total Requests:</span>
-                                <span class="metric-value">${(data.cloudfrontMetrics.requests || 0).toLocaleString()}</span>
-                            </div>
-                            <div class="metric-item">
-                                <span class="metric-label">Bytes Downloaded:</span>
-                                <span class="metric-value">${(data.cloudfrontMetrics.bytesDownloaded || 0).toFixed(2)} MB</span>
-                            </div>
-                            <div class="metric-item">
-                                <span class="metric-label">4xx Error Rate:</span>
-                                <span class="metric-value">${(data.cloudfrontMetrics.errorRate4xx || 0).toFixed(2)}%</span>
-                            </div>
-                            <div class="metric-item">
-                                <span class="metric-label">Time Range:</span>
-                                <span class="metric-value">${data.cloudfrontMetrics.timeRange}</span>
-                            </div>
-                        </div>
-                    `;
-          } else if (data.cloudfrontMetrics && data.cloudfrontMetrics.error) {
-            errorContainer.innerHTML += `<div class="error">CloudFront Metrics Error: ${data.cloudfrontMetrics.error}</div>`;
-          }
-        } catch (error) {
+          // S3 card
+          const s3 = rangeObj.s3 || {};
+          const s3metrics = (s3.metrics) || {};
+          const s3All = (s3metrics.AllRequests && s3metrics.AllRequests.total) || 0;
+          const s34xx = (s3metrics['4xxErrors'] && s3metrics['4xxErrors'].total) || 0;
+
+          content.innerHTML += `
+            <div class="metric-card">
+              <h2>📦 S3 Metrics</h2>
+              <div class="metric-item"><span class="metric-label">Bucket:</span><span class="metric-value">${s3.bucket || '—'}</span></div>
+              <div class="metric-item"><span class="metric-label">Total Requests:</span><span class="metric-value">${Number(s3All).toLocaleString()}</span></div>
+              <div class="metric-item"><span class="metric-label">4xx Errors:</span><span class="metric-value">${Number(s34xx).toLocaleString()}</span></div>
+              <div class="metric-item"><span class="metric-label">Time Range:</span><span class="metric-value">${rangeKey}</span></div>
+            </div>
+          `;
+
+          // CloudFront card
+          const cf = rangeObj.cloudfront || {};
+          const cfmetrics = (cf.metrics) || {};
+          const cfRequests = (cfmetrics.Requests && cfmetrics.Requests.total) || 0;
+          const cfBytes = (cfmetrics.BytesDownloaded && cfmetrics.BytesDownloaded.total) || 0;
+          const cf4xxRate = (cfmetrics['4xxErrorRate'] && cfmetrics['4xxErrorRate'].total) || 0;
+
+          content.innerHTML += `
+            <div class="metric-card">
+              <h2>🌐 CloudFront Metrics</h2>
+              <div class="metric-item"><span class="metric-label">Distribution ID:</span><span class="metric-value">${cf.distributionId || '—'}</span></div>
+              <div class="metric-item"><span class="metric-label">Total Requests:</span><span class="metric-value">${Number(cfRequests).toLocaleString()}</span></div>
+              <div class="metric-item"><span class="metric-label">Bytes Downloaded:</span><span class="metric-value">${Number(cfBytes).toFixed(2)} MB</span></div>
+              <div class="metric-item"><span class="metric-label">4xx Error Rate:</span><span class="metric-value">${Number(cf4xxRate).toFixed(2)}%</span></div>
+              <div class="metric-item"><span class="metric-label">Time Range:</span><span class="metric-value">${rangeKey}</span></div>
+            </div>
+          `;
+        } catch (err) {
           errorContainer.innerHTML = `
-                    <div class="error">
-                        <strong>Unable to load metrics:</strong><br>
-                        ${error.message}<br><br>
-                        <small>Run <code>./generate-metrics-json.ps1</code> in the cloudwatch-setup folder to generate metrics.json</small>
-                    </div>
-                `;
+            <div class="error">
+              <strong>Unable to load metrics:</strong><br>
+              ${err.message}<br><br>
+              <small>Run <code>./generate-metrics-json.ps1</code> in the cloudwatch-setup folder to generate metrics.json</small>
+            </div>
+          `;
           content.innerHTML = "";
         }
       }
 
-      // Load metrics on page load
-      window.addEventListener("load", loadMetrics);
+      window.addEventListener('load', loadMetrics);
     </script>
   </body>
 </html>

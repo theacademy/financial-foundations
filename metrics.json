@@ -1,179 +1,444 @@
 {
-  "generatedAt": "2026-05-07T10:49:17Z",
+  "generatedAt": "2026-05-07T11:03:38Z",
   "ranges": {
     "30d": {
       "s3": {
         "bucket": "mthree-peregrine-s3-3",
         "metrics": {
-          "GetRequests": {
-            "total": 15.0,
-            "datapoints": [
-              "System.Collections.Hashtable",
-              "System.Collections.Hashtable",
-              "System.Collections.Hashtable"
-            ]
-          },
-          "BytesDownloaded": {
-            "total": 0.0298,
-            "datapoints": [
-              "System.Collections.Hashtable",
-              "System.Collections.Hashtable",
-              "System.Collections.Hashtable",
-              "System.Collections.Hashtable",
-              "System.Collections.Hashtable"
-            ]
-          },
-          "BytesUploaded": {
-            "total": 0.0001,
-            "datapoints": {
-              "Timestamp": "2026-05-01T19:50:00+01:00",
-              "Value": 0.0001
-            }
-          },
-          "FirstByteLatency": {
-            "total": 33.2,
-            "datapoints": [
-              "System.Collections.Hashtable",
-              "System.Collections.Hashtable",
-              "System.Collections.Hashtable",
-              "System.Collections.Hashtable",
-              "System.Collections.Hashtable",
-              "System.Collections.Hashtable",
-              "System.Collections.Hashtable",
-              "System.Collections.Hashtable",
-              "System.Collections.Hashtable",
-              "System.Collections.Hashtable",
-              "System.Collections.Hashtable",
-              "System.Collections.Hashtable",
-              "System.Collections.Hashtable",
-              "System.Collections.Hashtable",
-              "System.Collections.Hashtable",
-              "System.Collections.Hashtable",
-              "System.Collections.Hashtable"
-            ]
-          },
-          "TotalRequestLatency": {
-            "total": 30.64,
-            "datapoints": [
-              "System.Collections.Hashtable",
-              "System.Collections.Hashtable",
-              "System.Collections.Hashtable",
-              "System.Collections.Hashtable",
-              "System.Collections.Hashtable",
-              "System.Collections.Hashtable",
-              "System.Collections.Hashtable",
-              "System.Collections.Hashtable",
-              "System.Collections.Hashtable",
-              "System.Collections.Hashtable",
-              "System.Collections.Hashtable",
-              "System.Collections.Hashtable",
-              "System.Collections.Hashtable",
-              "System.Collections.Hashtable",
-              "System.Collections.Hashtable",
-              "System.Collections.Hashtable",
-              "System.Collections.Hashtable"
-            ]
-          },
-          "AllRequests": {
-            "total": 58.0,
-            "datapoints": [
-              "System.Collections.Hashtable",
-              "System.Collections.Hashtable",
-              "System.Collections.Hashtable",
-              "System.Collections.Hashtable",
-              "System.Collections.Hashtable",
-              "System.Collections.Hashtable",
-              "System.Collections.Hashtable",
-              "System.Collections.Hashtable",
-              "System.Collections.Hashtable",
-              "System.Collections.Hashtable",
-              "System.Collections.Hashtable",
-              "System.Collections.Hashtable",
-              "System.Collections.Hashtable",
-              "System.Collections.Hashtable",
-              "System.Collections.Hashtable",
-              "System.Collections.Hashtable",
-              "System.Collections.Hashtable"
-            ]
-          },
-          "PutRequests": {
-            "total": 1.0,
-            "datapoints": {
-              "Timestamp": "2026-05-01T19:50:00+01:00",
-              "Value": 1.0
-            }
-          },
           "HeadRequests": {
             "total": 19.0,
             "datapoints": [
-              "System.Collections.Hashtable",
-              "System.Collections.Hashtable",
-              "System.Collections.Hashtable",
-              "System.Collections.Hashtable",
-              "System.Collections.Hashtable",
-              "System.Collections.Hashtable",
-              "System.Collections.Hashtable",
-              "System.Collections.Hashtable",
-              "System.Collections.Hashtable",
-              "System.Collections.Hashtable",
-              "System.Collections.Hashtable",
-              "System.Collections.Hashtable",
-              "System.Collections.Hashtable",
-              "System.Collections.Hashtable"
+              {
+                "Value": 4.0,
+                "Timestamp": "2026-05-01T20:05:00+01:00"
+              },
+              {
+                "Value": 1.0,
+                "Timestamp": "2026-05-02T01:05:00+01:00"
+              },
+              {
+                "Value": 1.0,
+                "Timestamp": "2026-05-02T13:05:00+01:00"
+              },
+              {
+                "Value": 1.0,
+                "Timestamp": "2026-05-03T01:05:00+01:00"
+              },
+              {
+                "Value": 1.0,
+                "Timestamp": "2026-05-03T13:05:00+01:00"
+              },
+              {
+                "Value": 1.0,
+                "Timestamp": "2026-05-04T01:05:00+01:00"
+              },
+              {
+                "Value": 2.0,
+                "Timestamp": "2026-05-04T13:05:00+01:00"
+              },
+              {
+                "Value": 1.0,
+                "Timestamp": "2026-05-05T01:05:00+01:00"
+              },
+              {
+                "Value": 3.0,
+                "Timestamp": "2026-05-05T12:35:00+01:00"
+              },
+              {
+                "Value": 1.0,
+                "Timestamp": "2026-05-05T13:05:00+01:00"
+              },
+              {
+                "Value": 1.0,
+                "Timestamp": "2026-05-06T01:05:00+01:00"
+              },
+              {
+                "Value": 1.0,
+                "Timestamp": "2026-05-06T13:05:00+01:00"
+              },
+              {
+                "Value": 1.0,
+                "Timestamp": "2026-05-07T01:05:00+01:00"
+              }
             ]
           },
           "4xxErrors": {
             "total": 5.0,
             "datapoints": [
-              "System.Collections.Hashtable",
-              "System.Collections.Hashtable",
-              "System.Collections.Hashtable"
+              {
+                "Value": 1.0,
+                "Timestamp": "2026-05-06T11:35:00+01:00"
+              },
+              {
+                "Value": 2.0,
+                "Timestamp": "2026-05-06T15:05:00+01:00"
+              },
+              {
+                "Value": 2.0,
+                "Timestamp": "2026-05-06T15:35:00+01:00"
+              }
+            ]
+          },
+          "GetRequests": {
+            "total": 15.0,
+            "datapoints": [
+              {
+                "Value": 6.0,
+                "Timestamp": "2026-05-06T11:35:00+01:00"
+              },
+              {
+                "Value": 7.0,
+                "Timestamp": "2026-05-06T15:05:00+01:00"
+              },
+              {
+                "Value": 2.0,
+                "Timestamp": "2026-05-06T15:35:00+01:00"
+              }
+            ]
+          },
+          "AllRequests": {
+            "total": 58.0,
+            "datapoints": [
+              {
+                "Value": 18.0,
+                "Timestamp": "2026-05-01T20:05:00+01:00"
+              },
+              {
+                "Value": 1.0,
+                "Timestamp": "2026-05-02T01:05:00+01:00"
+              },
+              {
+                "Value": 1.0,
+                "Timestamp": "2026-05-02T13:05:00+01:00"
+              },
+              {
+                "Value": 1.0,
+                "Timestamp": "2026-05-03T01:05:00+01:00"
+              },
+              {
+                "Value": 1.0,
+                "Timestamp": "2026-05-03T13:05:00+01:00"
+              },
+              {
+                "Value": 1.0,
+                "Timestamp": "2026-05-04T01:05:00+01:00"
+              },
+              {
+                "Value": 2.0,
+                "Timestamp": "2026-05-04T13:05:00+01:00"
+              },
+              {
+                "Value": 1.0,
+                "Timestamp": "2026-05-05T01:05:00+01:00"
+              },
+              {
+                "Value": 13.0,
+                "Timestamp": "2026-05-05T12:35:00+01:00"
+              },
+              {
+                "Value": 1.0,
+                "Timestamp": "2026-05-05T13:05:00+01:00"
+              },
+              {
+                "Value": 1.0,
+                "Timestamp": "2026-05-06T01:05:00+01:00"
+              },
+              {
+                "Value": 6.0,
+                "Timestamp": "2026-05-06T11:35:00+01:00"
+              },
+              {
+                "Value": 1.0,
+                "Timestamp": "2026-05-06T13:05:00+01:00"
+              },
+              {
+                "Value": 7.0,
+                "Timestamp": "2026-05-06T15:05:00+01:00"
+              },
+              {
+                "Value": 2.0,
+                "Timestamp": "2026-05-06T15:35:00+01:00"
+              },
+              {
+                "Value": 1.0,
+                "Timestamp": "2026-05-07T01:05:00+01:00"
+              }
+            ]
+          },
+          "ListRequests": {
+            "total": 3.0,
+            "datapoints": [
+              {
+                "Value": 2.0,
+                "Timestamp": "2026-05-01T20:05:00+01:00"
+              },
+              {
+                "Value": 1.0,
+                "Timestamp": "2026-05-05T12:35:00+01:00"
+              }
+            ]
+          },
+          "BytesUploaded": {
+            "total": 0.0001,
+            "datapoints": {
+              "Value": 0.0001,
+              "Timestamp": "2026-05-01T20:05:00+01:00"
+            }
+          },
+          "PutRequests": {
+            "total": 1.0,
+            "datapoints": {
+              "Value": 1.0,
+              "Timestamp": "2026-05-01T20:05:00+01:00"
+            }
+          },
+          "TotalRequestLatency": {
+            "total": 31.9,
+            "datapoints": [
+              {
+                "Value": 10.22,
+                "Timestamp": "2026-05-01T20:05:00+01:00"
+              },
+              {
+                "Value": 28.0,
+                "Timestamp": "2026-05-02T01:05:00+01:00"
+              },
+              {
+                "Value": 30.0,
+                "Timestamp": "2026-05-02T13:05:00+01:00"
+              },
+              {
+                "Value": 44.0,
+                "Timestamp": "2026-05-03T01:05:00+01:00"
+              },
+              {
+                "Value": 28.0,
+                "Timestamp": "2026-05-03T13:05:00+01:00"
+              },
+              {
+                "Value": 20.0,
+                "Timestamp": "2026-05-04T01:05:00+01:00"
+              },
+              {
+                "Value": 26.0,
+                "Timestamp": "2026-05-04T13:05:00+01:00"
+              },
+              {
+                "Value": 35.0,
+                "Timestamp": "2026-05-05T01:05:00+01:00"
+              },
+              {
+                "Value": 6.54,
+                "Timestamp": "2026-05-05T12:35:00+01:00"
+              },
+              {
+                "Value": 33.0,
+                "Timestamp": "2026-05-05T13:05:00+01:00"
+              },
+              {
+                "Value": 45.0,
+                "Timestamp": "2026-05-06T01:05:00+01:00"
+              },
+              {
+                "Value": 46.83,
+                "Timestamp": "2026-05-06T11:35:00+01:00"
+              },
+              {
+                "Value": 29.0,
+                "Timestamp": "2026-05-06T13:05:00+01:00"
+              },
+              {
+                "Value": 61.86,
+                "Timestamp": "2026-05-06T15:05:00+01:00"
+              },
+              {
+                "Value": 31.0,
+                "Timestamp": "2026-05-06T15:35:00+01:00"
+              },
+              {
+                "Value": 36.0,
+                "Timestamp": "2026-05-07T01:05:00+01:00"
+              }
+            ]
+          },
+          "FirstByteLatency": {
+            "total": 32.8,
+            "datapoints": [
+              {
+                "Value": 15.0,
+                "Timestamp": "2026-05-01T20:05:00+01:00"
+              },
+              {
+                "Value": 28.0,
+                "Timestamp": "2026-05-02T01:05:00+01:00"
+              },
+              {
+                "Value": 30.0,
+                "Timestamp": "2026-05-02T13:05:00+01:00"
+              },
+              {
+                "Value": 44.0,
+                "Timestamp": "2026-05-03T01:05:00+01:00"
+              },
+              {
+                "Value": 27.0,
+                "Timestamp": "2026-05-03T13:05:00+01:00"
+              },
+              {
+                "Value": 20.0,
+                "Timestamp": "2026-05-04T01:05:00+01:00"
+              },
+              {
+                "Value": 26.0,
+                "Timestamp": "2026-05-04T13:05:00+01:00"
+              },
+              {
+                "Value": 35.0,
+                "Timestamp": "2026-05-05T01:05:00+01:00"
+              },
+              {
+                "Value": 10.75,
+                "Timestamp": "2026-05-05T12:35:00+01:00"
+              },
+              {
+                "Value": 32.0,
+                "Timestamp": "2026-05-05T13:05:00+01:00"
+              },
+              {
+                "Value": 44.0,
+                "Timestamp": "2026-05-06T01:05:00+01:00"
+              },
+              {
+                "Value": 56.0,
+                "Timestamp": "2026-05-06T11:35:00+01:00"
+              },
+              {
+                "Value": 28.0,
+                "Timestamp": "2026-05-06T13:05:00+01:00"
+              },
+              {
+                "Value": 66.25,
+                "Timestamp": "2026-05-06T15:05:00+01:00"
+              },
+              {
+                "Value": 30.0,
+                "Timestamp": "2026-05-07T01:05:00+01:00"
+              }
+            ]
+          },
+          "BytesDownloaded": {
+            "total": 0.0298,
+            "datapoints": [
+              {
+                "Value": 0.0014,
+                "Timestamp": "2026-05-01T20:05:00+01:00"
+              },
+              {
+                "Value": 0.0011,
+                "Timestamp": "2026-05-05T12:35:00+01:00"
+              },
+              {
+                "Value": 0.0171,
+                "Timestamp": "2026-05-06T11:35:00+01:00"
+              },
+              {
+                "Value": 0.0094,
+                "Timestamp": "2026-05-06T15:05:00+01:00"
+              },
+              {
+                "Value": 0.0007,
+                "Timestamp": "2026-05-06T15:35:00+01:00"
+              }
             ]
           },
           "5xxErrors": {
             "total": 0.0,
             "datapoints": null
-          },
-          "ListRequests": {
-            "total": 3.0,
-            "datapoints": [
-              "System.Collections.Hashtable",
-              "System.Collections.Hashtable"
-            ]
           }
         }
       },
       "cloudfront": {
         "metrics": {
-          "Requests": {
-            "total": 146.0,
+          "BytesDownloaded": {
+            "total": 0.5831,
             "datapoints": [
-              "System.Collections.Hashtable",
-              "System.Collections.Hashtable",
-              "System.Collections.Hashtable",
-              "System.Collections.Hashtable",
-              "System.Collections.Hashtable",
-              "System.Collections.Hashtable",
-              "System.Collections.Hashtable",
-              "System.Collections.Hashtable",
-              "System.Collections.Hashtable"
+              {
+                "Value": 0.1565,
+                "Timestamp": "2026-04-29T14:05:00+01:00"
+              },
+              {
+                "Value": 0.0412,
+                "Timestamp": "2026-04-29T15:05:00+01:00"
+              },
+              {
+                "Value": 0.1564,
+                "Timestamp": "2026-04-29T22:05:00+01:00"
+              },
+              {
+                "Value": 0.0463,
+                "Timestamp": "2026-04-30T09:05:00+01:00"
+              },
+              {
+                "Value": 0.1235,
+                "Timestamp": "2026-05-05T10:05:00+01:00"
+              },
+              {
+                "Value": 0.0176,
+                "Timestamp": "2026-05-05T12:05:00+01:00"
+              },
+              {
+                "Value": 0.0005,
+                "Timestamp": "2026-05-05T13:05:00+01:00"
+              },
+              {
+                "Value": 0.041,
+                "Timestamp": "2026-05-07T09:05:00+01:00"
+              }
             ]
           },
           "4xxErrorRate": {
             "total": 0.0,
             "datapoints": null
           },
-          "BytesDownloaded": {
-            "total": 0.5831,
+          "Requests": {
+            "total": 146.0,
             "datapoints": [
-              "System.Collections.Hashtable",
-              "System.Collections.Hashtable",
-              "System.Collections.Hashtable",
-              "System.Collections.Hashtable",
-              "System.Collections.Hashtable",
-              "System.Collections.Hashtable",
-              "System.Collections.Hashtable",
-              "System.Collections.Hashtable"
+              {
+                "Value": 34.0,
+                "Timestamp": "2026-04-29T14:05:00+01:00"
+              },
+              {
+                "Value": 10.0,
+                "Timestamp": "2026-04-29T15:05:00+01:00"
+              },
+              {
+                "Value": 38.0,
+                "Timestamp": "2026-04-29T22:05:00+01:00"
+              },
+              {
+                "Value": 15.0,
+                "Timestamp": "2026-04-30T09:05:00+01:00"
+              },
+              {
+                "Value": 30.0,
+                "Timestamp": "2026-05-05T10:05:00+01:00"
+              },
+              {
+                "Value": 6.0,
+                "Timestamp": "2026-05-05T12:05:00+01:00"
+              },
+              {
+                "Value": 2.0,
+                "Timestamp": "2026-05-05T13:05:00+01:00"
+              },
+              {
+                "Value": 1.0,
+                "Timestamp": "2026-05-06T21:05:00+01:00"
+              },
+              {
+                "Value": 10.0,
+                "Timestamp": "2026-05-07T09:05:00+01:00"
+              }
             ]
           },
           "5xxErrorRate": {
@@ -188,112 +453,220 @@
       "s3": {
         "bucket": "mthree-peregrine-s3-3",
         "metrics": {
-          "GetRequests": {
-            "total": 9.0,
-            "datapoints": [
-              "System.Collections.Hashtable",
-              "System.Collections.Hashtable",
-              "System.Collections.Hashtable",
-              "System.Collections.Hashtable",
-              "System.Collections.Hashtable"
-            ]
-          },
-          "BytesDownloaded": {
-            "total": 0.0101,
-            "datapoints": [
-              "System.Collections.Hashtable",
-              "System.Collections.Hashtable",
-              "System.Collections.Hashtable",
-              "System.Collections.Hashtable",
-              "System.Collections.Hashtable"
-            ]
-          },
-          "BytesUploaded": {
-            "total": 0.0,
-            "datapoints": null
-          },
-          "FirstByteLatency": {
-            "total": 46.8,
-            "datapoints": [
-              "System.Collections.Hashtable",
-              "System.Collections.Hashtable",
-              "System.Collections.Hashtable",
-              "System.Collections.Hashtable",
-              "System.Collections.Hashtable"
-            ]
-          },
-          "TotalRequestLatency": {
-            "total": 43.71,
-            "datapoints": [
-              "System.Collections.Hashtable",
-              "System.Collections.Hashtable",
-              "System.Collections.Hashtable",
-              "System.Collections.Hashtable",
-              "System.Collections.Hashtable",
-              "System.Collections.Hashtable",
-              "System.Collections.Hashtable"
-            ]
-          },
-          "AllRequests": {
-            "total": 11.0,
-            "datapoints": [
-              "System.Collections.Hashtable",
-              "System.Collections.Hashtable",
-              "System.Collections.Hashtable",
-              "System.Collections.Hashtable",
-              "System.Collections.Hashtable",
-              "System.Collections.Hashtable",
-              "System.Collections.Hashtable"
-            ]
-          },
-          "PutRequests": {
-            "total": 0,
-            "datapoints": null
-          },
           "HeadRequests": {
             "total": 2.0,
             "datapoints": [
-              "System.Collections.Hashtable",
-              "System.Collections.Hashtable"
+              {
+                "Value": 1.0,
+                "Timestamp": "2026-05-06T13:14:00+01:00"
+              },
+              {
+                "Value": 1.0,
+                "Timestamp": "2026-05-07T01:14:00+01:00"
+              }
             ]
           },
           "4xxErrors": {
             "total": 4.0,
             "datapoints": [
-              "System.Collections.Hashtable",
-              "System.Collections.Hashtable",
-              "System.Collections.Hashtable"
+              {
+                "Value": 1.0,
+                "Timestamp": "2026-05-06T15:12:00+01:00"
+              },
+              {
+                "Value": 1.0,
+                "Timestamp": "2026-05-06T15:34:00+01:00"
+              },
+              {
+                "Value": 2.0,
+                "Timestamp": "2026-05-06T15:37:00+01:00"
+              }
+            ]
+          },
+          "GetRequests": {
+            "total": 9.0,
+            "datapoints": [
+              {
+                "Value": 1.0,
+                "Timestamp": "2026-05-06T15:12:00+01:00"
+              },
+              {
+                "Value": 1.0,
+                "Timestamp": "2026-05-06T15:13:00+01:00"
+              },
+              {
+                "Value": 3.0,
+                "Timestamp": "2026-05-06T15:33:00+01:00"
+              },
+              {
+                "Value": 2.0,
+                "Timestamp": "2026-05-06T15:34:00+01:00"
+              },
+              {
+                "Value": 2.0,
+                "Timestamp": "2026-05-06T15:37:00+01:00"
+              }
+            ]
+          },
+          "AllRequests": {
+            "total": 11.0,
+            "datapoints": [
+              {
+                "Value": 1.0,
+                "Timestamp": "2026-05-06T13:14:00+01:00"
+              },
+              {
+                "Value": 1.0,
+                "Timestamp": "2026-05-06T15:12:00+01:00"
+              },
+              {
+                "Value": 1.0,
+                "Timestamp": "2026-05-06T15:13:00+01:00"
+              },
+              {
+                "Value": 3.0,
+                "Timestamp": "2026-05-06T15:33:00+01:00"
+              },
+              {
+                "Value": 2.0,
+                "Timestamp": "2026-05-06T15:34:00+01:00"
+              },
+              {
+                "Value": 2.0,
+                "Timestamp": "2026-05-06T15:37:00+01:00"
+              },
+              {
+                "Value": 1.0,
+                "Timestamp": "2026-05-07T01:14:00+01:00"
+              }
+            ]
+          },
+          "ListRequests": {
+            "total": 0,
+            "datapoints": null
+          },
+          "BytesUploaded": {
+            "total": 0.0,
+            "datapoints": null
+          },
+          "PutRequests": {
+            "total": 0,
+            "datapoints": null
+          },
+          "TotalRequestLatency": {
+            "total": 43.71,
+            "datapoints": [
+              {
+                "Value": 29.0,
+                "Timestamp": "2026-05-06T13:14:00+01:00"
+              },
+              {
+                "Value": 22.0,
+                "Timestamp": "2026-05-06T15:12:00+01:00"
+              },
+              {
+                "Value": 69.0,
+                "Timestamp": "2026-05-06T15:13:00+01:00"
+              },
+              {
+                "Value": 104.0,
+                "Timestamp": "2026-05-06T15:33:00+01:00"
+              },
+              {
+                "Value": 15.0,
+                "Timestamp": "2026-05-06T15:34:00+01:00"
+              },
+              {
+                "Value": 31.0,
+                "Timestamp": "2026-05-06T15:37:00+01:00"
+              },
+              {
+                "Value": 36.0,
+                "Timestamp": "2026-05-07T01:14:00+01:00"
+              }
+            ]
+          },
+          "FirstByteLatency": {
+            "total": 46.8,
+            "datapoints": [
+              {
+                "Value": 28.0,
+                "Timestamp": "2026-05-06T13:14:00+01:00"
+              },
+              {
+                "Value": 68.0,
+                "Timestamp": "2026-05-06T15:13:00+01:00"
+              },
+              {
+                "Value": 89.0,
+                "Timestamp": "2026-05-06T15:33:00+01:00"
+              },
+              {
+                "Value": 19.0,
+                "Timestamp": "2026-05-06T15:34:00+01:00"
+              },
+              {
+                "Value": 30.0,
+                "Timestamp": "2026-05-07T01:14:00+01:00"
+              }
+            ]
+          },
+          "BytesDownloaded": {
+            "total": 0.0101,
+            "datapoints": [
+              {
+                "Value": 0.0003,
+                "Timestamp": "2026-05-06T15:12:00+01:00"
+              },
+              {
+                "Value": 0.0026,
+                "Timestamp": "2026-05-06T15:13:00+01:00"
+              },
+              {
+                "Value": 0.0036,
+                "Timestamp": "2026-05-06T15:33:00+01:00"
+              },
+              {
+                "Value": 0.0029,
+                "Timestamp": "2026-05-06T15:34:00+01:00"
+              },
+              {
+                "Value": 0.0007,
+                "Timestamp": "2026-05-06T15:37:00+01:00"
+              }
             ]
           },
           "5xxErrors": {
             "total": 0.0,
-            "datapoints": null
-          },
-          "ListRequests": {
-            "total": 0,
             "datapoints": null
           }
         }
       },
       "cloudfront": {
         "metrics": {
-          "Requests": {
-            "total": 11.0,
-            "datapoints": [
-              "System.Collections.Hashtable",
-              "System.Collections.Hashtable"
-            ]
+          "BytesDownloaded": {
+            "total": 0.041,
+            "datapoints": {
+              "Value": 0.041,
+              "Timestamp": "2026-05-07T09:03:00+01:00"
+            }
           },
           "4xxErrorRate": {
             "total": 0.0,
             "datapoints": null
           },
-          "BytesDownloaded": {
-            "total": 0.041,
-            "datapoints": {
-              "Timestamp": "2026-05-07T08:49:00+01:00",
-              "Value": 0.041
-            }
+          "Requests": {
+            "total": 11.0,
+            "datapoints": [
+              {
+                "Value": 1.0,
+                "Timestamp": "2026-05-06T21:03:00+01:00"
+              },
+              {
+                "Value": 10.0,
+                "Timestamp": "2026-05-07T09:03:00+01:00"
+              }
+            ]
           },
           "5xxErrorRate": {
             "total": 0.0,
@@ -307,170 +680,440 @@
       "s3": {
         "bucket": "mthree-peregrine-s3-3",
         "metrics": {
-          "GetRequests": {
-            "total": 15.0,
-            "datapoints": [
-              "System.Collections.Hashtable",
-              "System.Collections.Hashtable",
-              "System.Collections.Hashtable"
-            ]
-          },
-          "BytesDownloaded": {
-            "total": 0.0298,
-            "datapoints": [
-              "System.Collections.Hashtable",
-              "System.Collections.Hashtable",
-              "System.Collections.Hashtable",
-              "System.Collections.Hashtable",
-              "System.Collections.Hashtable"
-            ]
-          },
-          "BytesUploaded": {
-            "total": 0.0001,
-            "datapoints": {
-              "Timestamp": "2026-05-01T20:16:00+01:00",
-              "Value": 0.0001
-            }
-          },
-          "FirstByteLatency": {
-            "total": 33.36,
-            "datapoints": [
-              "System.Collections.Hashtable",
-              "System.Collections.Hashtable",
-              "System.Collections.Hashtable",
-              "System.Collections.Hashtable",
-              "System.Collections.Hashtable",
-              "System.Collections.Hashtable",
-              "System.Collections.Hashtable",
-              "System.Collections.Hashtable",
-              "System.Collections.Hashtable",
-              "System.Collections.Hashtable",
-              "System.Collections.Hashtable",
-              "System.Collections.Hashtable",
-              "System.Collections.Hashtable",
-              "System.Collections.Hashtable",
-              "System.Collections.Hashtable",
-              "System.Collections.Hashtable",
-              "System.Collections.Hashtable",
-              "System.Collections.Hashtable"
-            ]
-          },
-          "TotalRequestLatency": {
-            "total": 33.24,
-            "datapoints": [
-              "System.Collections.Hashtable",
-              "System.Collections.Hashtable",
-              "System.Collections.Hashtable",
-              "System.Collections.Hashtable",
-              "System.Collections.Hashtable",
-              "System.Collections.Hashtable",
-              "System.Collections.Hashtable",
-              "System.Collections.Hashtable",
-              "System.Collections.Hashtable",
-              "System.Collections.Hashtable",
-              "System.Collections.Hashtable",
-              "System.Collections.Hashtable",
-              "System.Collections.Hashtable",
-              "System.Collections.Hashtable",
-              "System.Collections.Hashtable",
-              "System.Collections.Hashtable",
-              "System.Collections.Hashtable",
-              "System.Collections.Hashtable"
-            ]
-          },
-          "AllRequests": {
-            "total": 58.0,
-            "datapoints": [
-              "System.Collections.Hashtable",
-              "System.Collections.Hashtable",
-              "System.Collections.Hashtable",
-              "System.Collections.Hashtable",
-              "System.Collections.Hashtable",
-              "System.Collections.Hashtable",
-              "System.Collections.Hashtable",
-              "System.Collections.Hashtable",
-              "System.Collections.Hashtable",
-              "System.Collections.Hashtable",
-              "System.Collections.Hashtable",
-              "System.Collections.Hashtable",
-              "System.Collections.Hashtable",
-              "System.Collections.Hashtable",
-              "System.Collections.Hashtable",
-              "System.Collections.Hashtable",
-              "System.Collections.Hashtable",
-              "System.Collections.Hashtable"
-            ]
-          },
-          "PutRequests": {
-            "total": 1.0,
-            "datapoints": {
-              "Timestamp": "2026-05-01T20:16:00+01:00",
-              "Value": 1.0
-            }
-          },
           "HeadRequests": {
             "total": 19.0,
             "datapoints": [
-              "System.Collections.Hashtable",
-              "System.Collections.Hashtable",
-              "System.Collections.Hashtable",
-              "System.Collections.Hashtable",
-              "System.Collections.Hashtable",
-              "System.Collections.Hashtable",
-              "System.Collections.Hashtable",
-              "System.Collections.Hashtable",
-              "System.Collections.Hashtable",
-              "System.Collections.Hashtable",
-              "System.Collections.Hashtable",
-              "System.Collections.Hashtable",
-              "System.Collections.Hashtable",
-              "System.Collections.Hashtable"
+              {
+                "Value": 4.0,
+                "Timestamp": "2026-05-01T20:09:00+01:00"
+              },
+              {
+                "Value": 1.0,
+                "Timestamp": "2026-05-02T01:10:00+01:00"
+              },
+              {
+                "Value": 1.0,
+                "Timestamp": "2026-05-02T13:11:00+01:00"
+              },
+              {
+                "Value": 1.0,
+                "Timestamp": "2026-05-03T01:12:00+01:00"
+              },
+              {
+                "Value": 1.0,
+                "Timestamp": "2026-05-03T13:13:00+01:00"
+              },
+              {
+                "Value": 1.0,
+                "Timestamp": "2026-05-04T01:07:00+01:00"
+              },
+              {
+                "Value": 1.0,
+                "Timestamp": "2026-05-04T13:08:00+01:00"
+              },
+              {
+                "Value": 1.0,
+                "Timestamp": "2026-05-04T13:22:00+01:00"
+              },
+              {
+                "Value": 1.0,
+                "Timestamp": "2026-05-05T01:09:00+01:00"
+              },
+              {
+                "Value": 3.0,
+                "Timestamp": "2026-05-05T12:49:00+01:00"
+              },
+              {
+                "Value": 1.0,
+                "Timestamp": "2026-05-05T13:10:00+01:00"
+              },
+              {
+                "Value": 1.0,
+                "Timestamp": "2026-05-06T01:11:00+01:00"
+              },
+              {
+                "Value": 1.0,
+                "Timestamp": "2026-05-06T13:12:00+01:00"
+              },
+              {
+                "Value": 1.0,
+                "Timestamp": "2026-05-07T01:13:00+01:00"
+              }
             ]
           },
           "4xxErrors": {
             "total": 5.0,
             "datapoints": [
-              "System.Collections.Hashtable",
-              "System.Collections.Hashtable",
-              "System.Collections.Hashtable"
+              {
+                "Value": 1.0,
+                "Timestamp": "2026-05-06T11:41:00+01:00"
+              },
+              {
+                "Value": 1.0,
+                "Timestamp": "2026-05-06T15:11:00+01:00"
+              },
+              {
+                "Value": 3.0,
+                "Timestamp": "2026-05-06T15:32:00+01:00"
+              }
+            ]
+          },
+          "GetRequests": {
+            "total": 15.0,
+            "datapoints": [
+              {
+                "Value": 6.0,
+                "Timestamp": "2026-05-06T11:41:00+01:00"
+              },
+              {
+                "Value": 2.0,
+                "Timestamp": "2026-05-06T15:11:00+01:00"
+              },
+              {
+                "Value": 7.0,
+                "Timestamp": "2026-05-06T15:32:00+01:00"
+              }
+            ]
+          },
+          "AllRequests": {
+            "total": 58.0,
+            "datapoints": [
+              {
+                "Value": 17.0,
+                "Timestamp": "2026-05-01T20:09:00+01:00"
+              },
+              {
+                "Value": 1.0,
+                "Timestamp": "2026-05-01T20:16:00+01:00"
+              },
+              {
+                "Value": 1.0,
+                "Timestamp": "2026-05-02T01:10:00+01:00"
+              },
+              {
+                "Value": 1.0,
+                "Timestamp": "2026-05-02T13:11:00+01:00"
+              },
+              {
+                "Value": 1.0,
+                "Timestamp": "2026-05-03T01:12:00+01:00"
+              },
+              {
+                "Value": 1.0,
+                "Timestamp": "2026-05-03T13:13:00+01:00"
+              },
+              {
+                "Value": 1.0,
+                "Timestamp": "2026-05-04T01:07:00+01:00"
+              },
+              {
+                "Value": 1.0,
+                "Timestamp": "2026-05-04T13:08:00+01:00"
+              },
+              {
+                "Value": 1.0,
+                "Timestamp": "2026-05-04T13:22:00+01:00"
+              },
+              {
+                "Value": 1.0,
+                "Timestamp": "2026-05-05T01:09:00+01:00"
+              },
+              {
+                "Value": 13.0,
+                "Timestamp": "2026-05-05T12:49:00+01:00"
+              },
+              {
+                "Value": 1.0,
+                "Timestamp": "2026-05-05T13:10:00+01:00"
+              },
+              {
+                "Value": 1.0,
+                "Timestamp": "2026-05-06T01:11:00+01:00"
+              },
+              {
+                "Value": 6.0,
+                "Timestamp": "2026-05-06T11:41:00+01:00"
+              },
+              {
+                "Value": 1.0,
+                "Timestamp": "2026-05-06T13:12:00+01:00"
+              },
+              {
+                "Value": 2.0,
+                "Timestamp": "2026-05-06T15:11:00+01:00"
+              },
+              {
+                "Value": 7.0,
+                "Timestamp": "2026-05-06T15:32:00+01:00"
+              },
+              {
+                "Value": 1.0,
+                "Timestamp": "2026-05-07T01:13:00+01:00"
+              }
+            ]
+          },
+          "ListRequests": {
+            "total": 3.0,
+            "datapoints": [
+              {
+                "Value": 2.0,
+                "Timestamp": "2026-05-01T20:09:00+01:00"
+              },
+              {
+                "Value": 1.0,
+                "Timestamp": "2026-05-05T12:49:00+01:00"
+              }
+            ]
+          },
+          "BytesUploaded": {
+            "total": 0.0001,
+            "datapoints": {
+              "Value": 0.0001,
+              "Timestamp": "2026-05-01T20:16:00+01:00"
+            }
+          },
+          "PutRequests": {
+            "total": 1.0,
+            "datapoints": {
+              "Value": 1.0,
+              "Timestamp": "2026-05-01T20:16:00+01:00"
+            }
+          },
+          "TotalRequestLatency": {
+            "total": 33.24,
+            "datapoints": [
+              {
+                "Value": 7.65,
+                "Timestamp": "2026-05-01T20:09:00+01:00"
+              },
+              {
+                "Value": 54.0,
+                "Timestamp": "2026-05-01T20:16:00+01:00"
+              },
+              {
+                "Value": 28.0,
+                "Timestamp": "2026-05-02T01:10:00+01:00"
+              },
+              {
+                "Value": 30.0,
+                "Timestamp": "2026-05-02T13:11:00+01:00"
+              },
+              {
+                "Value": 44.0,
+                "Timestamp": "2026-05-03T01:12:00+01:00"
+              },
+              {
+                "Value": 28.0,
+                "Timestamp": "2026-05-03T13:13:00+01:00"
+              },
+              {
+                "Value": 20.0,
+                "Timestamp": "2026-05-04T01:07:00+01:00"
+              },
+              {
+                "Value": 27.0,
+                "Timestamp": "2026-05-04T13:08:00+01:00"
+              },
+              {
+                "Value": 25.0,
+                "Timestamp": "2026-05-04T13:22:00+01:00"
+              },
+              {
+                "Value": 35.0,
+                "Timestamp": "2026-05-05T01:09:00+01:00"
+              },
+              {
+                "Value": 6.54,
+                "Timestamp": "2026-05-05T12:49:00+01:00"
+              },
+              {
+                "Value": 33.0,
+                "Timestamp": "2026-05-05T13:10:00+01:00"
+              },
+              {
+                "Value": 45.0,
+                "Timestamp": "2026-05-06T01:11:00+01:00"
+              },
+              {
+                "Value": 46.83,
+                "Timestamp": "2026-05-06T11:41:00+01:00"
+              },
+              {
+                "Value": 29.0,
+                "Timestamp": "2026-05-06T13:12:00+01:00"
+              },
+              {
+                "Value": 45.5,
+                "Timestamp": "2026-05-06T15:11:00+01:00"
+              },
+              {
+                "Value": 57.71,
+                "Timestamp": "2026-05-06T15:32:00+01:00"
+              },
+              {
+                "Value": 36.0,
+                "Timestamp": "2026-05-07T01:13:00+01:00"
+              }
+            ]
+          },
+          "FirstByteLatency": {
+            "total": 33.36,
+            "datapoints": [
+              {
+                "Value": 15.0,
+                "Timestamp": "2026-05-01T20:09:00+01:00"
+              },
+              {
+                "Value": 15.0,
+                "Timestamp": "2026-05-01T20:16:00+01:00"
+              },
+              {
+                "Value": 28.0,
+                "Timestamp": "2026-05-02T01:10:00+01:00"
+              },
+              {
+                "Value": 30.0,
+                "Timestamp": "2026-05-02T13:11:00+01:00"
+              },
+              {
+                "Value": 44.0,
+                "Timestamp": "2026-05-03T01:12:00+01:00"
+              },
+              {
+                "Value": 27.0,
+                "Timestamp": "2026-05-03T13:13:00+01:00"
+              },
+              {
+                "Value": 20.0,
+                "Timestamp": "2026-05-04T01:07:00+01:00"
+              },
+              {
+                "Value": 27.0,
+                "Timestamp": "2026-05-04T13:08:00+01:00"
+              },
+              {
+                "Value": 25.0,
+                "Timestamp": "2026-05-04T13:22:00+01:00"
+              },
+              {
+                "Value": 35.0,
+                "Timestamp": "2026-05-05T01:09:00+01:00"
+              },
+              {
+                "Value": 10.75,
+                "Timestamp": "2026-05-05T12:49:00+01:00"
+              },
+              {
+                "Value": 32.0,
+                "Timestamp": "2026-05-05T13:10:00+01:00"
+              },
+              {
+                "Value": 44.0,
+                "Timestamp": "2026-05-06T01:11:00+01:00"
+              },
+              {
+                "Value": 56.0,
+                "Timestamp": "2026-05-06T11:41:00+01:00"
+              },
+              {
+                "Value": 28.0,
+                "Timestamp": "2026-05-06T13:12:00+01:00"
+              },
+              {
+                "Value": 68.0,
+                "Timestamp": "2026-05-06T15:11:00+01:00"
+              },
+              {
+                "Value": 65.67,
+                "Timestamp": "2026-05-06T15:32:00+01:00"
+              },
+              {
+                "Value": 30.0,
+                "Timestamp": "2026-05-07T01:13:00+01:00"
+              }
+            ]
+          },
+          "BytesDownloaded": {
+            "total": 0.0298,
+            "datapoints": [
+              {
+                "Value": 0.0014,
+                "Timestamp": "2026-05-01T20:09:00+01:00"
+              },
+              {
+                "Value": 0.0011,
+                "Timestamp": "2026-05-05T12:49:00+01:00"
+              },
+              {
+                "Value": 0.0171,
+                "Timestamp": "2026-05-06T11:41:00+01:00"
+              },
+              {
+                "Value": 0.0029,
+                "Timestamp": "2026-05-06T15:11:00+01:00"
+              },
+              {
+                "Value": 0.0072,
+                "Timestamp": "2026-05-06T15:32:00+01:00"
+              }
             ]
           },
           "5xxErrors": {
             "total": 0.0,
             "datapoints": null
-          },
-          "ListRequests": {
-            "total": 3.0,
-            "datapoints": [
-              "System.Collections.Hashtable",
-              "System.Collections.Hashtable"
-            ]
           }
         }
       },
       "cloudfront": {
         "metrics": {
-          "Requests": {
-            "total": 49.0,
+          "BytesDownloaded": {
+            "total": 0.1826,
             "datapoints": [
-              "System.Collections.Hashtable",
-              "System.Collections.Hashtable",
-              "System.Collections.Hashtable",
-              "System.Collections.Hashtable",
-              "System.Collections.Hashtable"
+              {
+                "Value": 0.1235,
+                "Timestamp": "2026-05-05T10:04:00+01:00"
+              },
+              {
+                "Value": 0.0176,
+                "Timestamp": "2026-05-05T12:04:00+01:00"
+              },
+              {
+                "Value": 0.0005,
+                "Timestamp": "2026-05-05T13:04:00+01:00"
+              },
+              {
+                "Value": 0.041,
+                "Timestamp": "2026-05-07T09:04:00+01:00"
+              }
             ]
           },
           "4xxErrorRate": {
             "total": 0.0,
             "datapoints": null
           },
-          "BytesDownloaded": {
-            "total": 0.1826,
+          "Requests": {
+            "total": 49.0,
             "datapoints": [
-              "System.Collections.Hashtable",
-              "System.Collections.Hashtable",
-              "System.Collections.Hashtable",
-              "System.Collections.Hashtable"
+              {
+                "Value": 30.0,
+                "Timestamp": "2026-05-05T10:04:00+01:00"
+              },
+              {
+                "Value": 6.0,
+                "Timestamp": "2026-05-05T12:04:00+01:00"
+              },
+              {
+                "Value": 2.0,
+                "Timestamp": "2026-05-05T13:04:00+01:00"
+              },
+              {
+                "Value": 1.0,
+                "Timestamp": "2026-05-06T21:04:00+01:00"
+              },
+              {
+                "Value": 10.0,
+                "Timestamp": "2026-05-07T09:04:00+01:00"
+              }
             ]
           },
           "5xxErrorRate": {
