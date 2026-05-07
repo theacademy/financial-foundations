@@ -1,16 +1,485 @@
 {
-  "generatedAt": "2026-05-07T10:28:09Z",
-  "s3Metrics": {
-    "allRequests": 0,
-    "errors4xx": 0,
-    "timeRange": "7d",
-    "bucket": "mthree-peregrine-s3-3"
-  },
-  "timeRange": "7d",
-  "cloudfrontMetrics": {
-    "timeRange": "7d",
-    "errorRate4xx": 0,
-    "requests": 0,
-    "bytesDownloaded": 0
+  "generatedAt": "2026-05-07T10:49:17Z",
+  "ranges": {
+    "30d": {
+      "s3": {
+        "bucket": "mthree-peregrine-s3-3",
+        "metrics": {
+          "GetRequests": {
+            "total": 15.0,
+            "datapoints": [
+              "System.Collections.Hashtable",
+              "System.Collections.Hashtable",
+              "System.Collections.Hashtable"
+            ]
+          },
+          "BytesDownloaded": {
+            "total": 0.0298,
+            "datapoints": [
+              "System.Collections.Hashtable",
+              "System.Collections.Hashtable",
+              "System.Collections.Hashtable",
+              "System.Collections.Hashtable",
+              "System.Collections.Hashtable"
+            ]
+          },
+          "BytesUploaded": {
+            "total": 0.0001,
+            "datapoints": {
+              "Timestamp": "2026-05-01T19:50:00+01:00",
+              "Value": 0.0001
+            }
+          },
+          "FirstByteLatency": {
+            "total": 33.2,
+            "datapoints": [
+              "System.Collections.Hashtable",
+              "System.Collections.Hashtable",
+              "System.Collections.Hashtable",
+              "System.Collections.Hashtable",
+              "System.Collections.Hashtable",
+              "System.Collections.Hashtable",
+              "System.Collections.Hashtable",
+              "System.Collections.Hashtable",
+              "System.Collections.Hashtable",
+              "System.Collections.Hashtable",
+              "System.Collections.Hashtable",
+              "System.Collections.Hashtable",
+              "System.Collections.Hashtable",
+              "System.Collections.Hashtable",
+              "System.Collections.Hashtable",
+              "System.Collections.Hashtable",
+              "System.Collections.Hashtable"
+            ]
+          },
+          "TotalRequestLatency": {
+            "total": 30.64,
+            "datapoints": [
+              "System.Collections.Hashtable",
+              "System.Collections.Hashtable",
+              "System.Collections.Hashtable",
+              "System.Collections.Hashtable",
+              "System.Collections.Hashtable",
+              "System.Collections.Hashtable",
+              "System.Collections.Hashtable",
+              "System.Collections.Hashtable",
+              "System.Collections.Hashtable",
+              "System.Collections.Hashtable",
+              "System.Collections.Hashtable",
+              "System.Collections.Hashtable",
+              "System.Collections.Hashtable",
+              "System.Collections.Hashtable",
+              "System.Collections.Hashtable",
+              "System.Collections.Hashtable",
+              "System.Collections.Hashtable"
+            ]
+          },
+          "AllRequests": {
+            "total": 58.0,
+            "datapoints": [
+              "System.Collections.Hashtable",
+              "System.Collections.Hashtable",
+              "System.Collections.Hashtable",
+              "System.Collections.Hashtable",
+              "System.Collections.Hashtable",
+              "System.Collections.Hashtable",
+              "System.Collections.Hashtable",
+              "System.Collections.Hashtable",
+              "System.Collections.Hashtable",
+              "System.Collections.Hashtable",
+              "System.Collections.Hashtable",
+              "System.Collections.Hashtable",
+              "System.Collections.Hashtable",
+              "System.Collections.Hashtable",
+              "System.Collections.Hashtable",
+              "System.Collections.Hashtable",
+              "System.Collections.Hashtable"
+            ]
+          },
+          "PutRequests": {
+            "total": 1.0,
+            "datapoints": {
+              "Timestamp": "2026-05-01T19:50:00+01:00",
+              "Value": 1.0
+            }
+          },
+          "HeadRequests": {
+            "total": 19.0,
+            "datapoints": [
+              "System.Collections.Hashtable",
+              "System.Collections.Hashtable",
+              "System.Collections.Hashtable",
+              "System.Collections.Hashtable",
+              "System.Collections.Hashtable",
+              "System.Collections.Hashtable",
+              "System.Collections.Hashtable",
+              "System.Collections.Hashtable",
+              "System.Collections.Hashtable",
+              "System.Collections.Hashtable",
+              "System.Collections.Hashtable",
+              "System.Collections.Hashtable",
+              "System.Collections.Hashtable",
+              "System.Collections.Hashtable"
+            ]
+          },
+          "4xxErrors": {
+            "total": 5.0,
+            "datapoints": [
+              "System.Collections.Hashtable",
+              "System.Collections.Hashtable",
+              "System.Collections.Hashtable"
+            ]
+          },
+          "5xxErrors": {
+            "total": 0.0,
+            "datapoints": null
+          },
+          "ListRequests": {
+            "total": 3.0,
+            "datapoints": [
+              "System.Collections.Hashtable",
+              "System.Collections.Hashtable"
+            ]
+          }
+        }
+      },
+      "cloudfront": {
+        "metrics": {
+          "Requests": {
+            "total": 146.0,
+            "datapoints": [
+              "System.Collections.Hashtable",
+              "System.Collections.Hashtable",
+              "System.Collections.Hashtable",
+              "System.Collections.Hashtable",
+              "System.Collections.Hashtable",
+              "System.Collections.Hashtable",
+              "System.Collections.Hashtable",
+              "System.Collections.Hashtable",
+              "System.Collections.Hashtable"
+            ]
+          },
+          "4xxErrorRate": {
+            "total": 0.0,
+            "datapoints": null
+          },
+          "BytesDownloaded": {
+            "total": 0.5831,
+            "datapoints": [
+              "System.Collections.Hashtable",
+              "System.Collections.Hashtable",
+              "System.Collections.Hashtable",
+              "System.Collections.Hashtable",
+              "System.Collections.Hashtable",
+              "System.Collections.Hashtable",
+              "System.Collections.Hashtable",
+              "System.Collections.Hashtable"
+            ]
+          },
+          "5xxErrorRate": {
+            "total": 0.0,
+            "datapoints": null
+          }
+        },
+        "distributionId": "E286OQ42E1ZBU0"
+      }
+    },
+    "24h": {
+      "s3": {
+        "bucket": "mthree-peregrine-s3-3",
+        "metrics": {
+          "GetRequests": {
+            "total": 9.0,
+            "datapoints": [
+              "System.Collections.Hashtable",
+              "System.Collections.Hashtable",
+              "System.Collections.Hashtable",
+              "System.Collections.Hashtable",
+              "System.Collections.Hashtable"
+            ]
+          },
+          "BytesDownloaded": {
+            "total": 0.0101,
+            "datapoints": [
+              "System.Collections.Hashtable",
+              "System.Collections.Hashtable",
+              "System.Collections.Hashtable",
+              "System.Collections.Hashtable",
+              "System.Collections.Hashtable"
+            ]
+          },
+          "BytesUploaded": {
+            "total": 0.0,
+            "datapoints": null
+          },
+          "FirstByteLatency": {
+            "total": 46.8,
+            "datapoints": [
+              "System.Collections.Hashtable",
+              "System.Collections.Hashtable",
+              "System.Collections.Hashtable",
+              "System.Collections.Hashtable",
+              "System.Collections.Hashtable"
+            ]
+          },
+          "TotalRequestLatency": {
+            "total": 43.71,
+            "datapoints": [
+              "System.Collections.Hashtable",
+              "System.Collections.Hashtable",
+              "System.Collections.Hashtable",
+              "System.Collections.Hashtable",
+              "System.Collections.Hashtable",
+              "System.Collections.Hashtable",
+              "System.Collections.Hashtable"
+            ]
+          },
+          "AllRequests": {
+            "total": 11.0,
+            "datapoints": [
+              "System.Collections.Hashtable",
+              "System.Collections.Hashtable",
+              "System.Collections.Hashtable",
+              "System.Collections.Hashtable",
+              "System.Collections.Hashtable",
+              "System.Collections.Hashtable",
+              "System.Collections.Hashtable"
+            ]
+          },
+          "PutRequests": {
+            "total": 0,
+            "datapoints": null
+          },
+          "HeadRequests": {
+            "total": 2.0,
+            "datapoints": [
+              "System.Collections.Hashtable",
+              "System.Collections.Hashtable"
+            ]
+          },
+          "4xxErrors": {
+            "total": 4.0,
+            "datapoints": [
+              "System.Collections.Hashtable",
+              "System.Collections.Hashtable",
+              "System.Collections.Hashtable"
+            ]
+          },
+          "5xxErrors": {
+            "total": 0.0,
+            "datapoints": null
+          },
+          "ListRequests": {
+            "total": 0,
+            "datapoints": null
+          }
+        }
+      },
+      "cloudfront": {
+        "metrics": {
+          "Requests": {
+            "total": 11.0,
+            "datapoints": [
+              "System.Collections.Hashtable",
+              "System.Collections.Hashtable"
+            ]
+          },
+          "4xxErrorRate": {
+            "total": 0.0,
+            "datapoints": null
+          },
+          "BytesDownloaded": {
+            "total": 0.041,
+            "datapoints": {
+              "Timestamp": "2026-05-07T08:49:00+01:00",
+              "Value": 0.041
+            }
+          },
+          "5xxErrorRate": {
+            "total": 0.0,
+            "datapoints": null
+          }
+        },
+        "distributionId": "E286OQ42E1ZBU0"
+      }
+    },
+    "7d": {
+      "s3": {
+        "bucket": "mthree-peregrine-s3-3",
+        "metrics": {
+          "GetRequests": {
+            "total": 15.0,
+            "datapoints": [
+              "System.Collections.Hashtable",
+              "System.Collections.Hashtable",
+              "System.Collections.Hashtable"
+            ]
+          },
+          "BytesDownloaded": {
+            "total": 0.0298,
+            "datapoints": [
+              "System.Collections.Hashtable",
+              "System.Collections.Hashtable",
+              "System.Collections.Hashtable",
+              "System.Collections.Hashtable",
+              "System.Collections.Hashtable"
+            ]
+          },
+          "BytesUploaded": {
+            "total": 0.0001,
+            "datapoints": {
+              "Timestamp": "2026-05-01T20:16:00+01:00",
+              "Value": 0.0001
+            }
+          },
+          "FirstByteLatency": {
+            "total": 33.36,
+            "datapoints": [
+              "System.Collections.Hashtable",
+              "System.Collections.Hashtable",
+              "System.Collections.Hashtable",
+              "System.Collections.Hashtable",
+              "System.Collections.Hashtable",
+              "System.Collections.Hashtable",
+              "System.Collections.Hashtable",
+              "System.Collections.Hashtable",
+              "System.Collections.Hashtable",
+              "System.Collections.Hashtable",
+              "System.Collections.Hashtable",
+              "System.Collections.Hashtable",
+              "System.Collections.Hashtable",
+              "System.Collections.Hashtable",
+              "System.Collections.Hashtable",
+              "System.Collections.Hashtable",
+              "System.Collections.Hashtable",
+              "System.Collections.Hashtable"
+            ]
+          },
+          "TotalRequestLatency": {
+            "total": 33.24,
+            "datapoints": [
+              "System.Collections.Hashtable",
+              "System.Collections.Hashtable",
+              "System.Collections.Hashtable",
+              "System.Collections.Hashtable",
+              "System.Collections.Hashtable",
+              "System.Collections.Hashtable",
+              "System.Collections.Hashtable",
+              "System.Collections.Hashtable",
+              "System.Collections.Hashtable",
+              "System.Collections.Hashtable",
+              "System.Collections.Hashtable",
+              "System.Collections.Hashtable",
+              "System.Collections.Hashtable",
+              "System.Collections.Hashtable",
+              "System.Collections.Hashtable",
+              "System.Collections.Hashtable",
+              "System.Collections.Hashtable",
+              "System.Collections.Hashtable"
+            ]
+          },
+          "AllRequests": {
+            "total": 58.0,
+            "datapoints": [
+              "System.Collections.Hashtable",
+              "System.Collections.Hashtable",
+              "System.Collections.Hashtable",
+              "System.Collections.Hashtable",
+              "System.Collections.Hashtable",
+              "System.Collections.Hashtable",
+              "System.Collections.Hashtable",
+              "System.Collections.Hashtable",
+              "System.Collections.Hashtable",
+              "System.Collections.Hashtable",
+              "System.Collections.Hashtable",
+              "System.Collections.Hashtable",
+              "System.Collections.Hashtable",
+              "System.Collections.Hashtable",
+              "System.Collections.Hashtable",
+              "System.Collections.Hashtable",
+              "System.Collections.Hashtable",
+              "System.Collections.Hashtable"
+            ]
+          },
+          "PutRequests": {
+            "total": 1.0,
+            "datapoints": {
+              "Timestamp": "2026-05-01T20:16:00+01:00",
+              "Value": 1.0
+            }
+          },
+          "HeadRequests": {
+            "total": 19.0,
+            "datapoints": [
+              "System.Collections.Hashtable",
+              "System.Collections.Hashtable",
+              "System.Collections.Hashtable",
+              "System.Collections.Hashtable",
+              "System.Collections.Hashtable",
+              "System.Collections.Hashtable",
+              "System.Collections.Hashtable",
+              "System.Collections.Hashtable",
+              "System.Collections.Hashtable",
+              "System.Collections.Hashtable",
+              "System.Collections.Hashtable",
+              "System.Collections.Hashtable",
+              "System.Collections.Hashtable",
+              "System.Collections.Hashtable"
+            ]
+          },
+          "4xxErrors": {
+            "total": 5.0,
+            "datapoints": [
+              "System.Collections.Hashtable",
+              "System.Collections.Hashtable",
+              "System.Collections.Hashtable"
+            ]
+          },
+          "5xxErrors": {
+            "total": 0.0,
+            "datapoints": null
+          },
+          "ListRequests": {
+            "total": 3.0,
+            "datapoints": [
+              "System.Collections.Hashtable",
+              "System.Collections.Hashtable"
+            ]
+          }
+        }
+      },
+      "cloudfront": {
+        "metrics": {
+          "Requests": {
+            "total": 49.0,
+            "datapoints": [
+              "System.Collections.Hashtable",
+              "System.Collections.Hashtable",
+              "System.Collections.Hashtable",
+              "System.Collections.Hashtable",
+              "System.Collections.Hashtable"
+            ]
+          },
+          "4xxErrorRate": {
+            "total": 0.0,
+            "datapoints": null
+          },
+          "BytesDownloaded": {
+            "total": 0.1826,
+            "datapoints": [
+              "System.Collections.Hashtable",
+              "System.Collections.Hashtable",
+              "System.Collections.Hashtable",
+              "System.Collections.Hashtable"
+            ]
+          },
+          "5xxErrorRate": {
+            "total": 0.0,
+            "datapoints": null
+          }
+        },
+        "distributionId": "E286OQ42E1ZBU0"
+      }
+    }
   }
 }
