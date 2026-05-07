@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Metrics Dashboard - Financial Foundations</title>
+    <link rel="stylesheet" href="css/main.css">
+    <style>
+        .metrics-container {
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+        
+        .metrics-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .metrics-header h1 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+        
+        .metrics-timestamp {
+            color: #999;
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+        
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .metric-card {
+            background: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .metric-card h2 {
+            color: #2c3e50;
+            font-size: 16px;
+            margin-top: 0;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+        }
+        
+        .metric-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .metric-item:last-child {
+            border-bottom: none;
+        }
+        
+        .metric-label {
+            font-weight: bold;
+            color: #555;
+        }
+        
+        .metric-value {
+            color: #2c3e50;
+            font-weight: bold;
+        }
+        
+        .error {
+            background-color: #ffebee;
+            color: #c62828;
+            padding: 15px;
+            border-radius: 4px;
+            margin: 10px 0;
+        }
+        
+        .loading {
+            text-align: center;
+            color: #999;
+            padding: 40px;
+        }
+        
+        .refresh-button {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        
+        .refresh-button:hover {
+            background-color: #2980b9;
+        }
+        
+        .time-range-selector {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        .time-range-selector select {
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        
+        .nav-back {
+            margin-bottom: 20px;
+        }
+        
+        .nav-back a {
+            color: #3498db;
+            text-decoration: none;
+            font-size: 14px;
+        }
+        
+        .nav-back a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="metrics-container">
+        <div class="nav-back">
+            <a href="index.html">← Back to Home</a>
+        </div>
+        
+        <div class="metrics-header">
+            <h1>Metrics Dashboard</h1>
+            <p>CloudWatch S3 and CloudFront Metrics</p>
+            <div class="metrics-timestamp" id="timestamp">Loading...</div>
+            
+            <div class="time-range-selector">
+                <label for="timeRange">Time Range: </label>
+                <select id="timeRange" onchange="loadMetrics()">
+                    <option value="1d">Last 24 Hours</option>
+                    <option value="7d" selected>Last 7 Days</option>
+                    <option value="30d">Last 30 Days</option>
+                </select>
+            </div>
+            
+            <button class="refresh-button" onclick="loadMetrics()">Refresh Metrics</button>
+        </div>
+        
+        <div id="metricsContent" class="metrics-grid">
+            <div class="loading">Loading metrics...</div>
+        </div>
+        
+        <div id="errorContainer"></div>
+    </div>
+    
+    <script>
+        // Try to load metrics.json
+        async function loadMetrics() {
+            const timeRange = document.getElementById('timeRange').value;
+            const content = document.getElementById('metricsContent');
+            const errorContainer = document.getElementById('errorContainer');
+            const timestamp = document.getElementById('timestamp');
+            
+            content.innerHTML = '<div class="loading">Loading metrics...</div>';
+            errorContainer.innerHTML = '';
+            
+            try {
+                const response = await fetch('metrics.json');
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}: metrics.json not found`);
+                }
+                
+                const data = await response.json();
+                
+                // Update timestamp
+                if (data.generatedAt) {
+                    const date = new Date(data.generatedAt);
+                    timestamp.textContent = `Last updated: ${date.toLocaleString()} UTC`;
+                }
+                
+                // Render metrics
+                content.innerHTML = '';
+                
+                // S3 Metrics Card
+                if (data.s3Metrics && !data.s3Metrics.error) {
+                    content.innerHTML += `
+                        <div class="metric-card">
+                            <h2>📦 S3 Metrics</h2>
+                            <div class="metric-item">
+                                <span class="metric-label">Bucket:</span>
+                                <span class="metric-value">${data.s3Metrics.bucket}</span>
+                            </div>
+                            <div class="metric-item">
+                                <span class="metric-label">Total Requests:</span>
+                                <span class="metric-value">${(data.s3Metrics.allRequests || 0).toLocaleString()}</span>
+                            </div>
+                            <div class="metric-item">
+                                <span class="metric-label">4xx Errors:</span>
+                                <span class="metric-value">${(data.s3Metrics.errors4xx || 0).toLocaleString()}</span>
+                            </div>
+                            <div class="metric-item">
+                                <span class="metric-label">Time Range:</span>
+                                <span class="metric-value">${data.s3Metrics.timeRange}</span>
+                            </div>
+                        </div>
+                    `;
+                } else if (data.s3Metrics && data.s3Metrics.error) {
+                    errorContainer.innerHTML += `<div class="error">S3 Metrics Error: ${data.s3Metrics.error}</div>`;
+                }
+                
+                // CloudFront Metrics Card
+                if (data.cloudfrontMetrics && !data.cloudfrontMetrics.error) {
+                    content.innerHTML += `
+                        <div class="metric-card">
+                            <h2>🌐 CloudFront Metrics</h2>
+                            <div class="metric-item">
+                                <span class="metric-label">Distribution ID:</span>
+                                <span class="metric-value">${data.cloudfrontMetrics.distributionId}</span>
+                            </div>
+                            <div class="metric-item">
+                                <span class="metric-label">Total Requests:</span>
+                                <span class="metric-value">${(data.cloudfrontMetrics.requests || 0).toLocaleString()}</span>
+                            </div>
+                            <div class="metric-item">
+                                <span class="metric-label">Bytes Downloaded:</span>
+                                <span class="metric-value">${(data.cloudfrontMetrics.bytesDownloaded || 0).toFixed(2)} MB</span>
+                            </div>
+                            <div class="metric-item">
+                                <span class="metric-label">4xx Error Rate:</span>
+                                <span class="metric-value">${(data.cloudfrontMetrics.errorRate4xx || 0).toFixed(2)}%</span>
+                            </div>
+                            <div class="metric-item">
+                                <span class="metric-label">Time Range:</span>
+                                <span class="metric-value">${data.cloudfrontMetrics.timeRange}</span>
+                            </div>
+                        </div>
+                    `;
+                } else if (data.cloudfrontMetrics && data.cloudfrontMetrics.error) {
+                    errorContainer.innerHTML += `<div class="error">CloudFront Metrics Error: ${data.cloudfrontMetrics.error}</div>`;
+                }
+                
+            } catch (error) {
+                errorContainer.innerHTML = `
+                    <div class="error">
+                        <strong>Unable to load metrics:</strong><br>
+                        ${error.message}<br><br>
+                        <small>Run <code>./generate-metrics-json.ps1</code> in the cloudwatch-setup folder to generate metrics.json</small>
+                    </div>
+                `;
+                content.innerHTML = '';
+            }
+        }
+        
+        // Load metrics on page load
+        window.addEventListener('load', loadMetrics);
+    </script>
+</body>
+</html>

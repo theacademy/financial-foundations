@@ -1,0 +1,16 @@
+{
+  "generatedAt": "2026-05-07T10:28:09Z",
+  "s3Metrics": {
+    "allRequests": 0,
+    "errors4xx": 0,
+    "timeRange": "7d",
+    "bucket": "mthree-peregrine-s3-3"
+  },
+  "timeRange": "7d",
+  "cloudfrontMetrics": {
+    "timeRange": "7d",
+    "errorRate4xx": 0,
+    "requests": 0,
+    "bytesDownloaded": 0
+  }
+}
