@@ -206,8 +206,8 @@
               <h2>📦 S3 Metrics</h2>
               <div class="metric-item"><span class="metric-label">Bucket:</span><span class="metric-value">${s3.bucket || "—"}</span></div>
               <div class="metric-item"><span class="metric-label">Total Requests:</span><span class="metric-value">${Number(s3All).toLocaleString()}</span></div>
-              <div class="metric-item"><span class="metric-label">4xx Errors:</span><span class="metric-value">${Number(s34xx).toLocaleString()}</span></div>
               <div class="metric-item"><span class="metric-label">Bytes Downloaded:</span><span class="metric-value">${Number(s3Bytes).toFixed(2)} MB</span></div>
+              <div class="metric-item"><span class="metric-label">4xx Errors:</span><span class="metric-value">${Number(s34xx).toLocaleString()}</span></div>
               <div class="metric-item"><span class="metric-label">Time Range:</span><span class="metric-value">${rangeKey}</span></div>
             </div>
           `;
