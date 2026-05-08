@@ -226,6 +226,8 @@
             (cfmetrics.BytesDownloaded && cfmetrics.BytesDownloaded.total) || 0;
           const cf4xxRate =
             (cfmetrics["4xxErrorRate"] && cfmetrics["4xxErrorRate"].total) || 0;
+          const cf5xxRate =
+            (cfmetrics["5xxErrorRate"] && cfmetrics["5xxErrorRate"].total) || 0;
 
           content.innerHTML += `
             <div class="metric-card">
@@ -234,6 +236,7 @@
               <div class="metric-item"><span class="metric-label">Total Requests:</span><span class="metric-value">${Number(cfRequests).toLocaleString()}</span></div>
               <div class="metric-item"><span class="metric-label">Bytes Downloaded:</span><span class="metric-value">${Number(cfBytes).toFixed(2)} MB</span></div>
               <div class="metric-item"><span class="metric-label">4xx Error Rate:</span><span class="metric-value">${Number(cf4xxRate).toFixed(2)}%</span></div>
+              <div class="metric-item"><span class="metric-label">5xx Error Rate:</span><span class="metric-value">${Number(cf5xxRate).toFixed(2)}%</span></div>
               <div class="metric-item"><span class="metric-label">Time Range:</span><span class="metric-value">${rangeKey}</span></div>
             </div>
           `;
