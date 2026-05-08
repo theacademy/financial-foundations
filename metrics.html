@@ -202,8 +202,10 @@
             (s3metrics["5xxErrors"] && s3metrics["5xxErrors"].total) || 0;
           const s3Bytes =
             (s3metrics.BytesDownloaded && s3metrics.BytesDownloaded.total) || 0;
-          const s34xxRate = s3All > 0 ? (Number(s34xx) / Number(s3All)) * 100 : 0;
-          const s35xxRate = s3All > 0 ? (Number(s35xx) / Number(s3All)) * 100 : 0;
+          const s34xxRate =
+            s3All > 0 ? (Number(s34xx) / Number(s3All)) * 100 : 0;
+          const s35xxRate =
+            s3All > 0 ? (Number(s35xx) / Number(s3All)) * 100 : 0;
 
           content.innerHTML += `
             <div class="metric-card">
