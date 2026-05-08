@@ -198,6 +198,8 @@
             (s3metrics.AllRequests && s3metrics.AllRequests.total) || 0;
           const s34xx =
             (s3metrics["4xxErrors"] && s3metrics["4xxErrors"].total) || 0;
+          const s3Bytes =
+            (s3metrics.BytesDownloaded && s3metrics.BytesDownloaded.total) || 0;
 
           content.innerHTML += `
             <div class="metric-card">
@@ -205,6 +207,7 @@
               <div class="metric-item"><span class="metric-label">Bucket:</span><span class="metric-value">${s3.bucket || "—"}</span></div>
               <div class="metric-item"><span class="metric-label">Total Requests:</span><span class="metric-value">${Number(s3All).toLocaleString()}</span></div>
               <div class="metric-item"><span class="metric-label">4xx Errors:</span><span class="metric-value">${Number(s34xx).toLocaleString()}</span></div>
+              <div class="metric-item"><span class="metric-label">Bytes Downloaded:</span><span class="metric-value">${Number(s3Bytes).toFixed(2)} MB</span></div>
               <div class="metric-item"><span class="metric-label">Time Range:</span><span class="metric-value">${rangeKey}</span></div>
             </div>
           `;
