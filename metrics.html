@@ -387,10 +387,14 @@
           (height - padding) +
           '" stroke="#ccc" stroke-width="2"/>';
 
-        const gridSteps = axisStep ? Math.max(1, Math.round(maxValue / axisStep)) : 5;
+        const gridSteps = axisStep
+          ? Math.max(1, Math.round(maxValue / axisStep))
+          : 5;
         for (let i = 0; i <= gridSteps; i++) {
           const y = height - padding - (i * graphHeight) / gridSteps;
-          const value = axisStep ? Math.round(i * axisStep) : Math.round((i / gridSteps) * maxValue);
+          const value = axisStep
+            ? Math.round(i * axisStep)
+            : Math.round((i / gridSteps) * maxValue);
           svg +=
             '<line x1="' +
             (padding - 5) +
