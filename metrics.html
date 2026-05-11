@@ -210,7 +210,8 @@
           "
         ></div>
         <div class="chart-note">
-          S3 values are error counts; CloudFront values are error rates.
+          All error lines are shown as percentages. S3 rates are derived from
+          S3 error counts divided by S3 request totals.
         </div>
       </div>
 
@@ -239,6 +240,52 @@
             timestamp: dp.Timestamp,
             value: Number(dp.Value),
           }));
+      }
+
+      function mapDatapointsByTimestamp(metric) {
+        const datapoints = extractDatapoints(metric);
+        const map = new Map();
+
+        datapoints.forEach((point) => {
+          map.set(point.timestamp, point.value);
+        });
+
+        return map;
+      }
+
+      function buildRateSeries(numeratorMetric, denominatorMetric) {
+        const denominatorPoints = extractDatapoints(denominatorMetric);
+        const numeratorMap = mapDatapointsByTimestamp(numeratorMetric);
+
+        return denominatorPoints.map((point) => {
+          const numeratorValue = numeratorMap.has(point.timestamp)
+            ? numeratorMap.get(point.timestamp)
+            : 0;
+          const denominatorValue = point.value > 0 ? point.value : 0;
+          const rate =
+            denominatorValue > 0
+              ? (Number(numeratorValue) / Number(denominatorValue)) * 100
+              : 0;
+
+          return {
+            timestamp: point.timestamp,
+            value: rate,
+          };
+        });
+      }
+
+      function buildSeriesFromMetric(metric, fallbackMetric) {
+        const datapoints = extractDatapoints(metric);
+
+        if (datapoints.length > 0) {
+          return datapoints;
+        }
+
+        const fallbackPoints = extractDatapoints(fallbackMetric);
+        return fallbackPoints.map((point) => ({
+          timestamp: point.timestamp,
+          value: 0,
+        }));
       }
 
       function createMultiSeriesChart(wrapperId, series, emptyMessage) {
@@ -421,32 +468,32 @@
         );
       }
 
-      function createErrorChart(s34xx, s35xx, cf4xx, cf5xx) {
+      function createErrorChart(s3AllRequests, s34xx, s35xx, cfRequests, cf4xx, cf5xx) {
         createMultiSeriesChart(
           "errorChartWrapper",
           [
             {
-              label: "S3 4xx Errors",
+              label: "S3 4xx Error Rate (%)",
               color: "#8e44ad",
-              data: extractDatapoints(s34xx),
+              data: buildRateSeries(s34xx, s3AllRequests),
             },
             {
-              label: "S3 5xx Errors",
+              label: "S3 5xx Error Rate (%)",
               color: "#d35400",
-              data: extractDatapoints(s35xx),
+              data: buildRateSeries(s35xx, s3AllRequests),
             },
             {
               label: "CloudFront 4xx Error Rate",
               color: "#2c3e50",
-              data: extractDatapoints(cf4xx),
+              data: buildSeriesFromMetric(cf4xx, cfRequests),
             },
             {
               label: "CloudFront 5xx Error Rate",
               color: "#16a085",
-              data: extractDatapoints(cf5xx),
+              data: buildSeriesFromMetric(cf5xx, cfRequests),
             },
           ],
-          "No error data available for this time range",
+          "No error-rate data available for this time range",
         );
       }
 
@@ -487,8 +534,10 @@
               const cfRequests = cfmetrics && cfmetrics.Requests;
               createChart(data, s3AllRequests, cfRequests);
               createErrorChart(
+                s3AllRequests,
                 s3metrics && s3metrics["4xxErrors"],
                 s3metrics && s3metrics["5xxErrors"],
+                cfRequests,
                 cfmetrics && cfmetrics["4xxErrorRate"],
                 cfmetrics && cfmetrics["5xxErrorRate"],
               );
