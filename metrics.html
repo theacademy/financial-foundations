@@ -210,8 +210,8 @@
           "
         ></div>
         <div class="chart-note">
-          All error lines are shown as percentages. S3 rates are derived from
-          S3 error counts divided by S3 request totals.
+          All error lines are shown as percentages. S3 rates are derived from S3
+          error counts divided by S3 request totals.
         </div>
       </div>
 
@@ -468,7 +468,14 @@
         );
       }
 
-      function createErrorChart(s3AllRequests, s34xx, s35xx, cfRequests, cf4xx, cf5xx) {
+      function createErrorChart(
+        s3AllRequests,
+        s34xx,
+        s35xx,
+        cfRequests,
+        cf4xx,
+        cf5xx,
+      ) {
         createMultiSeriesChart(
           "errorChartWrapper",
           [
