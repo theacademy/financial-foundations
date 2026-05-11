@@ -370,8 +370,7 @@
         function getXPosition(timestamp) {
           const timeValue = new Date(timestamp).getTime();
           return (
-            padding +
-            ((timeValue - minTimestamp) / timeRange) * graphWidth
+            padding + ((timeValue - minTimestamp) / timeRange) * graphWidth
           );
         }
 
