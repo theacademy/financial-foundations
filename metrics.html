@@ -291,7 +291,7 @@
 
           return {
             timestamp: point.timestamp,
-            value: Math.min(rate, 100),
+            value: rate,
           };
         });
       }
@@ -349,31 +349,11 @@
         const minValue = 0;
         const range = maxValue - minValue;
 
-        const width = Math.max(
-          window.innerWidth || 0,
-          document.documentElement.clientWidth || 0,
-          wrapper.offsetWidth || 0,
-          wrapper.parentElement ? wrapper.parentElement.offsetWidth || 0 : 0,
-          900,
-        );
+        const width = wrapper.offsetWidth;
         const height = 300;
         const padding = 40;
-        const graphWidth = Math.max(width - padding * 2, 1);
+        const graphWidth = width - padding * 2;
         const graphHeight = height - padding * 2;
-        const allTimestamps = series.flatMap((item) =>
-          item.data.map((point) => new Date(point.timestamp).getTime()),
-        );
-        const minTimestamp = Math.min(...allTimestamps);
-        const maxTimestamp = Math.max(...allTimestamps);
-        const timeRange = maxTimestamp - minTimestamp || 1;
-
-        function getXPosition(timestamp) {
-          const timeValue = new Date(timestamp).getTime();
-          return (
-            padding +
-            ((timeValue - minTimestamp) / timeRange) * graphWidth
-          );
-        }
 
         let svg =
           '<svg width="' +
@@ -439,7 +419,7 @@
           if (line.length > 1) {
             let pathData = "M";
             line.forEach((point, i) => {
-              const x = getXPosition(point.timestamp);
+              const x = padding + (i / (line.length - 1)) * graphWidth;
               const y =
                 height -
                 padding -
@@ -455,7 +435,7 @@
               '" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>';
 
             line.forEach((point, i) => {
-              const x = getXPosition(point.timestamp);
+              const x = padding + (i / (line.length - 1)) * graphWidth;
               const y =
                 height -
                 padding -
