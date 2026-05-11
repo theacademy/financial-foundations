@@ -514,14 +514,14 @@
               data: buildRateSeries(s35xx, s3AllRequests),
             },
             {
-              label: "CloudFront 4xx Error Rate",
+              label: "CloudFront 4xx Error Rate (Origin)",
               color: "#2c3e50",
-              data: buildSeriesFromMetric(cf4xx, cfRequests),
+              data: buildRateSeries(cf4xx, cfRequests),
             },
             {
-              label: "CloudFront 5xx Error Rate",
+              label: "CloudFront 5xx Error Rate (Origin)",
               color: "#16a085",
-              data: buildSeriesFromMetric(cf5xx, cfRequests),
+              data: buildRateSeries(cf5xx, cfRequests),
             },
           ],
           "No error-rate data available for this time range",
@@ -573,8 +573,8 @@
                 s3metrics && s3metrics["4xxErrors"],
                 s3metrics && s3metrics["5xxErrors"],
                 cfRequests,
-                cfmetrics && cfmetrics["4xxErrorRate"],
-                cfmetrics && cfmetrics["5xxErrorRate"],
+                s3metrics && s3metrics["4xxErrors"],
+                s3metrics && s3metrics["5xxErrors"],
               );
 
               // S3 card
