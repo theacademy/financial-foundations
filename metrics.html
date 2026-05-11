@@ -154,6 +154,30 @@
         font-size: 13px;
         margin-top: 10px;
       }
+
+      .chart-legend {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 14px 18px;
+        align-items: center;
+        margin-top: 12px;
+        padding: 8px 2px 0;
+        color: #333;
+        font-size: 12px;
+      }
+
+      .chart-legend-item {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .chart-legend-swatch {
+        width: 10px;
+        height: 10px;
+        border-radius: 999px;
+        display: inline-block;
+      }
     </style>
   </head>
   <body>
@@ -194,6 +218,7 @@
             border-radius: 4px;
           "
         ></div>
+        <div id="chartLegend" class="chart-legend"></div>
       </div>
 
       <div class="chart-container">
@@ -209,6 +234,7 @@
             border-radius: 4px;
           "
         ></div>
+        <div id="errorChartLegend" class="chart-legend"></div>
         <div class="chart-note">
           All error lines are shown as percentages. S3 rates are derived from S3
           error counts divided by S3 request totals.
@@ -290,16 +316,14 @@
 
       function createMultiSeriesChart(wrapperId, series, emptyMessage) {
         const wrapper = document.getElementById(wrapperId);
+        const legendWrapper = document.getElementById(
+          wrapperId === "chartWrapper" ? "chartLegend" : "errorChartLegend",
+        );
         const allData = [];
 
         series.forEach((item) => {
           item.data.forEach((point) => {
-            allData.push({
-              timestamp: point.timestamp,
-              value: point.value,
-              color: item.color,
-              label: item.label,
-            });
+            allData.push(point.value);
           });
         });
 
@@ -308,22 +332,22 @@
             '<div style="padding: 20px; text-align: center; color: #999;">' +
             emptyMessage +
             "</div>";
+          if (legendWrapper) {
+            legendWrapper.innerHTML = "";
+          }
           return;
         }
 
-        // Find min and max for scaling
-        const maxValue = Math.max(...allData.map((d) => d.value)) * 1.1;
+        const maxValue = Math.max(...allData) * 1.1;
         const minValue = 0;
         const range = maxValue - minValue;
 
-        // SVG dimensions
         const width = wrapper.offsetWidth;
         const height = 300;
         const padding = 40;
         const graphWidth = width - padding * 2;
         const graphHeight = height - padding * 2;
 
-        // Create SVG
         let svg =
           '<svg width="' +
           width +
@@ -331,7 +355,6 @@
           height +
           '" style="font-family: Arial, sans-serif; font-size: 12px;">';
 
-        // Draw axes
         svg +=
           '<line x1="' +
           padding +
@@ -353,7 +376,6 @@
           (height - padding) +
           '" stroke="#ccc" stroke-width="2"/>';
 
-        // Draw grid lines and Y-axis labels
         for (let i = 0; i <= 5; i++) {
           const y = height - padding - (i * graphHeight) / 5;
           const value = Math.round((i / 5) * maxValue);
@@ -377,7 +399,6 @@
             "</text>";
         }
 
-        // Sort data by timestamp and render each series.
         series.forEach((item) => {
           const line = item.data
             .slice()
@@ -393,6 +414,7 @@
                 ((point.value - minValue) / range) * graphHeight;
               pathData += (i === 0 ? "" : " L") + " " + x + " " + y;
             });
+
             svg +=
               '<path d="' +
               pathData +
@@ -418,55 +440,41 @@
           }
         });
 
-        // Legend
-        const legendHeight = 18 + series.length * 20;
-        svg +=
-          '<g><rect x="' +
-          (width - 240) +
-          '" y="10" width="230" height="' +
-          legendHeight +
-          '" fill="white" stroke="#ddd" rx="4"/>';
-        series.forEach((item, index) => {
-          const legendY = 25 + index * 20;
-          svg +=
-            '<circle cx="' +
-            (width - 220) +
-            '" cy="' +
-            legendY +
-            '" r="3" fill="' +
-            item.color +
-            '"/><text x="' +
-            (width - 210) +
-            '" y="' +
-            (legendY + 5) +
-            '" fill="#333">' +
-            item.label +
-            "</text>";
-        });
-        svg += "</g>";
-
         svg += "</svg>";
         wrapper.innerHTML = svg;
+
+        if (legendWrapper) {
+          legendWrapper.innerHTML = series
+            .map(
+              (item) =>
+                '<span class="chart-legend-item"><span class="chart-legend-swatch" style="background:' +
+                item.color +
+                '"></span>' +
+                item.label +
+                "</span>",
+            )
+            .join("");
+        }
       }
 
-      function createChart(data, s3AllRequests, cfRequests) {
-        createMultiSeriesChart(
-          "chartWrapper",
-          [
-            {
-              label: "S3 AllRequests",
-              color: "#3498db",
-              data: extractDatapoints(s3AllRequests),
-            },
-            {
-              label: "CloudFront Requests",
-              color: "#e74c3c",
-              data: extractDatapoints(cfRequests),
-            },
-          ],
-          "No request data available for this time range",
-        );
-      }
+        function createChart(data, s3AllRequests, cfRequests) {
+          createMultiSeriesChart(
+            "chartWrapper",
+            [
+              {
+                label: "S3 AllRequests",
+                color: "#3498db",
+                data: extractDatapoints(s3AllRequests),
+              },
+              {
+                label: "CloudFront Requests",
+                color: "#e74c3c",
+                data: extractDatapoints(cfRequests),
+              },
+            ],
+            "No request data available for this time range",
+          );
+        }
 
       function createErrorChart(
         s3AllRequests,
