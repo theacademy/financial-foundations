@@ -573,8 +573,8 @@
                 s3metrics && s3metrics["4xxErrors"],
                 s3metrics && s3metrics["5xxErrors"],
                 cfRequests,
-                s3metrics && s3metrics["4xxErrors"],
-                s3metrics && s3metrics["5xxErrors"],
+                cfmetrics && cfmetrics["OriginErrors4xx"],
+                cfmetrics && cfmetrics["OriginErrors5xx"],
               );
 
               // S3 card
