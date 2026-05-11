@@ -148,6 +148,12 @@
       .chart-container canvas {
         max-width: 100%;
       }
+
+      .chart-note {
+        color: #666;
+        font-size: 13px;
+        margin-top: 10px;
+      }
     </style>
   </head>
   <body>
@@ -190,6 +196,24 @@
         ></div>
       </div>
 
+      <div class="chart-container">
+        <h2>Error Trends Over Time</h2>
+        <div
+          id="errorChartWrapper"
+          style="
+            width: 100%;
+            height: 300px;
+            position: relative;
+            background: white;
+            border: 1px solid #eee;
+            border-radius: 4px;
+          "
+        ></div>
+        <div class="chart-note">
+          S3 values are error counts; CloudFront values are error rates.
+        </div>
+      </div>
+
       <div id="metricsContent" class="metrics-grid">
         <div class="loading">Loading metrics...</div>
       </div>
@@ -200,44 +224,43 @@
     <script>
       // Load metrics using the new metrics.json structure (ranges: 24h, 7d, 30d)
 
-      function createChart(data, s3AllRequests, cfRequests) {
-        const wrapper = document.getElementById("chartWrapper");
-
-        // Prepare S3 data
-        const s3Data = [];
-        if (
-          s3AllRequests &&
-          s3AllRequests.datapoints &&
-          Array.isArray(s3AllRequests.datapoints)
-        ) {
-          s3AllRequests.datapoints.forEach((dp) => {
-            s3Data.push({
-              timestamp: dp.Timestamp,
-              value: dp.Value,
-              source: "S3",
-            });
-          });
+      function extractDatapoints(metric) {
+        if (!metric || !metric.datapoints) {
+          return [];
         }
 
-        // Prepare CloudFront data
-        const cfData = [];
-        if (cfRequests && cfRequests.datapoints) {
-          const datapoints = Array.isArray(cfRequests.datapoints)
-            ? cfRequests.datapoints
-            : [cfRequests.datapoints];
-          datapoints.forEach((dp) => {
-            cfData.push({
-              timestamp: dp.Timestamp,
-              value: dp.Value,
-              source: "CF",
+        const datapoints = Array.isArray(metric.datapoints)
+          ? metric.datapoints
+          : [metric.datapoints];
+
+        return datapoints
+          .filter((dp) => dp && dp.Timestamp != null && dp.Value != null)
+          .map((dp) => ({
+            timestamp: dp.Timestamp,
+            value: Number(dp.Value),
+          }));
+      }
+
+      function createMultiSeriesChart(wrapperId, series, emptyMessage) {
+        const wrapper = document.getElementById(wrapperId);
+        const allData = [];
+
+        series.forEach((item) => {
+          item.data.forEach((point) => {
+            allData.push({
+              timestamp: point.timestamp,
+              value: point.value,
+              color: item.color,
+              label: item.label,
             });
           });
-        }
+        });
 
-        const allData = [...s3Data, ...cfData];
         if (allData.length === 0) {
           wrapper.innerHTML =
-            '<div style="padding: 20px; text-align: center; color: #999;">No data available for this time range</div>';
+            '<div style="padding: 20px; text-align: center; color: #999;">' +
+            emptyMessage +
+            "</div>";
           return;
         }
 
@@ -307,110 +330,124 @@
             "</text>";
         }
 
-        // Sort data by timestamp
-        allData.sort((a, b) => new Date(a.timestamp) - new Date(b.timestamp));
+        // Sort data by timestamp and render each series.
+        series.forEach((item) => {
+          const line = item.data
+            .slice()
+            .sort((a, b) => new Date(a.timestamp) - new Date(b.timestamp));
 
-        // Draw S3 line
-        const s3Line = s3Data.sort(
-          (a, b) => new Date(a.timestamp) - new Date(b.timestamp),
-        );
-        if (s3Line.length > 1) {
-          let pathData = "M";
-          s3Line.forEach((point, i) => {
-            const x = padding + (i / (s3Line.length - 1)) * graphWidth;
-            const y =
-              height -
-              padding -
-              ((point.value - minValue) / range) * graphHeight;
-            pathData += (i === 0 ? "" : " L") + " " + x + " " + y;
-          });
-          svg +=
-            '<path d="' +
-            pathData +
-            '" stroke="#3498db" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>';
-
-          // Draw points
-          s3Line.forEach((point, i) => {
-            const x = padding + (i / (s3Line.length - 1)) * graphWidth;
-            const y =
-              height -
-              padding -
-              ((point.value - minValue) / range) * graphHeight;
+          if (line.length > 1) {
+            let pathData = "M";
+            line.forEach((point, i) => {
+              const x = padding + (i / (line.length - 1)) * graphWidth;
+              const y =
+                height -
+                padding -
+                ((point.value - minValue) / range) * graphHeight;
+              pathData += (i === 0 ? "" : " L") + " " + x + " " + y;
+            });
             svg +=
-              '<circle cx="' +
-              x +
-              '" cy="' +
-              y +
-              '" r="3" fill="#3498db" stroke="white" stroke-width="1"/>';
-          });
-        }
+              '<path d="' +
+              pathData +
+              '" stroke="' +
+              item.color +
+              '" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>';
 
-        // Draw CloudFront line
-        const cfLine = cfData.sort(
-          (a, b) => new Date(a.timestamp) - new Date(b.timestamp),
-        );
-        if (cfLine.length > 1) {
-          let pathData = "M";
-          cfLine.forEach((point, i) => {
-            const x = padding + (i / (cfLine.length - 1)) * graphWidth;
-            const y =
-              height -
-              padding -
-              ((point.value - minValue) / range) * graphHeight;
-            pathData += (i === 0 ? "" : " L") + " " + x + " " + y;
-          });
-          svg +=
-            '<path d="' +
-            pathData +
-            '" stroke="#e74c3c" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>';
-
-          // Draw points
-          cfLine.forEach((point, i) => {
-            const x = padding + (i / (cfLine.length - 1)) * graphWidth;
-            const y =
-              height -
-              padding -
-              ((point.value - minValue) / range) * graphHeight;
-            svg +=
-              '<circle cx="' +
-              x +
-              '" cy="' +
-              y +
-              '" r="3" fill="#e74c3c" stroke="white" stroke-width="1"/>';
-          });
-        }
+            line.forEach((point, i) => {
+              const x = padding + (i / (line.length - 1)) * graphWidth;
+              const y =
+                height -
+                padding -
+                ((point.value - minValue) / range) * graphHeight;
+              svg +=
+                '<circle cx="' +
+                x +
+                '" cy="' +
+                y +
+                '" r="3" fill="' +
+                item.color +
+                '" stroke="white" stroke-width="1"/>';
+            });
+          }
+        });
 
         // Legend
+        const legendHeight = 18 + series.length * 20;
         svg +=
           '<g><rect x="' +
-          (width - 200) +
-          '" y="' +
-          10 +
-          '" width="190" height="60" fill="white" stroke="#ddd" rx="4"/>';
-        svg +=
-          '<circle cx="' +
-          (width - 180) +
-          '" cy="' +
-          25 +
-          '" r="3" fill="#3498db"/><text x="' +
-          (width - 170) +
-          '" y="' +
-          30 +
-          '" fill="#333">S3 AllRequests</text>';
-        svg +=
-          '<circle cx="' +
-          (width - 180) +
-          '" cy="' +
-          45 +
-          '" r="3" fill="#e74c3c"/><text x="' +
-          (width - 170) +
-          '" y="' +
-          50 +
-          '" fill="#333">CloudFront Requests</text>';
+          (width - 240) +
+          '" y="10" width="230" height="' +
+          legendHeight +
+          '" fill="white" stroke="#ddd" rx="4"/>';
+        series.forEach((item, index) => {
+          const legendY = 25 + index * 20;
+          svg +=
+            '<circle cx="' +
+            (width - 220) +
+            '" cy="' +
+            legendY +
+            '" r="3" fill="' +
+            item.color +
+            '"/><text x="' +
+            (width - 210) +
+            '" y="' +
+            (legendY + 5) +
+            '" fill="#333">' +
+            item.label +
+            '</text>';
+        });
         svg += "</g>";
 
         svg += "</svg>";
         wrapper.innerHTML = svg;
+      }
+
+      function createChart(data, s3AllRequests, cfRequests) {
+        createMultiSeriesChart(
+          "chartWrapper",
+          [
+            {
+              label: "S3 AllRequests",
+              color: "#3498db",
+              data: extractDatapoints(s3AllRequests),
+            },
+            {
+              label: "CloudFront Requests",
+              color: "#e74c3c",
+              data: extractDatapoints(cfRequests),
+            },
+          ],
+          "No request data available for this time range",
+        );
+      }
+
+      function createErrorChart(s34xx, s35xx, cf4xx, cf5xx) {
+        createMultiSeriesChart(
+          "errorChartWrapper",
+          [
+            {
+              label: "S3 4xx Errors",
+              color: "#8e44ad",
+              data: extractDatapoints(s34xx),
+            },
+            {
+              label: "S3 5xx Errors",
+              color: "#d35400",
+              data: extractDatapoints(s35xx),
+            },
+            {
+              label: "CloudFront 4xx Error Rate",
+              color: "#2c3e50",
+              data: extractDatapoints(cf4xx),
+            },
+            {
+              label: "CloudFront 5xx Error Rate",
+              color: "#16a085",
+              data: extractDatapoints(cf5xx),
+            },
+          ],
+          "No error data available for this time range",
+        );
       }
 
       function loadMetrics() {
@@ -449,6 +486,12 @@
               const s3AllRequests = s3metrics && s3metrics.AllRequests;
               const cfRequests = cfmetrics && cfmetrics.Requests;
               createChart(data, s3AllRequests, cfRequests);
+              createErrorChart(
+                s3metrics && s3metrics["4xxErrors"],
+                s3metrics && s3metrics["5xxErrors"],
+                cfmetrics && cfmetrics["4xxErrorRate"],
+                cfmetrics && cfmetrics["5xxErrorRate"],
+              );
 
               // S3 card
               const s3 = rangeObj.s3 || {};
