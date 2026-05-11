@@ -314,7 +314,12 @@
         }));
       }
 
-      function createMultiSeriesChart(wrapperId, series, emptyMessage) {
+      function createMultiSeriesChart(
+        wrapperId,
+        series,
+        emptyMessage,
+        axisOptions = {},
+      ) {
         const wrapper = document.getElementById(wrapperId);
         const legendWrapper = document.getElementById(
           wrapperId === "chartWrapper" ? "chartLegend" : "errorChartLegend",
@@ -338,7 +343,13 @@
           return;
         }
 
-        const maxValue = Math.max(...allData) * 1.1;
+        const axisMax =
+          typeof axisOptions.max === "number"
+            ? axisOptions.max
+            : Math.max(...allData) * 1.1;
+        const axisStep =
+          typeof axisOptions.step === "number" ? axisOptions.step : null;
+        const maxValue = axisMax;
         const minValue = 0;
         const range = maxValue - minValue;
 
@@ -376,9 +387,10 @@
           (height - padding) +
           '" stroke="#ccc" stroke-width="2"/>';
 
-        for (let i = 0; i <= 5; i++) {
-          const y = height - padding - (i * graphHeight) / 5;
-          const value = Math.round((i / 5) * maxValue);
+        const gridSteps = axisStep ? Math.max(1, Math.round(maxValue / axisStep)) : 5;
+        for (let i = 0; i <= gridSteps; i++) {
+          const y = height - padding - (i * graphHeight) / gridSteps;
+          const value = axisStep ? Math.round(i * axisStep) : Math.round((i / gridSteps) * maxValue);
           svg +=
             '<line x1="' +
             (padding - 5) +
@@ -509,6 +521,10 @@
             },
           ],
           "No error-rate data available for this time range",
+          {
+            max: 100,
+            step: 20,
+          },
         );
       }
 
