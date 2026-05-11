@@ -235,10 +235,6 @@
           "
         ></div>
         <div id="errorChartLegend" class="chart-legend"></div>
-        <div class="chart-note">
-          All error lines are shown as percentages. S3 rates are derived from S3
-          error counts divided by S3 request totals.
-        </div>
       </div>
 
       <div id="metricsContent" class="metrics-grid">
@@ -295,7 +291,7 @@
 
           return {
             timestamp: point.timestamp,
-            value: rate,
+            value: Math.min(rate, 100),
           };
         });
       }
@@ -509,7 +505,7 @@
               data: buildRateSeries(s34xx, s3AllRequests),
             },
             {
-              label: "CloudFront 4xx Error Rate (Origin)",
+              label: "CloudFront 4xx Error Rate (%)",
               color: "#2c3e50",
               data: buildRateSeries(cf4xx, cfRequests),
             },
