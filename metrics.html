@@ -469,24 +469,24 @@
         }
       }
 
-        function createChart(data, s3AllRequests, cfRequests) {
-          createMultiSeriesChart(
-            "chartWrapper",
-            [
-              {
-                label: "S3 AllRequests",
-                color: "#3498db",
-                data: extractDatapoints(s3AllRequests),
-              },
-              {
-                label: "CloudFront Requests",
-                color: "#e74c3c",
-                data: extractDatapoints(cfRequests),
-              },
-            ],
-            "No request data available for this time range",
-          );
-        }
+      function createChart(data, s3AllRequests, cfRequests) {
+        createMultiSeriesChart(
+          "chartWrapper",
+          [
+            {
+              label: "S3 AllRequests",
+              color: "#3498db",
+              data: extractDatapoints(s3AllRequests),
+            },
+            {
+              label: "CloudFront Requests",
+              color: "#e74c3c",
+              data: extractDatapoints(cfRequests),
+            },
+          ],
+          "No request data available for this time range",
+        );
+      }
 
       function createErrorChart(
         s3AllRequests,
