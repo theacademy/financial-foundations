@@ -85,43 +85,44 @@
       }
     </style>
     <!-- CloudWatch RUM -->
-    <script>
-      (function (n, i, v, r, s, c, x, z) {
+<script>
+(function (n, i, v, r, s, c, x, z) {
         x = window.AwsRumClient = {
-          q: [],
-          n: n,
-          i: i,
-          v: v,
-          r: r,
-          c: c,
+                q: [],
+                n: n,
+                i: i,
+                v: v,
+                r: r,
+                c: c
         };
         window[n] = function (c, p) {
-          x.q.push({ c: c, p: p });
+                x.q.push({ c: c, p: p });
         };
-        z = document.createElement("script");
+        z = document.createElement('script');
         z.async = true;
         z.src = s;
         document.head.insertBefore(
-          z,
-          document.getElementsByTagName("script")[0],
+                z,
+                document.getElementsByTagName('script')[0]
         );
-      })(
-        "cwr",
-        "f1bb5753-8dc6-4aff-8ab8-264ba07d2d6b",
-        "1.0.0",
-        "us-east-1",
-        "https://client.rum.us-east-1.amazonaws.com/3.x/cwr.js",
+})(
+        'cwr',
+        'f1bb5753-8dc6-4aff-8ab8-264ba07d2d6b',
+        '1.0.0',
+        'us-east-1',
+        'https://client.rum.us-east-1.amazonaws.com/3.x/cwr.js',
         {
-          sessionSampleRate: 1,
-          endpoint: "https://dataplane.rum.us-east-1.amazonaws.com",
-          telemetries: ["performance", "errors", "http"],
-          allowCookies: true,
-          signing: false,
-        },
-      );
-    </script>
-    <!-- /CloudWatch RUM -->
-  </head>
+                sessionSampleRate: 1,
+                endpoint: 'https://dataplane.rum.us-east-1.amazonaws.com',
+                telemetries: ['performance', 'errors', 'http'],
+                    allowCookies: true,
+        signing: true,
+        identityPoolId: 'us-east-1:bd5ed77a-d724-4745-a689-b4a22525ace0'
+        }
+);
+</script>
+<!-- /CloudWatch RUM -->
+</head>
   <body>
     <nav class="ff-topbar" data-cy="topbar">
       <a href="index.html" class="ff-home" data-cy="all-modules-link"
@@ -1174,3 +1175,8 @@ OPTION 5: ADVANCED BOND CONCEPTS AND PRACTICAL EXAMPLES
     </main>
   </body>
 </html>
+
+
+
+
+
