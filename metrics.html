@@ -581,8 +581,8 @@
                 0;
               const docDuration =
                 (rumMetrics &&
-                  rumMetrics.DocumentDuration &&
-                  rumMetrics.DocumentDuration.total) ||
+                  rumMetrics.PerformanceNavigationDuration &&
+                  rumMetrics.PerformanceNavigationDuration.total) ||
                 0;
               const jsErrors =
                 (rumMetrics &&
