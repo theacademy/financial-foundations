@@ -78,10 +78,18 @@
       }
 
       /* Apdex score colouring */
-      .apdex-excellent { color: #27ae60; }
-      .apdex-good      { color: #f39c12; }
-      .apdex-fair      { color: #e67e22; }
-      .apdex-poor      { color: #e74c3c; }
+      .apdex-excellent {
+        color: #27ae60;
+      }
+      .apdex-good {
+        color: #f39c12;
+      }
+      .apdex-fair {
+        color: #e67e22;
+      }
+      .apdex-poor {
+        color: #e74c3c;
+      }
 
       .error {
         background-color: #ffebee;
@@ -231,14 +239,34 @@
       <!-- Request chart -->
       <div class="chart-container">
         <h2>Request Patterns Over Time</h2>
-        <div id="chartWrapper" style="width:100%;height:300px;position:relative;background:white;border:1px solid #eee;border-radius:4px;"></div>
+        <div
+          id="chartWrapper"
+          style="
+            width: 100%;
+            height: 300px;
+            position: relative;
+            background: white;
+            border: 1px solid #eee;
+            border-radius: 4px;
+          "
+        ></div>
         <div id="chartLegend" class="chart-legend"></div>
       </div>
 
       <!-- Error chart -->
       <div class="chart-container">
         <h2>Error Trends Over Time</h2>
-        <div id="errorChartWrapper" style="width:100%;height:300px;position:relative;background:white;border:1px solid #eee;border-radius:4px;"></div>
+        <div
+          id="errorChartWrapper"
+          style="
+            width: 100%;
+            height: 300px;
+            position: relative;
+            background: white;
+            border: 1px solid #eee;
+            border-radius: 4px;
+          "
+        ></div>
         <div id="errorChartLegend" class="chart-legend"></div>
       </div>
 
@@ -255,71 +283,93 @@
       // ------------------------------------------------------------------ //
       function extractDatapoints(metric) {
         if (!metric || !metric.datapoints) return [];
-        const datapoints = Array.isArray(metric.datapoints) ? metric.datapoints : [metric.datapoints];
+        const datapoints = Array.isArray(metric.datapoints)
+          ? metric.datapoints
+          : [metric.datapoints];
         return datapoints
-          .filter(dp => dp && dp.Timestamp != null && dp.Value != null)
-          .map(dp => ({ timestamp: dp.Timestamp, value: Number(dp.Value) }));
+          .filter((dp) => dp && dp.Timestamp != null && dp.Value != null)
+          .map((dp) => ({ timestamp: dp.Timestamp, value: Number(dp.Value) }));
       }
 
       function mapDatapointsByTimestamp(metric) {
         const map = new Map();
-        extractDatapoints(metric).forEach(p => map.set(p.timestamp, p.value));
+        extractDatapoints(metric).forEach((p) => map.set(p.timestamp, p.value));
         return map;
       }
 
       function buildRateSeries(numeratorMetric, denominatorMetric) {
-        return extractDatapoints(denominatorMetric).map(point => {
-          const num = mapDatapointsByTimestamp(numeratorMetric).get(point.timestamp) || 0;
-          return { timestamp: point.timestamp, value: point.value > 0 ? (num / point.value) * 100 : 0 };
+        return extractDatapoints(denominatorMetric).map((point) => {
+          const num =
+            mapDatapointsByTimestamp(numeratorMetric).get(point.timestamp) || 0;
+          return {
+            timestamp: point.timestamp,
+            value: point.value > 0 ? (num / point.value) * 100 : 0,
+          };
         });
       }
 
       // ------------------------------------------------------------------ //
       // Generic SVG chart renderer
       // ------------------------------------------------------------------ //
-      function createMultiSeriesChart(wrapperId, legendId, series, emptyMessage, axisOptions = {}) {
-        const wrapper    = document.getElementById(wrapperId);
-        const legendEl   = document.getElementById(legendId);
-        const allValues  = series.flatMap(s => s.data.map(d => d.value));
+      function createMultiSeriesChart(
+        wrapperId,
+        legendId,
+        series,
+        emptyMessage,
+        axisOptions = {},
+      ) {
+        const wrapper = document.getElementById(wrapperId);
+        const legendEl = document.getElementById(legendId);
+        const allValues = series.flatMap((s) => s.data.map((d) => d.value));
 
         if (allValues.length === 0) {
           wrapper.innerHTML = `<div style="padding:20px;text-align:center;color:#999;">${emptyMessage}</div>`;
-          if (legendEl) legendEl.innerHTML = '';
+          if (legendEl) legendEl.innerHTML = "";
           return;
         }
 
-        const axisMax    = typeof axisOptions.max  === 'number' ? axisOptions.max  : Math.max(...allValues) * 1.1;
-        const axisStep   = typeof axisOptions.step === 'number' ? axisOptions.step : null;
-        const width      = wrapper.offsetWidth || 900;
-        const height     = 300;
-        const pad        = 40;
-        const gW         = width  - pad * 2;
-        const gH         = height - pad * 2;
-        const gridSteps  = axisStep ? Math.max(1, Math.round(axisMax / axisStep)) : 5;
+        const axisMax =
+          typeof axisOptions.max === "number"
+            ? axisOptions.max
+            : Math.max(...allValues) * 1.1;
+        const axisStep =
+          typeof axisOptions.step === "number" ? axisOptions.step : null;
+        const width = wrapper.offsetWidth || 900;
+        const height = 300;
+        const pad = 40;
+        const gW = width - pad * 2;
+        const gH = height - pad * 2;
+        const gridSteps = axisStep
+          ? Math.max(1, Math.round(axisMax / axisStep))
+          : 5;
 
         let svg = `<svg width="${width}" height="${height}" style="font-family:Arial,sans-serif;font-size:12px;">`;
 
         // Axes
-        svg += `<line x1="${pad}" y1="${height-pad}" x2="${width-pad}" y2="${height-pad}" stroke="#ccc" stroke-width="2"/>`;
-        svg += `<line x1="${pad}" y1="${pad}"         x2="${pad}"       y2="${height-pad}" stroke="#ccc" stroke-width="2"/>`;
+        svg += `<line x1="${pad}" y1="${height - pad}" x2="${width - pad}" y2="${height - pad}" stroke="#ccc" stroke-width="2"/>`;
+        svg += `<line x1="${pad}" y1="${pad}"         x2="${pad}"       y2="${height - pad}" stroke="#ccc" stroke-width="2"/>`;
 
         // Grid + Y labels
         for (let i = 0; i <= gridSteps; i++) {
-          const y   = height - pad - (i * gH) / gridSteps;
-          const val = axisStep ? Math.round(i * axisStep) : Math.round((i / gridSteps) * axisMax);
-          svg += `<line x1="${pad-5}" y1="${y}" x2="${width-pad}" y2="${y}" stroke="#f0f0f0" stroke-width="1"/>`;
-          svg += `<text x="${pad-10}" y="${y+4}" text-anchor="end" fill="#666">${val}</text>`;
+          const y = height - pad - (i * gH) / gridSteps;
+          const val = axisStep
+            ? Math.round(i * axisStep)
+            : Math.round((i / gridSteps) * axisMax);
+          svg += `<line x1="${pad - 5}" y1="${y}" x2="${width - pad}" y2="${y}" stroke="#f0f0f0" stroke-width="1"/>`;
+          svg += `<text x="${pad - 10}" y="${y + 4}" text-anchor="end" fill="#666">${val}</text>`;
         }
 
         // Series lines
-        series.forEach(item => {
-          const line = item.data.slice().sort((a, b) => new Date(a.timestamp) - new Date(b.timestamp));
+        series.forEach((item) => {
+          const line = item.data
+            .slice()
+            .sort((a, b) => new Date(a.timestamp) - new Date(b.timestamp));
           if (line.length < 2) return;
-          let d = 'M';
+          let d = "M";
           line.forEach((pt, i) => {
             const x = pad + (i / (line.length - 1)) * gW;
             const y = height - pad - (pt.value / axisMax) * gH;
-            d += (i === 0 ? '' : ' L') + ` ${x} ${y}`;
+            d += (i === 0 ? "" : " L") + ` ${x} ${y}`;
           });
           svg += `<path d="${d}" stroke="${item.color}" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>`;
           line.forEach((pt, i) => {
@@ -329,13 +379,16 @@
           });
         });
 
-        svg += '</svg>';
+        svg += "</svg>";
         wrapper.innerHTML = svg;
 
         if (legendEl) {
-          legendEl.innerHTML = series.map(s =>
-            `<span class="chart-legend-item"><span class="chart-legend-swatch" style="background:${s.color}"></span>${s.label}</span>`
-          ).join('');
+          legendEl.innerHTML = series
+            .map(
+              (s) =>
+                `<span class="chart-legend-item"><span class="chart-legend-swatch" style="background:${s.color}"></span>${s.label}</span>`,
+            )
+            .join("");
         }
       }
 
@@ -343,122 +396,171 @@
       // Individual chart builders
       // ------------------------------------------------------------------ //
       function createRequestChart(s3AllRequests, cfRequests, rumPageViews) {
-        createMultiSeriesChart('chartWrapper', 'chartLegend', [
-          { label: 'S3 AllRequests',      color: '#3498db', data: extractDatapoints(s3AllRequests) },
-          { label: 'CloudFront Requests', color: '#e74c3c', data: extractDatapoints(cfRequests)    },
-          { label: 'Page Views (RUM)',     color: '#27ae60', data: extractDatapoints(rumPageViews)  },
-        ], 'No request data available for this time range');
+        createMultiSeriesChart(
+          "chartWrapper",
+          "chartLegend",
+          [
+            {
+              label: "S3 AllRequests",
+              color: "#3498db",
+              data: extractDatapoints(s3AllRequests),
+            },
+            {
+              label: "CloudFront Requests",
+              color: "#e74c3c",
+              data: extractDatapoints(cfRequests),
+            },
+            {
+              label: "Page Views (RUM)",
+              color: "#27ae60",
+              data: extractDatapoints(rumPageViews),
+            },
+          ],
+          "No request data available for this time range",
+        );
       }
 
       function createErrorChart(s3AllRequests, s34xx, cfRequests, cf4xx) {
-        createMultiSeriesChart('errorChartWrapper', 'errorChartLegend', [
-          { label: 'S3 4xx Error Rate (%)',         color: '#8e44ad', data: buildRateSeries(s34xx, s3AllRequests) },
-          { label: 'CloudFront 4xx Error Rate (%)', color: '#2c3e50', data: buildRateSeries(cf4xx, cfRequests)    },
-        ], 'No error-rate data available for this time range', { max: 100, step: 20 });
+        createMultiSeriesChart(
+          "errorChartWrapper",
+          "errorChartLegend",
+          [
+            {
+              label: "S3 4xx Error Rate (%)",
+              color: "#8e44ad",
+              data: buildRateSeries(s34xx, s3AllRequests),
+            },
+            {
+              label: "CloudFront 4xx Error Rate (%)",
+              color: "#2c3e50",
+              data: buildRateSeries(cf4xx, cfRequests),
+            },
+          ],
+          "No error-rate data available for this time range",
+          { max: 100, step: 20 },
+        );
       }
 
       // ------------------------------------------------------------------ //
       // Apdex helpers
       // ------------------------------------------------------------------ //
       function apdexClass(score) {
-        if (score === null) return '';
-        if (score >= 0.94) return 'apdex-excellent';
-        if (score >= 0.85) return 'apdex-good';
-        if (score >= 0.70) return 'apdex-fair';
-        return 'apdex-poor';
+        if (score === null) return "";
+        if (score >= 0.94) return "apdex-excellent";
+        if (score >= 0.85) return "apdex-good";
+        if (score >= 0.7) return "apdex-fair";
+        return "apdex-poor";
       }
 
       function apdexLabel(score) {
-        if (score === null) return '—';
-        if (score >= 0.94) return 'Excellent';
-        if (score >= 0.85) return 'Good';
-        if (score >= 0.70) return 'Fair';
-        return 'Poor';
+        if (score === null) return "—";
+        if (score >= 0.94) return "Excellent";
+        if (score >= 0.85) return "Good";
+        if (score >= 0.7) return "Fair";
+        return "Poor";
       }
 
       function apdexBarColor(score) {
-        if (score === null) return '#ccc';
-        if (score >= 0.94) return '#27ae60';
-        if (score >= 0.85) return '#f39c12';
-        if (score >= 0.70) return '#e67e22';
-        return '#e74c3c';
+        if (score === null) return "#ccc";
+        if (score >= 0.94) return "#27ae60";
+        if (score >= 0.85) return "#f39c12";
+        if (score >= 0.7) return "#e67e22";
+        return "#e74c3c";
       }
 
       // ------------------------------------------------------------------ //
       // Main loader
       // ------------------------------------------------------------------ //
       function loadMetrics() {
-        const selected  = document.getElementById('timeRange').value;
-        const rangeKey  = selected === '1d' ? '24h' : selected;
-        const content   = document.getElementById('metricsContent');
-        const errorBox  = document.getElementById('errorContainer');
-        const timestamp = document.getElementById('timestamp');
+        const selected = document.getElementById("timeRange").value;
+        const rangeKey = selected === "1d" ? "24h" : selected;
+        const content = document.getElementById("metricsContent");
+        const errorBox = document.getElementById("errorContainer");
+        const timestamp = document.getElementById("timestamp");
 
-        content.innerHTML  = '<div class="loading">Loading metrics...</div>';
-        errorBox.innerHTML = '';
+        content.innerHTML = '<div class="loading">Loading metrics...</div>';
+        errorBox.innerHTML = "";
 
         const xhr = new XMLHttpRequest();
-        xhr.open('GET', 'metrics.json', true);
+        xhr.open("GET", "metrics.json", true);
 
         xhr.onload = function () {
           if (xhr.status === 200 || xhr.status === 0) {
             try {
-              const data     = JSON.parse(xhr.responseText);
+              const data = JSON.parse(xhr.responseText);
               const rangeObj = data.ranges && data.ranges[rangeKey];
-              if (!rangeObj) throw new Error(`No metrics for range ${rangeKey}`);
+              if (!rangeObj)
+                throw new Error(`No metrics for range ${rangeKey}`);
 
               if (data.generatedAt) {
                 timestamp.textContent = `Last updated: ${new Date(data.generatedAt).toLocaleString()} UTC`;
               }
 
-              content.innerHTML = '';
+              content.innerHTML = "";
 
               // Convenience refs
-              const s3metrics  = rangeObj.s3         && rangeObj.s3.metrics;
-              const cfmetrics  = rangeObj.cloudfront && rangeObj.cloudfront.metrics;
-              const rumMetrics = rangeObj.rum         && rangeObj.rum.metrics;
-              const apdex      = rangeObj.rum         && rangeObj.rum.apdex;
+              const s3metrics = rangeObj.s3 && rangeObj.s3.metrics;
+              const cfmetrics =
+                rangeObj.cloudfront && rangeObj.cloudfront.metrics;
+              const rumMetrics = rangeObj.rum && rangeObj.rum.metrics;
+              const apdex = rangeObj.rum && rangeObj.rum.apdex;
 
               // Charts
               createRequestChart(
                 s3metrics && s3metrics.AllRequests,
                 cfmetrics && cfmetrics.Requests,
-                rumMetrics && rumMetrics.PageViewCount
+                rumMetrics && rumMetrics.PageViewCount,
               );
               createErrorChart(
                 s3metrics && s3metrics.AllRequests,
-                s3metrics && s3metrics['4xxErrors'],
+                s3metrics && s3metrics["4xxErrors"],
                 cfmetrics && cfmetrics.Requests,
-                cfmetrics && cfmetrics['OriginErrors4xx']
+                cfmetrics && cfmetrics["OriginErrors4xx"],
               );
 
               // ---- S3 card ---- //
-              const s3All   = (s3metrics.AllRequests     && s3metrics.AllRequests.total)     || 0;
-              const s34xx   = (s3metrics['4xxErrors']    && s3metrics['4xxErrors'].total)    || 0;
-              const s35xx   = (s3metrics['5xxErrors']    && s3metrics['5xxErrors'].total)    || 0;
-              const s3Bytes = (s3metrics.BytesDownloaded && s3metrics.BytesDownloaded.total) || 0;
+              const s3All =
+                (s3metrics.AllRequests && s3metrics.AllRequests.total) || 0;
+              const s34xx =
+                (s3metrics["4xxErrors"] && s3metrics["4xxErrors"].total) || 0;
+              const s35xx =
+                (s3metrics["5xxErrors"] && s3metrics["5xxErrors"].total) || 0;
+              const s3Bytes =
+                (s3metrics.BytesDownloaded &&
+                  s3metrics.BytesDownloaded.total) ||
+                0;
 
               content.innerHTML += `
                 <div class="metric-card">
                   <h2>📦 S3 Metrics</h2>
-                  <div class="metric-item"><span class="metric-label">Bucket:</span><span class="metric-value">${rangeObj.s3.bucket || '—'}</span></div>
+                  <div class="metric-item"><span class="metric-label">Bucket:</span><span class="metric-value">${rangeObj.s3.bucket || "—"}</span></div>
                   <div class="metric-item"><span class="metric-label">Total Requests:</span><span class="metric-value">${Number(s3All).toLocaleString()}</span></div>
                   <div class="metric-item"><span class="metric-label">Bytes Downloaded:</span><span class="metric-value">${Number(s3Bytes).toFixed(2)} MB</span></div>
-                  <div class="metric-item"><span class="metric-label">4xx Error Rate:</span><span class="metric-value">${s3All > 0 ? ((s34xx / s3All) * 100).toFixed(2) : '0.00'}%</span></div>
-                  <div class="metric-item"><span class="metric-label">5xx Error Rate:</span><span class="metric-value">${s3All > 0 ? ((s35xx / s3All) * 100).toFixed(2) : '0.00'}%</span></div>
+                  <div class="metric-item"><span class="metric-label">4xx Error Rate:</span><span class="metric-value">${s3All > 0 ? ((s34xx / s3All) * 100).toFixed(2) : "0.00"}%</span></div>
+                  <div class="metric-item"><span class="metric-label">5xx Error Rate:</span><span class="metric-value">${s3All > 0 ? ((s35xx / s3All) * 100).toFixed(2) : "0.00"}%</span></div>
                   <div class="metric-item"><span class="metric-label">Time Range:</span><span class="metric-value">${rangeKey}</span></div>
                 </div>`;
 
               // ---- CloudFront card ---- //
-              const cfReqTotal = (cfmetrics.Requests        && cfmetrics.Requests.total)        || 0;
-              const cfBytes    = (cfmetrics.BytesDownloaded && cfmetrics.BytesDownloaded.total) || 0;
-              const cf4xxRate  = (cfmetrics['4xxErrorRate'] && cfmetrics['4xxErrorRate'].total) || 0;
-              const cf5xxRate  = (cfmetrics['5xxErrorRate'] && cfmetrics['5xxErrorRate'].total) || 0;
+              const cfReqTotal =
+                (cfmetrics.Requests && cfmetrics.Requests.total) || 0;
+              const cfBytes =
+                (cfmetrics.BytesDownloaded &&
+                  cfmetrics.BytesDownloaded.total) ||
+                0;
+              const cf4xxRate =
+                (cfmetrics["4xxErrorRate"] &&
+                  cfmetrics["4xxErrorRate"].total) ||
+                0;
+              const cf5xxRate =
+                (cfmetrics["5xxErrorRate"] &&
+                  cfmetrics["5xxErrorRate"].total) ||
+                0;
 
               content.innerHTML += `
                 <div class="metric-card">
                   <h2>🌐 CloudFront Metrics</h2>
-                  <div class="metric-item"><span class="metric-label">Distribution ID:</span><span class="metric-value">${rangeObj.cloudfront.distributionId || '—'}</span></div>
+                  <div class="metric-item"><span class="metric-label">Distribution ID:</span><span class="metric-value">${rangeObj.cloudfront.distributionId || "—"}</span></div>
                   <div class="metric-item"><span class="metric-label">Total Requests:</span><span class="metric-value">${Number(cfReqTotal).toLocaleString()}</span></div>
                   <div class="metric-item"><span class="metric-label">Bytes Downloaded:</span><span class="metric-value">${Number(cfBytes).toFixed(2)} MB</span></div>
                   <div class="metric-item"><span class="metric-label">4xx Error Rate:</span><span class="metric-value">${Number(cf4xxRate).toFixed(2)}%</span></div>
@@ -467,26 +569,48 @@
                 </div>`;
 
               // ---- RUM card ---- //
-              const pageViews   = (rumMetrics && rumMetrics.PageViewCount   && rumMetrics.PageViewCount.total)   || 0;
-              const sessions    = (rumMetrics && rumMetrics.SessionCount     && rumMetrics.SessionCount.total)     || 0;
-              const docDuration = (rumMetrics && rumMetrics.DocumentDuration && rumMetrics.DocumentDuration.total) || 0;
-              const jsErrors    = (rumMetrics && rumMetrics.ErrorCount       && rumMetrics.ErrorCount.total)       || 0;
-              const httpErrors  = (rumMetrics && rumMetrics.HTTPErrorCount   && rumMetrics.HTTPErrorCount.total)   || 0;
+              const pageViews =
+                (rumMetrics &&
+                  rumMetrics.PageViewCount &&
+                  rumMetrics.PageViewCount.total) ||
+                0;
+              const sessions =
+                (rumMetrics &&
+                  rumMetrics.SessionCount &&
+                  rumMetrics.SessionCount.total) ||
+                0;
+              const docDuration =
+                (rumMetrics &&
+                  rumMetrics.DocumentDuration &&
+                  rumMetrics.DocumentDuration.total) ||
+                0;
+              const jsErrors =
+                (rumMetrics &&
+                  rumMetrics.ErrorCount &&
+                  rumMetrics.ErrorCount.total) ||
+                0;
+              const httpErrors =
+                (rumMetrics &&
+                  rumMetrics.HTTPErrorCount &&
+                  rumMetrics.HTTPErrorCount.total) ||
+                0;
 
-              const apdexScore  = apdex && apdex.score !== null ? apdex.score : null;
-              const apdexPct    = apdexScore !== null ? (apdexScore * 100).toFixed(1) : 0;
-              const apdexColor  = apdexBarColor(apdexScore);
-              const apdexCls    = apdexClass(apdexScore);
+              const apdexScore =
+                apdex && apdex.score !== null ? apdex.score : null;
+              const apdexPct =
+                apdexScore !== null ? (apdexScore * 100).toFixed(1) : 0;
+              const apdexColor = apdexBarColor(apdexScore);
+              const apdexCls = apdexClass(apdexScore);
               const apdexRating = apdexLabel(apdexScore);
 
-              const satisfied  = apdex ? apdex.satisfied  : 0;
-              const tolerated  = apdex ? apdex.tolerated  : 0;
+              const satisfied = apdex ? apdex.satisfied : 0;
+              const tolerated = apdex ? apdex.tolerated : 0;
               const frustrated = apdex ? apdex.frustrated : 0;
 
               content.innerHTML += `
                 <div class="metric-card rum">
                   <h2>👤 Real User Monitoring</h2>
-                  <div class="metric-item"><span class="metric-label">App Monitor:</span><span class="metric-value">${(rangeObj.rum && rangeObj.rum.appMonitor) || '—'}</span></div>
+                  <div class="metric-item"><span class="metric-label">App Monitor:</span><span class="metric-value">${(rangeObj.rum && rangeObj.rum.appMonitor) || "—"}</span></div>
                   <div class="metric-item"><span class="metric-label">Page Views:</span><span class="metric-value">${Number(pageViews).toLocaleString()}</span></div>
                   <div class="metric-item"><span class="metric-label">Sessions:</span><span class="metric-value">${Number(sessions).toLocaleString()}</span></div>
                   <div class="metric-item"><span class="metric-label">Avg Page Load:</span><span class="metric-value">${Number(docDuration).toFixed(0)} ms</span></div>
@@ -494,7 +618,7 @@
                   <div class="metric-item"><span class="metric-label">HTTP Errors:</span><span class="metric-value">${Number(httpErrors).toLocaleString()}</span></div>
                   <div class="metric-item">
                     <span class="metric-label">Apdex Score:</span>
-                    <span class="metric-value ${apdexCls}">${apdexScore !== null ? apdexScore.toFixed(3) : '—'} — ${apdexRating}</span>
+                    <span class="metric-value ${apdexCls}">${apdexScore !== null ? apdexScore.toFixed(3) : "—"} — ${apdexRating}</span>
                   </div>
                   <div style="padding:8px 0;">
                     <div class="apdex-bar-track">
@@ -506,14 +630,13 @@
                   <div class="metric-item"><span class="metric-label">😤 Frustrated (&gt;8s):</span><span class="metric-value">${Number(frustrated).toLocaleString()}</span></div>
                   <div class="metric-item"><span class="metric-label">Time Range:</span><span class="metric-value">${rangeKey}</span></div>
                 </div>`;
-
             } catch (err) {
               errorBox.innerHTML = `
                 <div class="error">
                   <strong>Unable to load metrics:</strong><br>${err.message}<br><br>
                   <small>Run <code>./generate-metrics-json.ps1</code> in the cloudwatch-setup folder to generate metrics.json</small>
                 </div>`;
-              content.innerHTML = '';
+              content.innerHTML = "";
             }
           } else {
             errorBox.innerHTML = `
@@ -522,7 +645,7 @@
                 Could not fetch metrics.json (Status: ${xhr.status})<br><br>
                 <small>Run <code>./generate-metrics-json.ps1</code> in the cloudwatch-setup folder to generate metrics.json</small>
               </div>`;
-            content.innerHTML = '';
+            content.innerHTML = "";
           }
         };
 
@@ -532,13 +655,13 @@
               <strong>Unable to load metrics:</strong><br>Could not fetch metrics.json<br><br>
               <small>Run <code>./generate-metrics-json.ps1</code> in the cloudwatch-setup folder to generate metrics.json</small>
             </div>`;
-          content.innerHTML = '';
+          content.innerHTML = "";
         };
 
         xhr.send();
       }
 
-      window.addEventListener('load', loadMetrics);
+      window.addEventListener("load", loadMetrics);
     </script>
   </body>
 </html>
