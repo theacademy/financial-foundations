@@ -242,13 +242,6 @@
         <div id="errorChartLegend" class="chart-legend"></div>
       </div>
 
-      <!-- RUM chart -->
-      <div class="chart-container">
-        <h2>Real User Monitoring — Page Views &amp; Sessions Over Time</h2>
-        <div id="rumChartWrapper" style="width:100%;height:300px;position:relative;background:white;border:1px solid #eee;border-radius:4px;"></div>
-        <div id="rumChartLegend" class="chart-legend"></div>
-      </div>
-
       <div id="metricsContent" class="metrics-grid">
         <div class="loading">Loading metrics...</div>
       </div>
@@ -349,10 +342,11 @@
       // ------------------------------------------------------------------ //
       // Individual chart builders
       // ------------------------------------------------------------------ //
-      function createRequestChart(s3AllRequests, cfRequests) {
+      function createRequestChart(s3AllRequests, cfRequests, rumPageViews) {
         createMultiSeriesChart('chartWrapper', 'chartLegend', [
           { label: 'S3 AllRequests',      color: '#3498db', data: extractDatapoints(s3AllRequests) },
           { label: 'CloudFront Requests', color: '#e74c3c', data: extractDatapoints(cfRequests)    },
+          { label: 'Page Views (RUM)',     color: '#27ae60', data: extractDatapoints(rumPageViews)  },
         ], 'No request data available for this time range');
       }
 
@@ -361,13 +355,6 @@
           { label: 'S3 4xx Error Rate (%)',         color: '#8e44ad', data: buildRateSeries(s34xx, s3AllRequests) },
           { label: 'CloudFront 4xx Error Rate (%)', color: '#2c3e50', data: buildRateSeries(cf4xx, cfRequests)    },
         ], 'No error-rate data available for this time range', { max: 100, step: 20 });
-      }
-
-      function createRumChart(rumMetrics) {
-        createMultiSeriesChart('rumChartWrapper', 'rumChartLegend', [
-          { label: 'Page Views', color: '#27ae60', data: extractDatapoints(rumMetrics && rumMetrics.PageViewCount) },
-          { label: 'Sessions',   color: '#8e44ad', data: extractDatapoints(rumMetrics && rumMetrics.SessionCount)  },
-        ], 'No RUM data available for this time range');
       }
 
       // ------------------------------------------------------------------ //
@@ -435,7 +422,8 @@
               // Charts
               createRequestChart(
                 s3metrics && s3metrics.AllRequests,
-                cfmetrics && cfmetrics.Requests
+                cfmetrics && cfmetrics.Requests,
+                rumMetrics && rumMetrics.PageViewCount
               );
               createErrorChart(
                 s3metrics && s3metrics.AllRequests,
@@ -443,13 +431,12 @@
                 cfmetrics && cfmetrics.Requests,
                 cfmetrics && cfmetrics['OriginErrors4xx']
               );
-              createRumChart(rumMetrics);
 
               // ---- S3 card ---- //
-              const s3All    = (s3metrics.AllRequests    && s3metrics.AllRequests.total)    || 0;
-              const s34xx    = (s3metrics['4xxErrors']   && s3metrics['4xxErrors'].total)   || 0;
-              const s35xx    = (s3metrics['5xxErrors']   && s3metrics['5xxErrors'].total)   || 0;
-              const s3Bytes  = (s3metrics.BytesDownloaded && s3metrics.BytesDownloaded.total) || 0;
+              const s3All   = (s3metrics.AllRequests     && s3metrics.AllRequests.total)     || 0;
+              const s34xx   = (s3metrics['4xxErrors']    && s3metrics['4xxErrors'].total)    || 0;
+              const s35xx   = (s3metrics['5xxErrors']    && s3metrics['5xxErrors'].total)    || 0;
+              const s3Bytes = (s3metrics.BytesDownloaded && s3metrics.BytesDownloaded.total) || 0;
 
               content.innerHTML += `
                 <div class="metric-card">
@@ -492,9 +479,9 @@
               const apdexCls    = apdexClass(apdexScore);
               const apdexRating = apdexLabel(apdexScore);
 
-              const satisfied   = apdex ? apdex.satisfied  : 0;
-              const tolerated   = apdex ? apdex.tolerated  : 0;
-              const frustrated  = apdex ? apdex.frustrated : 0;
+              const satisfied  = apdex ? apdex.satisfied  : 0;
+              const tolerated  = apdex ? apdex.tolerated  : 0;
+              const frustrated = apdex ? apdex.frustrated : 0;
 
               content.innerHTML += `
                 <div class="metric-card rum">
