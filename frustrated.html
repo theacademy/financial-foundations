@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Frustrated Load Test</title>
+    <script>
+      (function (n, i, v, r, s, c, x, z) {
+        x = window.AwsRumClient = {
+          q: [],
+          n: n,
+          i: i,
+          v: v,
+          r: r,
+          c: c,
+        };
+        window[n] = function (c, p) {
+          x.q.push({ c: c, p: p });
+        };
+        z = document.createElement("script");
+        z.async = true;
+        z.src = s;
+        document.head.insertBefore(z, document.getElementsByTagName("script")[0]);
+      })(
+        "cwr",
+        "f1bb5753-8dc6-4aff-8ab8-264ba07d2d6b",
+        "1.0.0",
+        "us-east-1",
+        "https://client.rum.us-east-1.amazonaws.com/3.x/cwr.js",
+        {
+          sessionSampleRate: 1,
+          endpoint: "https://dataplane.rum.us-east-1.amazonaws.com",
+          telemetries: ["performance", "errors", "http"],
+          allowCookies: true,
+          signing: true,
+          identityPoolId: "us-east-1:bd5ed77a-d724-4745-a689-b4a22525ace0",
+        }
+      );
+    </script>
+    <!-- /CloudWatch RUM -->
+  </head>
+  <body>
+    <h1>Frustrated Load Test</h1>
+    <p>This page intentionally blocks the main thread for ~11 seconds to create a "frustrated" navigation event.</p>
+
+    <script>
+      // Busy-wait on the main thread to force a long navigation duration (>8s)
+      (function busyWait(ms) {
+        const start = Date.now();
+        while (Date.now() - start < ms) {
+          // busy loop
+        }
+      })(11000);
+    </script>
+
+    <p>Blocking complete — this visit should record an elevated navigation duration in RUM.</p>
+  </body>
+  </html>

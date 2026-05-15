@@ -532,7 +532,7 @@
 
               content.innerHTML += `
                 <div class="metric-card">
-                  <h2>📦 S3 Metrics</h2>
+                  <h2>S3 Metrics</h2>
                   <div class="metric-item"><span class="metric-label">Bucket:</span><span class="metric-value">${rangeObj.s3.bucket || "—"}</span></div>
                   <div class="metric-item"><span class="metric-label">Total Requests:</span><span class="metric-value">${Number(s3All).toLocaleString()}</span></div>
                   <div class="metric-item"><span class="metric-label">Bytes Downloaded:</span><span class="metric-value">${Number(s3Bytes).toFixed(2)} MB</span></div>
@@ -559,7 +559,7 @@
 
               content.innerHTML += `
                 <div class="metric-card">
-                  <h2>🌐 CloudFront Metrics</h2>
+                  <h2>CloudFront Metrics</h2>
                   <div class="metric-item"><span class="metric-label">Distribution ID:</span><span class="metric-value">${rangeObj.cloudfront.distributionId || "—"}</span></div>
                   <div class="metric-item"><span class="metric-label">Total Requests:</span><span class="metric-value">${Number(cfReqTotal).toLocaleString()}</span></div>
                   <div class="metric-item"><span class="metric-label">Bytes Downloaded:</span><span class="metric-value">${Number(cfBytes).toFixed(2)} MB</span></div>
@@ -609,7 +609,7 @@
 
               content.innerHTML += `
                 <div class="metric-card rum">
-                  <h2>👤 Real User Monitoring</h2>
+                  <h2>Real User Monitoring</h2>
                   <div class="metric-item"><span class="metric-label">App Monitor:</span><span class="metric-value">${(rangeObj.rum && rangeObj.rum.appMonitor) || "—"}</span></div>
                   <div class="metric-item"><span class="metric-label">Page Views:</span><span class="metric-value">${Number(pageViews).toLocaleString()}</span></div>
                   <div class="metric-item"><span class="metric-label">Sessions:</span><span class="metric-value">${Number(sessions).toLocaleString()}</span></div>
@@ -625,9 +625,9 @@
                       <div class="apdex-bar-fill" style="width:${apdexPct}%;background:${apdexColor};"></div>
                     </div>
                   </div>
-                  <div class="metric-item"><span class="metric-label">✅ Satisfied (&lt;2s):</span><span class="metric-value">${Number(satisfied).toLocaleString()}</span></div>
-                  <div class="metric-item"><span class="metric-label">⏳ Tolerated (2–8s):</span><span class="metric-value">${Number(tolerated).toLocaleString()}</span></div>
-                  <div class="metric-item"><span class="metric-label">😤 Frustrated (&gt;8s):</span><span class="metric-value">${Number(frustrated).toLocaleString()}</span></div>
+                  <div class="metric-item"><span class="metric-label">Satisfied (&lt;2s):</span><span class="metric-value">${Number(satisfied).toLocaleString()}</span></div>
+                  <div class="metric-item"><span class="metric-label">Tolerated (2–8s):</span><span class="metric-value">${Number(tolerated).toLocaleString()}</span></div>
+                  <div class="metric-item"><span class="metric-label">Frustrated (&gt;8s):</span><span class="metric-value">${Number(frustrated).toLocaleString()}</span></div>
                   <div class="metric-item"><span class="metric-label">Time Range:</span><span class="metric-value">${rangeKey}</span></div>
                 </div>`;
             } catch (err) {
