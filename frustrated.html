@@ -20,7 +20,10 @@
         z = document.createElement("script");
         z.async = true;
         z.src = s;
-        document.head.insertBefore(z, document.getElementsByTagName("script")[0]);
+        document.head.insertBefore(
+          z,
+          document.getElementsByTagName("script")[0],
+        );
       })(
         "cwr",
         "f1bb5753-8dc6-4aff-8ab8-264ba07d2d6b",
@@ -34,14 +37,17 @@
           allowCookies: true,
           signing: true,
           identityPoolId: "us-east-1:bd5ed77a-d724-4745-a689-b4a22525ace0",
-        }
+        },
       );
     </script>
     <!-- /CloudWatch RUM -->
   </head>
   <body>
     <h1>Frustrated Load Test</h1>
-    <p>This page intentionally blocks the main thread for ~11 seconds to create a "frustrated" navigation event.</p>
+    <p>
+      This page intentionally blocks the main thread for ~11 seconds to create a
+      "frustrated" navigation event.
+    </p>
 
     <script>
       // Busy-wait on the main thread to force a long navigation duration (>8s)
@@ -53,6 +59,9 @@
       })(11000);
     </script>
 
-    <p>Blocking complete — this visit should record an elevated navigation duration in RUM.</p>
+    <p>
+      Blocking complete — this visit should record an elevated navigation
+      duration in RUM.
+    </p>
   </body>
-  </html>
+</html>
